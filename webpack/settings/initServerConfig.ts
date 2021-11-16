@@ -5,6 +5,7 @@ import webpackNodeExternals from 'webpack-node-externals';
 
 import {ROOT_DIR_FROM_WEBPACK} from '../assets/dir';
 import {ENVS, GLOBAL_ARGS} from '../assets/env';
+import {TsconfigPathsPlugin} from 'tsconfig-paths-webpack-plugin';
 
 const {DADATA_TOKEN} = process.env;
 const {__DEV__} = ENVS;
@@ -27,7 +28,9 @@ export default ({entry}: {entry: any}) => (webpackConfig: webpack.Configuration)
 
         resolve: {
             extensions: ['.js', '.ts', '.tsx', '.json'],
-            plugins: [],
+            plugins: [
+                new TsconfigPathsPlugin(),
+            ],
         },
 
         output: {

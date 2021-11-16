@@ -37,7 +37,7 @@ function getPageHtml(params: PageHtmlParams) {
             <body>
                 <div id="root" dangerouslySetInnerHTML={{__html: bundleHtml}}/>
                 {vendorsMeta.hasJs && <script src={`${vendorsFilePath}.js`}/>}
-                <script src={`${bundleFilePath}.ru.js`}/>
+                <script src={`${bundleFilePath}.js`}/>
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `Client.default(${htmlescape(data)});`,

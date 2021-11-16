@@ -8,8 +8,9 @@
     "build:production:vendors": "better-npm-run build:production:vendors",
     "build:production:client": "better-npm-run build:production:client",
     "build:production": "better-npm-run build:production",
+    "build:client": "better-npm-run build:client",
     "watch:ssr": "better-npm-run watch:ssr",
-    "start:dev": "NODE_PATH=./dist CFG_DIR=$(pwd)/dist/configs node dist/server/index.js",
+    "start:dev": "NODE_PATH=./dist NODE_OPTIONS=--enable-source-maps CFG_DIR=$(pwd)/dist/configs node dist/server/index.js",
     "start:prod": "cd /var/www/html && APP_VERSION=$(cat $(pwd)/.version) CFG_DIR=$(pwd)/dist/configs/ NODE_PATH=$(pwd)/dist node dist/server/index.js",
     "build:configs": "tsc --project configs",
     "build:server": "tsc --project server",
@@ -30,6 +31,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.15.8",
     "@types/compression-webpack-plugin": "^6.0.6",
     "@types/cookie-parser": "^1.4.2",
     "@types/duplicate-package-checker-webpack-plugin": "^2.1.2",
@@ -48,20 +50,27 @@
     "@types/webpack-dev-server": "^3.11.5",
     "@types/webpack-hot-middleware": "^2.25.5",
     "@types/webpack-node-externals": "^2.5.2",
+    "babel-loader": "^8.2.2",
     "better-npm-run": "^0.1.1",
     "compression-webpack-plugin": "^8.0.1",
+    "css-hot-loader": "^1.4.4",
+    "css-loader": "^6.3.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "fork-ts-checker-webpack-plugin": "^6.3.2",
     "merge-options": "^3.0.4",
     "mini-css-extract-plugin": "^2.2.0",
+    "nodemon": "^2.0.13",
     "npm-run-all": "^4.1.5",
+    "postcss-loader": "^6.1.1",
     "react-loadable": "^5.5.0",
     "ts-loader": "^9.2.5",
     "ts-node": "^10.2.1",
+    "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.3.4",
     "webpack": "5.39.0",
     "webpack-cli": "4.7.2",
     "webpack-dev-server": "^4.0.0-rc.1",
+    "webpack-hot-middleware": "^2.25.1",
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
@@ -76,13 +85,26 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
-    "react-hot-loader": "^4.13.0"
+    "react-hot-loader": "^4.13.0",
+    "react-router-dom": "^6.0.2"
   },
   "betterScripts": {
     "dev": {
       "command": "npm-run-all build:configs build:server && npm-run-all --parallel --print-name watch:ssr start:dev",
       "env": {
         "NODE_ENV": "development"
+      }
+    },
+    "build:client": {
+      "command": "webpack --mode=development --config webpack/config/client.config.ts",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "build:production:client": {
+      "command": "webpack --mode=production --config webpack/config/client.config.ts",
+      "env": {
+        "NODE_ENV": "production"
       }
     },
     "watch:ssr": {

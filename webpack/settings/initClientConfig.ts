@@ -4,6 +4,7 @@ import {join} from "path";
 import ForkTsCheckerPlugin from 'fork-ts-checker-webpack-plugin';
 import CompressionWebpackPlugin from 'compression-webpack-plugin';
 import DuplicatePackageCheckerPlugin from 'duplicate-package-checker-webpack-plugin';
+import {TsconfigPathsPlugin} from 'tsconfig-paths-webpack-plugin';
 
 
 import {
@@ -27,7 +28,7 @@ export default () => (webpackConfig: webpack.Configuration) => {
             desktop:
                 [
                     __DEV__ && 'css-hot-loader/hotModuleReplacement',
-                    __DEV__ && `webpack-hot-middleware/client?path=/__webpack_hmr_`,
+                    __DEV__ && `webpack-hot-middleware/client?path=/__webpack_hmr`,
                     join(CLIENT_DIR, 'bundles', 'desktop').replace('dist/', '')
                 ].filter(Boolean) as string[],
         },
@@ -43,6 +44,9 @@ export default () => (webpackConfig: webpack.Configuration) => {
         },
         resolve: {
             extensions: ['.js', '.ts', '.tsx', '.json'], // порядок важен
+            plugins: [
+                new TsconfigPathsPlugin(),
+            ],
         },
         module: {
             rules: [],

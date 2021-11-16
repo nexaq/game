@@ -1,13 +1,8 @@
 import {AppConfig} from 'cfg';
 
 const config: AppConfig = {
-    render: {
-        isHot: true,
-    },
-
     static: {
-        baseUrl: '/static/',
-        version: '',
+        baseUrl: `//storage.yandexcloud.net/path/to/S3/client/`,
     },
 };
 

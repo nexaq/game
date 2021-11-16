@@ -15,7 +15,7 @@ function getWebpackMiddlewares(config: webpack.Configuration): RequestHandler[] 
         devMiddleware(compiler, {
             publicPath: config.output!.publicPath! as string,
         }),
-        hotMiddleware(compiler, {path: `/__webpack_hmr_`}),
+        hotMiddleware(compiler, {path: `/__webpack_hmr`}),
     ];
 }
 

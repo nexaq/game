@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
 
-import {Props} from './types';
+import './style.css';
 
-const Page: Props = () => {
+const Page: FC = () => {
     return (
-        <div>
-            Hello world
+        <div className={'main'}>
+            Hello...
         </div>
     );
 };
