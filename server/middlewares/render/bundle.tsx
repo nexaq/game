@@ -2,6 +2,7 @@ import htmlescape from 'htmlescape';
 import cfg from 'lib/cfg';
 import React from 'react';
 import {renderToStaticMarkup, renderToString} from 'react-dom/server';
+import {StaticRouter} from "react-router-dom/server";
 
 import vendorsMeta from 'webpack/config/vendors-meta';
 
@@ -31,8 +32,8 @@ function getPageHtml(params: PageHtmlParams) {
         <html>
             <head>
                 <link rel="icon" type="image/png" href="/favicons/favicon.png"/>
-                <link rel="stylesheet" href={`${bundleFilePath}.css`}/>
-                {vendorsMeta.hasCss && <link rel="stylesheet" href={`${vendorsFilePath}.css`}/>}
+                {/*<link rel="stylesheet" href={`${bundleFilePath}.css`}/>*/}
+                {/*{vendorsMeta.hasCss && <link rel="stylesheet" href={`${vendorsFilePath}.css`}/>}*/}
             </head>
             <body>
                 <div id="root" dangerouslySetInnerHTML={{__html: bundleHtml}}/>
@@ -56,7 +57,7 @@ interface RenderBundleArguments {
     location: string;
 }
 
-export default ({bundleName, data}: RenderBundleArguments) => {
+export default ({bundleName, data, location}: RenderBundleArguments) => {
     const Bundle = getBundle(bundleName);
 
     if (!Bundle) {
@@ -65,7 +66,11 @@ export default ({bundleName, data}: RenderBundleArguments) => {
 
     const bundleHtml = renderToString(
         (
-            <Bundle data={data}/>
+            // <Provider store={store}>
+                <StaticRouter location={location}>
+                    <Bundle data={data}/>
+                </StaticRouter>
+            // </Provider>
         ),
     );
 

@@ -1,10 +1,16 @@
 import React, {FC} from 'react';
+import {Helmet} from 'react-helmet';
 
-const Home: FC = () => {
+let Home: FC = () => {
     return (
-        <div>
-
-        </div>
+        <>
+            <Helmet>
+                <title>CLOCKWORK</title>
+            </Helmet>
+            <div>
+                CLOCKWORK
+            </div>
+        </>
     );
 };
 

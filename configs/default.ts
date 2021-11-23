@@ -7,6 +7,10 @@ const config: AppConfig = {
         staticDir: join(__dirname, '..', '..', 'static'),
     },
 
+    helmet: {
+        contentSecurityPolicy: false,
+    },
+
     render: {
         isHot: false,
     },

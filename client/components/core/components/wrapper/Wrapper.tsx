@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 
-import Hello from 'client/pages/hello';
+import Router from 'client/components/router';
 
 const Wrapper = () => {
     return (
@@ -10,8 +10,7 @@ const Wrapper = () => {
                 <title>Hello</title>
                 <meta name="title" content="ssr"/>
             </Helmet>
-
-            <Hello/>
+            <Router/>
         </>
     );
 };

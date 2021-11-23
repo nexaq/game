@@ -5,6 +5,7 @@ import ForkTsCheckerPlugin from 'fork-ts-checker-webpack-plugin';
 import CompressionWebpackPlugin from 'compression-webpack-plugin';
 import DuplicatePackageCheckerPlugin from 'duplicate-package-checker-webpack-plugin';
 import {TsconfigPathsPlugin} from 'tsconfig-paths-webpack-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 
 import {
@@ -19,7 +20,7 @@ const vendorsManifest = require(
 );
 
 export default () => (webpackConfig: webpack.Configuration) => {
-    const config: webpack.Configuration = {
+    const config = {
         name: 'Client',
         target: 'web',
         devtool: __DEV__ ? 'eval-source-map' : 'source-map',
@@ -27,14 +28,13 @@ export default () => (webpackConfig: webpack.Configuration) => {
         entry: {
             desktop:
                 [
-                    __DEV__ && 'css-hot-loader/hotModuleReplacement',
                     __DEV__ && `webpack-hot-middleware/client?path=/__webpack_hmr`,
-                    join(CLIENT_DIR, 'bundles', 'desktop').replace('dist/', '')
+                    join(CLIENT_DIR, 'bundles', 'desktop', 'index').replace('dist/', '')
                 ].filter(Boolean) as string[],
         },
         output: {
             filename: `[name].bundle.js`,
-            // создает либу, можно запускать через Client(...)
+            // создает либу, можно запускать через Client.default(...)
             library: 'Client',
             libraryTarget: 'var',
             path: join(DIST_DIR, 'client'),
@@ -79,13 +79,18 @@ export default () => (webpackConfig: webpack.Configuration) => {
     }
 
     if (__DEV__) {
-        config.plugins?.push(
+        config.plugins.push(
             new webpack.HotModuleReplacementPlugin(),
+            new ReactRefreshWebpackPlugin({
+                overlay: {
+                    sockIntegration: 'whm', // webpack hot middleware
+                },
+            }),
         );
     }
 
     if (__PROD__) {
-        config.plugins?.push(
+        config.plugins.push(
             new CompressionWebpackPlugin({minRatio: 1}) as webpack.WebpackPluginFunction, // почему-то ts ругается
             new DuplicatePackageCheckerPlugin()  as webpack.WebpackPluginFunction,
         )

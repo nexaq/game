@@ -1,26 +1,27 @@
 import webpack from 'webpack';
 
 import {ENVS} from '../assets/env';
+const {__DEV__} = ENVS;
 
 export default {
     client: {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
-            (ENVS.__DEV__ && ({
+            {
                 loader: 'babel-loader',
                 options: {
-                    cacheDirectory: true,
-                    plugins: ['react-hot-loader/babel'],
+                    presets: [
+                        __DEV__ && '@babel/preset-env',
+                        __DEV__ && "@babel/preset-typescript",
+                        // Enable development transform of React with new automatic runtime
+                        __DEV__ && ['@babel/preset-react', { development: true, runtime: 'automatic' }],
+                    ].filter(Boolean),
+                    plugins: [
+                        __DEV__ && 'react-refresh/babel'
+                    ].filter(Boolean),
                 },
-            })) as webpack.RuleSetRule,
-            {
-                // делигируем это для fork-ts-checker
-                loader: 'ts-loader',
-                options: {
-                    transpileOnly: true,
-                },
-            },
+            } as webpack.RuleSetRule,
         ].filter(Boolean),
     },
 
