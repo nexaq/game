@@ -1,0 +1,58 @@
+@import "../../styles/variables.module.pcss";
+
+$transition: all 0.26s ease;
+
+.button {
+    font-size: rem(27);
+    padding: em(16, 27) em(36, 27) em(12, 27);
+    font-family: $display-font-family;
+    color: $primary;
+    border: 1px solid $primary;
+    line-height: 0.93;
+    position: relative;
+    transition: $transition;
+    text-decoration: none;
+    display: inline-block;
+
+    &:after {
+        transition: $transition;
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: $primary;
+        z-index: 0;
+    }
+
+    &:hover {
+        color: $secondary;
+        box-shadow: 7px 15px 24px rgba(0, 0, 0, 0.25);
+
+        &:after {
+            width: 100%;
+        }
+    }
+}
+
+/* mods */
+._inversed {
+    background: $primary;
+    color: $secondary;
+    box-shadow: 7px 15px 24px rgba(0, 0, 0, 0.25);
+
+    &:after {
+        background: $secondary;
+    }
+
+    &:hover {
+        color: $primary;
+        box-shadow: none;
+
+        &:after {
+            width: 100%;
+        }
+    }
+}

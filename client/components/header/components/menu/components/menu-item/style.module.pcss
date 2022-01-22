@@ -1,0 +1,69 @@
+@import "../../../../../../styles/variables.module.pcss";
+
+body {
+    counter-reset: menu-item;
+}
+
+$hover-color: #653764;
+$transition: 0.3s ease all;
+
+.item {
+    color: $secondary;
+    font-family: $decorative-font-family;
+    font-size: rem(48);
+    display: block;
+    &:hover {
+        .label:after {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+}
+
+.number {
+    margin-bottom: em(18, 48);
+    display: block;
+    &:before {
+        display: block;
+        counter-increment: menu-item;
+        content: counter(menu-item);
+        font-size: em(16, 48);
+    }
+}
+
+.label {
+    display: block;
+    text-transform: uppercase;
+    position: relative;
+
+    &:after {
+        display: block;
+        content: '';
+        height: 3px;
+        width: 0;
+        background: $secondary;
+        bottom: rem(-14);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background: $hover-color;
+        transition: $transition;
+        opacity: 0;
+    }
+
+    &:hover {
+        &:after {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+}
+
+.link {
+    transition: $transition;
+    color: $secondary;
+    display: block;
+    &:hover {
+        color: $hover-color;
+    }
+}

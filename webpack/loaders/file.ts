@@ -8,7 +8,7 @@ export default {
         test: filenameRegexp,
         options: {
             name: '[hash].[ext]',
-            outputPath: './',
+            outputPath: './client/',
             publicPath: cfg.static.baseUrl,
         },
     },

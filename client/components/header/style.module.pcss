@@ -1,0 +1,50 @@
+@import "../../styles/variables.module.pcss";
+
+.header {
+    color: rebeccapurple;
+    padding-top: rem(16);
+    padding-bottom: rem(22);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: $black;
+    z-index: 901;
+
+    @media (min-width: $breakpoint-sm) {
+        padding-top: rem(22);
+        padding-bottom: rem(30);
+    }
+}
+
+._opened {
+    background: $primary-dark;
+    box-shadow: 0 0 148px 38px #000000f7;
+}
+
+.hamburger {
+    margin-left: auto;
+    margin-right: -5px;
+}
+
+.inner {
+    padding-bottom: rem(22);
+    display: flex;
+    align-items: center;
+}
+
+.overlay {
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(0 0 0 / 18%);
+    filter: bacj(29px);
+    backdrop-filter: blur(10px);
+    display: none;
+    &_active {
+        display: block;
+    }
+}

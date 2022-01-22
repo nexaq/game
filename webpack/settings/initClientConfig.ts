@@ -23,7 +23,7 @@ export default () => (webpackConfig: webpack.Configuration) => {
     const config = {
         name: 'Client',
         target: 'web',
-        devtool: __DEV__ ? 'eval-source-map' : 'source-map',
+        devtool: __DEV__ ? 'source-map' : 'source-map',
         mode: __DEV__ ? 'development' : 'production',
         entry: {
             desktop:
@@ -43,7 +43,7 @@ export default () => (webpackConfig: webpack.Configuration) => {
                 : `https://storage.yandexcloud.net/path/to/S3/client/`,
         },
         resolve: {
-            extensions: ['.js', '.ts', '.tsx', '.json'], // порядок важен
+            extensions: ['.js', '.ts', '.tsx', '.json', '.pcss'], // порядок важен + расширение теперь можно не указывать
             plugins: [
                 new TsconfigPathsPlugin(),
             ],
@@ -91,7 +91,7 @@ export default () => (webpackConfig: webpack.Configuration) => {
 
     if (__PROD__) {
         config.plugins.push(
-            new CompressionWebpackPlugin({minRatio: 1}) as webpack.WebpackPluginFunction, // почему-то ts ругается
+            new CompressionWebpackPlugin({minRatio: 1}) as webpack.WebpackPluginFunction,
             new DuplicatePackageCheckerPlugin()  as webpack.WebpackPluginFunction,
         )
     }

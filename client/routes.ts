@@ -1,7 +1,13 @@
 export const ROUTES = {
-    INDEX_REDIRECT: {
+    HOME: {
         INDEX: '/',
     },
+    LEADERBOARD: {
+        INDEX: '/leaderboard',
+    },
+    PLAY: {
+        INDEX: '/play',
+    }
     // Example
     // HELLO: {
     //     INDEX: '/hello',

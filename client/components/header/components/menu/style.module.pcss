@@ -1,0 +1,33 @@
+@import "../../../../styles/variables.module.pcss";
+
+$space-between: 12;
+
+.menu {
+    display: block;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 0;
+    margin: rem(-$space-between);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+
+    @media (min-width: $breakpoint-sm) {
+        display: flex;
+    }
+}
+
+._opened {
+    /* костылёк для css анимации */
+    max-height: 470px;
+    padding: rem($space-between) 0;
+    @media (min-width: $breakpoint-sm) {
+        /* костылёк для css анимации */
+        max-height: 350px;
+    }
+}
+
+.item {
+    padding: rem(12);
+
+}

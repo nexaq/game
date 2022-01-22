@@ -1,15 +1,15 @@
-import React, {FC} from 'react';
-import Layout from './components/wrapper';
+import React from 'react';
+import Wrapper from './components/wrapper';
+import {Props} from "./types";
 
-const Core: FC = () => {
-
+const Core: Props = ({}) => {
     return __PROD__
         ? (
             <div>
-                <Layout/>
+                <Wrapper/>
             </div>
-)
-: <Layout/>;
+        )
+        : <Wrapper/>;
 };
 
 const {__PROD__} = process.env;

@@ -1,0 +1,44 @@
+$main-font-size: 16px;
+
+$container-width: 1222px;
+$container-offset: 24px;
+
+$decorative-font-name: 'Jockey One';
+$decorative-font-family: $decorative-font-name, sans-serif;
+$normal-font-name: Montserrat;
+$normal-font-family: $normal-font-name, sans-serif;
+$display-font-name: 'Lalezar';
+$display-font-family: $display-font-name, sans-serif;
+
+/** COLORS **/
+$primary: #D2C9A5;
+$primary-dark: #AB9B8E;
+$secondary: #49343D;
+$gray: #E5E5E5;
+$white: #FFFFFF;
+$black: #00000a;
+
+/* FUTURE COLORS */
+/* #344941 */
+/* #35126b */
+
+
+/* BREAK POINTS */
+
+/* Extra small devices (portrait phones, less than 576px) */
+/* No media query since this is the default */
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+/** CAN BE IMPORTED IN JS **/
+:export {
+    mainFontSize: $main-font-size;
+    primary: $primary;
+    secondary: $secondary;
+    breakpoint-sm: $breakpoint-sm;
+    breakpoint-md: $breakpoint-md;
+    breakpoint-lg: $breakpoint-lg;
+    breakpoint-xl: $breakpoint-xl;
+}

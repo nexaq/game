@@ -32,8 +32,8 @@ function getPageHtml(params: PageHtmlParams) {
         <html>
             <head>
                 <link rel="icon" type="image/png" href="/favicons/favicon.png"/>
-                {/*<link rel="stylesheet" href={`${bundleFilePath}.css`}/>*/}
-                {/*{vendorsMeta.hasCss && <link rel="stylesheet" href={`${vendorsFilePath}.css`}/>}*/}
+                <link rel="stylesheet" href={`${bundleFilePath}.css`}/>
+                {vendorsMeta.hasCss && <link rel="stylesheet" href={`${vendorsFilePath}.css`}/>}
             </head>
             <body>
                 <div id="root" dangerouslySetInnerHTML={{__html: bundleHtml}}/>
@@ -53,7 +53,7 @@ function getPageHtml(params: PageHtmlParams) {
 
 interface RenderBundleArguments {
     bundleName: string;
-    data: {};
+    data: ServerData;
     location: string;
 }
 
