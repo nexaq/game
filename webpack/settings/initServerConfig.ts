@@ -27,7 +27,7 @@ export default ({entry}: {entry: any}) => (webpackConfig: webpack.Configuration)
         })],
 
         resolve: {
-            extensions: ['.js', '.ts', '.tsx', '.json'],
+            extensions: ['.js', '.ts', '.tsx', '.json', '.pcss'],
             plugins: [
                 new TsconfigPathsPlugin(),
             ],

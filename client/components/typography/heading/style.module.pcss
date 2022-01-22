@@ -1,0 +1,30 @@
+@import "../../../styles/variables.module.pcss";
+
+
+.heading {
+    color: $primary;
+    font-family: $display-font-family;
+}
+
+h2.heading {
+    color: $primary;
+    line-height: 0.85;
+    font-size: rem(60);
+    margin-bottom: em(32, 60);
+
+    @media (min-width: $breakpoint-sm) {
+        font-size: rem(76);
+    }
+}
+
+h3.heading {
+    font-size: rem(45);
+    line-height: 0.93;
+    color: $white;
+}
+
+.line {
+    background-color: #AC9A8C;
+    height: 1px;
+    margin-top: 16px;
+}

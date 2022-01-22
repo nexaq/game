@@ -4,62 +4,55 @@ import {ENVS} from '../assets/env';
 
 const postcssLoader = {
     loader: 'postcss-loader',
+    options: {
+        sourceMap: ENVS.__DEV__,
+    }
 };
 
-const cssLoader = {
+const cssLoaderModule = {
     loader: 'css-loader',
     options: {
         sourceMap: ENVS.__DEV__,
-        importLoaders: 1,
         modules: {
             localIdentName: ENVS.__DEV__ ? '[name]__[local]--[hash:base64:5]' : '[hash:base64:8]',
         },
     },
 };
 
-const cssLoaders = [
-    MiniCssExtractPlugin.loader,
-    cssLoader,
-    postcssLoader,
-];
+const cssLoader = {
+    loader: 'css-loader',
+    options: {
+        sourceMap: ENVS.__DEV__,
+    },
+}
 
-const sassLoader = {
-    loader: 'sass-loader',
-};
+const typingsForModules = {
+    loader: 'typings-for-css-modules-loader',
+    options: {
+        modules: true,
+        namedExport: true
+    }
+}
 
 export default {
     client: [
         {
-            test: /\.css$/,
+            test: /\.pcss$/,
             exclude: /node_modules/,
-            use: cssLoaders,
-        },
-        {
-            test: /\.css$/,
-            include: /node_modules/,
             use: [
                 MiniCssExtractPlugin.loader,
-                {loader: 'css-loader'},
+                cssLoader,
                 postcssLoader,
             ],
         },
         {
-            test: /\.scss$/,
+            test: /\.module\.pcss$/,
+            include: /node_modules/,
             use: [
-                ...cssLoaders,
-                sassLoader,
-                {
-                    loader: 'sass-resources-loader',
-                    options: {
-                        resources: [
-                            'client/sass/_variables.scss',
-                            'client/sass/_functions.scss',
-                            'client/sass/_mixins.scss',
-                            'client/sass/_extendable.scss',
-                            'client/sass/_reset.scss',
-                        ],
-                    },
-                },
+                MiniCssExtractPlugin.loader,
+                postcssLoader,
+                typingsForModules,
+                cssLoaderModule
             ],
         },
     ],

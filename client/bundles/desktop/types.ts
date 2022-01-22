@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 type OwnProps = {
-    data: {}; // TODO: Your types from server
+    data: ServerData;
 };
 
 export type Props = FC<OwnProps>;

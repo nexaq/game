@@ -1,0 +1,44 @@
+@import "../../../../styles/variables.module.pcss";
+
+.container {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $breakpoint-md) {
+        flex-direction: row;
+    }
+
+
+    .info {
+        margin-bottom: 0;
+    }
+}
+
+.left {
+    flex: 0 0 50%;
+    font-size: rem(66);
+    font-weight: 700;
+    color: $primary;
+    font-family: $decorative-font-name;
+}
+
+.right {
+    @media (min-width: $breakpoint-md) {
+        padding-bottom: 12px;
+        padding-left: 20px;
+        margin-top: 450px;
+    }
+
+    p {
+        font-size: rem(21);
+        color: #ffffff;
+    }
+}
+
+.title {
+    position: sticky;
+    top: 45vh;
+    @media (min-width: $breakpoint-md) {
+        margin-bottom: 0!important;
+    }
+}

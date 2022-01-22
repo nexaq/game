@@ -9,6 +9,7 @@ import webpackConfig from 'webpack/config/client.config';
 import render from './render';
 
 function getWebpackMiddlewares(config: webpack.Configuration): RequestHandler[] {
+    // достаем компайлер
     const compiler = webpack.webpack({...config, mode: 'development'}) as any;
 
     return [

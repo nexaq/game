@@ -1,3 +1,4 @@
+import 'styles/boot.ts';
 import {Props} from "./types";
 import React from "react";
 import {Helmet} from 'react-helmet';
@@ -15,7 +16,6 @@ const DesktopBundle: Props = props => {
                     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
                 />
             </Helmet>
-            <div>XXXXXXXXX</div>
             <Core {...props.data}/>
         </>
     );

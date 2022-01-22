@@ -1,0 +1,63 @@
+@import "../../../../styles/variables.module.pcss";
+
+$width: 36px;
+$height: 35px;
+$padding: 5px;
+
+$stick-padding-from-side: 8px;
+$stick-padding-from-side-hover: 4px;
+
+.hamburger {
+    height: $height;
+    width: $width;
+    display: block;
+    position: relative;
+    padding: $padding;
+    z-index: 901;
+
+    &:after,
+    &:before {
+        content: '';
+        height: 4px;
+        left: $padding;
+        width: $width;
+        display: block;
+        position: absolute;
+    }
+
+    &:after {
+        top: calc($stick-padding-from-side + $padding);
+        background-color: $primary;
+    }
+
+    &:before {
+        bottom: calc($stick-padding-from-side + $padding);
+        background-color: $primary;
+    }
+
+    /* for not mobile only */
+    @media (hover: hover) {
+        &:hover {
+            &:after {
+                top: calc($stick-padding-from-side-hover + $padding);
+            }
+            &:before {
+                bottom: calc($stick-padding-from-side-hover + $padding);
+            }
+        }
+    }
+}
+
+._active {
+    &:after {
+        transform: translate(0px, 7px) rotate(-45deg);
+        top: calc($stick-padding-from-side + $padding)!important;
+        background-color: $secondary;
+    }
+
+    &:before {
+        transform: translate(0px, -8px) rotate(45deg);
+        bottom: calc($stick-padding-from-side + $padding)!important;
+        background-color: $secondary;
+    }
+}

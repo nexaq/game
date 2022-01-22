@@ -1,0 +1,25 @@
+@import "../../../../styles/variables.module.pcss";
+
+
+.title {
+    font-family: $display-font-family;
+    line-height: 0.71;
+    text-transform: uppercase;
+    color: $primary;
+    font-size: 24vw;
+
+    &__newLine {
+        margin-left: em(19);
+    }
+
+    @media (min-width: $breakpoint-sm) {
+        font-size: rem(138);
+    }
+}
+
+.description {
+    margin-bottom: rem(28);
+    @media (min-width: $breakpoint-sm) {
+        margin-bottom: rem(48);
+    }
+}

@@ -12,6 +12,8 @@ if (typeof window !== 'undefined' && typeof window.getComputedStyle === 'functio
         },
         // eslint-disable-next-line
         addEventListener() {},
+
+        scrollTo(x: number, y: number) {},
     };
 }
 
