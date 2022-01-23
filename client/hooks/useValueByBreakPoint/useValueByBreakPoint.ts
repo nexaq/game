@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import breakPoints from "../helpers/activeBreakPoints";
-import useThrottle from "./useThrottle";
+import breakPoints from "client/helpers/activeBreakPoints";
+import useThrottle from "../useThrottle";
 
 
 export interface Config<T> {
@@ -12,13 +12,13 @@ export interface Config<T> {
 }
 
 /**
- * Удобно если не хочется передавать объект в useValueByBreakPoint
+ * Удобно если не хочется передавать объект в index
  */
 export function makeConfig<T>(value: T, valueSm?: T, valueMd?: T, valueLg?: T, valueXl?: T): Config<T> {
     return {value, valueSm, valueMd, valueLg, valueXl};
 }
 
-const useValueByBreakPoint = <T>(config: Config<T>): T => {
+const index = <T>(config: Config<T>): T => {
 
     const {value, valueSm, valueMd, valueLg, valueXl} = config;
 
@@ -54,4 +54,4 @@ const useValueByBreakPoint = <T>(config: Config<T>): T => {
     return currentValue;
 }
 
-export default useValueByBreakPoint;
+export default index;

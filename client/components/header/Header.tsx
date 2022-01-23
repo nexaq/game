@@ -1,11 +1,11 @@
-import React, {memo, useState} from 'react';
+import React, {FC, memo, useState} from 'react';
 import css from './style.module.pcss';
 import Container from "../container";
 import Hamburger from "./components/hamburger";
 import Logo from "../logo";
 import Menu from "./components/menu";
 
-const Header = () => {
+const Header: FC = () => {
     const [opened, setOpen] = useState(false);
     const openedClassName = opened ? css._opened : '';
     const overlayActiveClassName = opened ? css.overlay_active : '';

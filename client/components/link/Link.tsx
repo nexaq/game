@@ -3,8 +3,8 @@ import {Link as ReactLink} from "react-router-dom";
 import {Props} from "./types";
 import css from './style.module.pcss';
 
-const Link: Props = ({to, children, className, external = false}) => {
-    const currentClassName = `${css.link} ${className ?? ''}`;
+const Link: Props = ({to, children, className = '', external = false}) => {
+    const currentClassName = `${css.link} ${className}`;
 
     if (external) {
         return(

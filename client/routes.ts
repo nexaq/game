@@ -11,6 +11,9 @@ export const ROUTES = {
     FORUM: {
         INDEX: '/forum',
     },
+    PROFILE: {
+        INDEX: '/profile',
+    }
     // Example
     // HELLO: {
     //     INDEX: '/hello',
