@@ -8,6 +8,8 @@ import {ROUTES} from "client/routes";
 import Forum from "client/pages/Forum";
 import Profile from "client/pages/Profile";
 import Play from "../../pages/Play";
+import SignIn from "../../pages/SingIn";
+import SignUp from "../../pages/SingIn/SignUp";
 
 const Router = () => {
     return (
@@ -17,6 +19,8 @@ const Router = () => {
             <Route path={ROUTES.FORUM.INDEX} element={<Forum />} />
             <Route path={ROUTES.PROFILE.INDEX} element={<Profile />} />
             <Route path={ROUTES.PLAY.INDEX} element={<Play />} />
+            <Route path={ROUTES.SIGN_IN.INDEX} element={<SignIn />} />
+            <Route path={ROUTES.SIGN_UP.INDEX} element={<SignUp />} />
         </Routes>
     );
 };
