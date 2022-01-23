@@ -7,6 +7,7 @@ import {Route} from "react-router-dom";
 import {ROUTES} from "client/routes";
 import Forum from "client/pages/forum";
 import Profile from "client/pages/Profile";
+import Play from "../../pages/Play";
 
 const Router = () => {
     return (
@@ -15,6 +16,7 @@ const Router = () => {
             <Route path={ROUTES.LEADERBOARD.INDEX} element={<Leaderboard />} />
             <Route path={ROUTES.FORUM.INDEX} element={<Forum />} />
             <Route path={ROUTES.PROFILE.INDEX} element={<Profile />} />
+            <Route path={ROUTES.PLAY.INDEX} element={<Play />} />
         </Routes>
     );
 };
