@@ -1,0 +1,39 @@
+@import "../../../../styles/variables.module.pcss";
+
+.item {
+    font-size: rem(15);
+    color: $primary;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px 8px 8px;
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.04);
+    }
+}
+
+.id {
+    color: $white;
+    font-family: $display-font-family;
+    flex: 0 0 30px;
+}
+
+.name {
+    font-weight: 600;
+    font-size: rem(16);
+    padding-left: rem(12);
+    padding-right: rem(12);
+
+    @media (min-width: $breakpoint-sm) {
+        font-size: rem(18);
+    }
+}
+
+.extra {
+    margin-left: auto;
+    font-size: rem(14);
+    font-weight: 500;
+    white-space: nowrap;
+    @media (min-width: $breakpoint-sm) {
+        font-size: rem(18);
+    }
+}

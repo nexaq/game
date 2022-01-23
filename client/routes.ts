@@ -7,7 +7,10 @@ export const ROUTES = {
     },
     PLAY: {
         INDEX: '/play',
-    }
+    },
+    FORUM: {
+        INDEX: '/forum',
+    },
     // Example
     // HELLO: {
     //     INDEX: '/hello',

@@ -6,3 +6,5 @@ type Nullable<T> = T | null;
 declare module "*.module.pcss";
 
 declare module "*.jpg"
+
+declare module "*.png"

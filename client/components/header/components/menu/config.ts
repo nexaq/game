@@ -1,4 +1,5 @@
 import {OwnProps as MenuItem} from "./components/menu-item";
+import {ROUTES} from "../../../../routes";
 
 export const menuConfig: MenuItem[] = [
     {
@@ -7,11 +8,11 @@ export const menuConfig: MenuItem[] = [
     },
     {
         label: 'Forum',
-        url: '/test',
+        url: ROUTES.FORUM.INDEX,
     },
     {
         label: 'Leaderboard',
-        url: '/leaderboard',
+        url: ROUTES.LEADERBOARD.INDEX,
     },
     {
         label: 'Profile',
