@@ -4,7 +4,7 @@ import {ROUTES} from "../../../../routes";
 export const menuConfig: MenuItem[] = [
     {
         label: 'Play',
-        url: '/test',
+        url: ROUTES.PLAY.INDEX,
     },
     {
         label: 'Forum',
