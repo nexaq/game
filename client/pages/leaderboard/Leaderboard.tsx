@@ -2,6 +2,8 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import {Props} from "./types";
 import Layout from "client/components/layout";
+import Users from "../../components/users";
+import Container from "client/components/container";
 
 let Leaderboard: Props = () => {
     return (
@@ -9,8 +11,10 @@ let Leaderboard: Props = () => {
             <Helmet>
                 <title>LEADERBOARD</title>
             </Helmet>
-            <Layout>
-
+            <Layout memoizeChildrenBy={[]} title="Leaderboard">
+                <Container>
+                    <Users />
+                </Container>
             </Layout>
         </>
     );

@@ -16,7 +16,7 @@ let Home: Props = () => {
             <Helmet>
                 <title>Home</title>
             </Helmet>
-            <Layout fakeLoading={true} memoizeChildrenBy={[]}>
+            <Layout fakeLoading={true} headerOverlapsContent={true} memoizeChildrenBy={[]}>
                 <MainSection/>
                 <AboutSection/>
                 <div>
