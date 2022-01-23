@@ -1,8 +1,8 @@
 import React from 'react';
 import {Props} from "./types";
-import Container from "client/components/container";
-import Heading from "client/components/typography/heading";
-import AvailableList from "../../../../components/article-list";
+import Container from "client/components/Container";
+import Heading from "client/components/typography/Heading";
+import AvailableList from "../../../../components/ArticleList";
 
 import shipImage1 from './images/ship-1.jpg';
 import shipImage2 from './images/ship-2.jpg';

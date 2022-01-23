@@ -2,7 +2,7 @@ import 'styles/boot.ts';
 import {Props} from "./types";
 import React from "react";
 import {Helmet} from 'react-helmet';
-import Core from "../../components/core";
+import Core from "../../components/Core";
 
 // Предупреждение!! Входной компонеет должен быть экспортировам из отдельного модуля
 // Иначе не работает fast-refresh!!!

@@ -1,13 +1,13 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import {Props} from "./types";
-import Layout from "client/components/layout";
+import Layout from "client/components/Layout";
 import MainSection from "./components/MainSection";
 import AboutSection from "./components/AboutSection/AboutSection";
-import Separator from "client/components/separator/Separator";
-import Container from "client/components/container";
+import Separator from "client/components/Separator/Separator";
+import Container from "client/components/Container";
 import AvailableSection from "./components/AvailableSection/AvailableSection";
-import Spacing from "client/components/spacing";
+import Spacing from "client/components/Spacing";
 import LetsPlaySection from "./components/LetsPlaySection";
 
 let Home: Props = () => {

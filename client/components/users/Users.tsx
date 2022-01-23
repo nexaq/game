@@ -1,8 +1,8 @@
 import React from 'react';
 import {Props} from "./types";
-import UserItem from "./components/user-item";
-import Avatar from "../avatar";
-import Grid from "../grid";
+import UserItem from "./components/UserItem";
+import Avatar from "../Avatar";
+import Grid from "../Grid";
 
 const Users: Props = ({
 }) => {
