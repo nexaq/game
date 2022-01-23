@@ -13,6 +13,12 @@ export const ROUTES = {
     },
     PROFILE: {
         INDEX: '/profile',
+    },
+    SIGN_IN: {
+        INDEX: '/sign-in',
+    },
+    SIGN_UP: {
+        INDEX: '/sign-up',
     }
     // Example
     // HELLO: {

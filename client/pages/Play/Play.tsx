@@ -1,8 +1,8 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import {Props} from "./types";
-import Layout from "client/components/layout";
-import Container from "client/components/container";
+import Layout from "client/components/Layout";
+import Container from "client/components/Container";
 import css from './style.module.pcss';
 
 

@@ -12,7 +12,7 @@ let SignIn: Props = () => {
     return (
         <>
             <Helmet>
-                <title>SIGN IN</title>
+                <title>SIGN UP</title>
             </Helmet>
             <Layout >
                 <Container>
@@ -30,8 +30,14 @@ let SignIn: Props = () => {
                                 <FormGroup>
                                     <Input/>
                                 </FormGroup>
+                                <FormGroup>
+                                    <Input/>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Input/>
+                                </FormGroup>
                                 <div className={css.buttonWrapper}>
-                                    <Button type={'submit'} style={'inversed'}>Sign in</Button>
+                                    <Button type={'submit'} style={'inversed'}>Sign up</Button>
                                 </div>
                             </div>
 

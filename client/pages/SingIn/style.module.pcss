@@ -1,14 +1,28 @@
 @import "../../styles/variables.module.pcss";
 
-.play {
-
-
+.login {
+    min-height: calc(100vh - 108px);
+    display: flex;
+    align-items: center;
 }
 
 
-.canvas {
-    height: 564px;
-    width: 100%;
-    background: $black;
-    box-shadow: 0px 31px 62px rgba(0, 0, 0, 0.44);
+.title {
+    font-size: rem(96);
+    color: $primary;
+    font-family: $decorative-font-name;
+    line-height: 0.82;
+    margin-bottom: rem(52);
+
+    @media (max-width: $breakpoint-md) {
+        font-size: rem(50);
+    }
+}
+
+.buttonWrapper {
+    margin-top: rem(35);
+}
+
+.inner {
+    flex-grow: 1;
 }
