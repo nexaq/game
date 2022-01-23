@@ -15,7 +15,7 @@ let Profile: Props = () => {
     return (
         <>
             <Helmet>
-                <title>FORUM</title>
+                <title>PROFILE</title>
             </Helmet>
             <Layout title="Profile">
                 <Container>
