@@ -1,0 +1,70 @@
+@import "../../styles/variables.module.pcss";
+
+$dialog-padding-x: rem(28);
+
+.modal {
+    padding: $container-offset;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: rgba(196, 196, 196, 0.04);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog {
+    max-width: 370px;
+    width: 100%;
+    background-color: #664A57;
+    border-radius: rem(11);
+    box-shadow: 4px 18px 85px rgba(0, 0, 0, 0.33);
+}
+
+.header {
+    padding: rem(20) $dialog-padding-x;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: $decorative-font-family;
+    font-size: rem(28);
+    color: $secondary-dark;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.title {
+    transform: translateY(-1px);
+}
+
+.close {
+    height: 20px;
+    width: 20px;
+    background-image: url("data:image/svg+xml,%0A%3Csvg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='1.06066' y1='1.93934' x2='14.0607' y2='14.9393' stroke='%233F2D35' stroke-width='3'/%3E%3Cline x1='14.0607' y1='2.06066' x2='1.06066' y2='15.0607' stroke='%233F2D35' stroke-width='3'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: -2px;
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.footer {
+    padding: rem(20) $dialog-padding-x;
+}
+
+.content {
+    padding: rem(4) $dialog-padding-x;
+}
+
+._active {
+    display: flex;
+}
+
+.noOverflow {
+    overflow: hidden!important;
+}

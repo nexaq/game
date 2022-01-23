@@ -1,13 +1,14 @@
 import React from 'react';
-import {Props} from "./types";
+import {LinkButtonFC} from "./types";
 import {Link} from "react-router-dom";
 import css from './style.module.pcss';
 import Label from "./components/label";
+import getStyleClassName from "./helpers/getStyleClassName";
 
-const LinkButton: Props = ({children, url, style}) => {
-    const modClassName = style ? css[`_${style}`] : '';
+const LinkButton: LinkButtonFC = ({children, url, style}) => {
+    const styleClassName = getStyleClassName(style);
 
-    return <Link to={url} className={`${css.button} ${modClassName}`}>
+    return <Link to={url} className={`${css.button} ${styleClassName}`}>
         <Label>{children}</Label>
     </Link>;
 };

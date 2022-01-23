@@ -1,0 +1,52 @@
+@import "../../styles/variables.module.pcss";
+
+$transitions: 0.1s ease all;
+
+.inputGroup {
+    position: relative;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: rem(10) 0;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: $white;
+}
+
+.input,
+.label {
+    font-family: $decorative-font-family;
+    font-size: rem(20);
+    line-height: 1;
+}
+
+.label {
+    position: absolute;
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.4);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: $transitions;
+
+    &_hide {
+        top: 0;
+        font-size: rem(14);
+        color: $primary-dark;
+    }
+}
+
+.border {
+    background: rgba(210, 201, 165, 0.2);
+    height: 2px;
+    position: relative;
+    transition: $transitions;
+
+    &_active {
+        background: #D2C9A5;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.13);
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Props} from "./types";
-import ArticleItem from "../article-item";
+import ArticleItem from "../ArticleItem";
 import {v4 as id} from 'uuid';
 import Grid from "client/components/grid";
 

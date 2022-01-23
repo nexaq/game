@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {OwnProps as ItemProps} from "../article-item";
+import {OwnProps as ItemProps} from "../ArticleItem";
 
 type ArticleItem = ItemProps & {description: string}
 
