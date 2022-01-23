@@ -16,6 +16,6 @@ export const menuConfig: MenuItem[] = [
     },
     {
         label: 'Profile',
-        url: '/test',
+        url: ROUTES.PROFILE.INDEX,
     },
 ];

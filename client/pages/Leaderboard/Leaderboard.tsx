@@ -11,7 +11,7 @@ let Leaderboard: Props = () => {
             <Helmet>
                 <title>LEADERBOARD</title>
             </Helmet>
-            <Layout memoizeChildrenBy={[]} title="Leaderboard">
+            <Layout title="Leaderboard">
                 <Container>
                     <Users />
                 </Container>

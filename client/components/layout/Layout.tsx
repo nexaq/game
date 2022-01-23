@@ -18,7 +18,7 @@ const Layout: Props = ({children, fakeLoading = false, memoizeChildrenBy, header
     // Прост удобнее чем писать useMemo в родительском компоненте :p
     // <Header/> и <Footer/> обернуты в HOC memo
     // не фанат теории что все нужно оборачивать в HOC memo :p
-    // поэтому тут чисто для прикола, а так юзаю только на компонентах с тяжелым рендером
+    // поэтому тут чисто для прикола
     let childrenMemoized;
     if (memoizeChildrenBy !== undefined) {
         childrenMemoized = useMemo(() => children, memoizeChildrenBy);

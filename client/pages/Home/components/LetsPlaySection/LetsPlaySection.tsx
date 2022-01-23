@@ -5,7 +5,7 @@ import Grid from "client/components/grid";
 import Paragraph from "client/components/typography/paragraph";
 import css from './style.module.pcss';
 import LinkButton from "client/components/button";
-import {ROUTES} from "../../../../routes";
+import {ROUTES} from "client/routes";
 
 let LetsPlaySection: Props = () => {
     return (

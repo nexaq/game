@@ -8,4 +8,9 @@ type LinkButtonProps = {
     url: string,
 } & CommonProps;
 
-export type Props = FC<LinkButtonProps>;
+type ButtonProps = {
+    type?: "button" | "submit" | "reset",
+} & CommonProps
+
+export type ButtonFC = FC<ButtonProps>;
+export type LinkButtonFC = FC<LinkButtonProps>;
