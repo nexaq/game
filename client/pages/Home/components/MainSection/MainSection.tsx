@@ -1,7 +1,7 @@
 import React from 'react';
 import {Props} from "./types";
 import css from './style.module.pcss';
-import Container from "client/components/container";
+import Container from "client/components/Container";
 
 
 let MainSection: Props = () => {

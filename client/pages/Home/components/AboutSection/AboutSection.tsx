@@ -1,9 +1,9 @@
 import React from 'react';
 import {Props} from "./types";
-import Container from "client/components/container";
+import Container from "client/components/Container";
 import css from './style.module.pcss';
 import Heading from "client/components/typography";
-import Paragraph from "../../../../components/typography/paragraph";
+import Paragraph from "../../../../components/typography/Paragraph";
 
 let AboutSection: Props = () => {
     return (

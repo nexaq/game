@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import css from './style.module.pcss';
 import {Props} from "./types";
-import Card from "../card";
+import Card from "../Card";
 import Modal from "../Modal";
 import Input from "../Input";
 
