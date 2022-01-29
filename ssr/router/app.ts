@@ -1,8 +1,8 @@
 import {ErrorRequestHandler, RequestHandler, Router} from 'express';
 import {ROUTES} from 'client/routes';
 
-import {renderApp} from 'server/controllers';
-import {cookieParser, helmet} from 'server/middlewares';
+import {renderApp} from 'ssr/controllers';
+import {cookieParser, helmet} from 'ssr/middlewares';
 
 const middlewares: Array<RequestHandler | ErrorRequestHandler> = [
     helmet,

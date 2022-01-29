@@ -1,17 +1,19 @@
-import React, {MouseEventHandler, useRef} from 'react';
+import React, {MouseEventHandler, useEffect, useRef} from 'react';
 import css from './style.module.pcss';
 import {Props} from "./types";
 
-const Modal: Props = ({active = false, title, className = '', children, handleClose }) => {
+const Modal: Props = ({active = false, title, children, handleClose }) => {
 
     const activeClassName = active ? css._active : '';
     const coverRef = useRef<HTMLDivElement>(null);
 
-    if (active) {
-        document.body.classList.add(css.noOverflow);
-    } else {
-        document.body.classList.remove(css.noOverflow);
-    }
+    useEffect(() => {
+        if (active) {
+            document.body.classList.add(css.noOverflow);
+        } else {
+            document.body.classList.remove(css.noOverflow);
+        }
+    });
 
     const handleCoverClick: MouseEventHandler<HTMLDivElement> = (e) => {
         if (e.target === coverRef.current) {

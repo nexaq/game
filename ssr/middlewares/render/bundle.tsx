@@ -3,7 +3,6 @@ import cfg from 'lib/cfg';
 import React from 'react';
 import {renderToStaticMarkup, renderToString} from 'react-dom/server';
 import {StaticRouter} from "react-router-dom/server";
-
 import vendorsMeta from 'webpack/config/vendors-meta';
 
 function getBundle(bundleName: string) {
@@ -53,7 +52,7 @@ function getPageHtml(params: PageHtmlParams) {
 
 interface RenderBundleArguments {
     bundleName: string;
-    data: ServerData;
+    data: SSRData;
     location: string;
 }
 

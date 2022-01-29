@@ -1,5 +1,5 @@
 export {default as initClientConfig} from './initClientConfig';
-export {default as initServerConfig} from './initServerConfig';
+export {default as initSSRConfig} from './initSSRConfig';
 export {default as initExtrasConfig} from './initExtrasConfig';
 export {default as loadScripts} from './loadScripts';
 export {default as loadAssets} from './loadAssets';

@@ -1,6 +1,6 @@
 import {useCallback, useRef} from "react";
 
-export default function useThrottle(callback: (...args: any[]) => void, delay: number) {
+export default function useThrottle(callback: (...args: unknown[]) => void, delay: number) {
     const isThrottled = useRef<boolean>();
 
     return useCallback((...args) => {

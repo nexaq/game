@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "outDir": "../dist/backend", // потому-что абсолютно отдельный сервис
+    "target": "es2018", // Достаточно для node новой версии
+  }
+}

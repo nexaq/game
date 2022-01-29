@@ -1,7 +1,7 @@
 import {FC} from 'react';
 
 type OwnProps = {
-    data: ServerData;
+    data: SSRData;
 };
 
 export type Props = FC<OwnProps>;

@@ -25,10 +25,10 @@ let SignIn: Props = () => {
                                 maxWidth: '400px'
                             }}>
                                 <FormGroup>
-                                    <Input/>
+                                    <Input value={''} />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input/>
+                                    <Input value={''} />
                                 </FormGroup>
                                 <div className={css.buttonWrapper}>
                                     <Button type={'submit'} style={'inversed'}>Sign in</Button>

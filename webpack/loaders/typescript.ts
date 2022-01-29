@@ -18,7 +18,13 @@ export default {
                         __DEV__ && ['@babel/preset-react', { development: true, runtime: 'automatic' }],
                     ].filter(Boolean),
                     plugins: [
-                        __DEV__ && 'react-refresh/babel'
+                        __DEV__ && 'react-refresh/babel',
+                        [
+                            "@babel/plugin-transform-runtime",
+                            {
+                                "regenerator": true
+                            }
+                        ]
                     ].filter(Boolean),
                 },
             } as webpack.RuleSetRule,
