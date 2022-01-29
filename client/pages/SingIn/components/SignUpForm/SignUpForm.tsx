@@ -22,7 +22,7 @@ const SignUpForm: Props = () => {
 
     useEffect(() => setFormState(isLoading ? 'loading' : formState), [isLoading]);
 
-    const processResponse = (errors: ResponseErrorItem<keyof UserCreateBody>[] | undefined) => {
+    const processResponse = (errors: ResponseValidationErrorItem<keyof UserCreateBody>[] | undefined) => {
         errors?.forEach(({attribute, type}) => {
             if (attribute && form[attribute] && type) {
                 form[attribute].setCustomError(getServerErrorMessage(type, attribute));

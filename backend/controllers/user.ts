@@ -1,10 +1,10 @@
-import {Request, Response} from "express";
-import User, {UserCreationAttributes} from "../models/user";
-import makeResponseValidationData from "../helpers/responseValidation";
+import {NextFunction, Request, Response} from "express";
+import User from "../models/user";
 
 export async function createUser(
     request: Request,
-    response: Response
+    response: Response,
+    next: NextFunction
 ): Promise<void> {
     try {
         await User.create({...request.body});
@@ -12,16 +12,6 @@ export async function createUser(
             success: true,
         });
     } catch (e) {
-        const validationResult = makeResponseValidationData<keyof UserCreationAttributes>(e);
-
-        if (validationResult) {
-            response.status(400).json(validationResult);
-            return;
-        }
-
-        console.error(e);
-        response.status(500).json({
-            message: 'Server Error'
-        });
+        next(e);
     }
 }

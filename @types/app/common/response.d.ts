@@ -1,12 +1,16 @@
 export {}
 
 declare global {
-    type ResponseErrorItem<AttributeType> = {
+    type ResponseValidationErrorItem<AttributeType> = {
         attribute: AttributeType | null,
         type: string | null
     }
 
-    type ResponseError<AttributeType> = {
-        errors: ResponseErrorItem<AttributeType>[]
+    type ResponseValidationError<AttributeType> = {
+        errors: ResponseValidationErrorItem<AttributeType>[]
     };
+
+    type ResponseServerError = {
+        message: string
+    }
 }
