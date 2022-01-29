@@ -5,7 +5,7 @@ import Card from "../Card";
 import Modal from "../Modal";
 import Input from "../Input";
 
-const EditableField: Props = ({children, className = ''}) => {
+const EditableField: Props = ({}) => {
 
     const [showModal, setShowModal] = useState(false);
 
@@ -16,7 +16,7 @@ const EditableField: Props = ({children, className = ''}) => {
     return (
         <>
             <Modal handleClose={toggleModal} title={'test'} active={showModal}>
-                <Input />
+                <Input value={''} />
             </Modal>
             <Card>
                 <div className={css.inner} onClick={toggleModal}>

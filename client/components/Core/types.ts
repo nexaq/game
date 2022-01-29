@@ -1,5 +1,5 @@
 import {FC} from "react";
 
-type OwnProps = ServerData;
+type OwnProps = SSRData;
 
 export type Props = FC<OwnProps>;

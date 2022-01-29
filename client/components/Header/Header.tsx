@@ -31,4 +31,5 @@ const Header: FC = () => {
     );
 };
 
+// используется в Layout так что лучше обернуть в memo()
 export default memo(Header);

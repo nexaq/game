@@ -1,0 +1,52 @@
+@import "../../styles/variables.module.pcss";
+
+.form {
+    display: block;
+    margin: rem(-8);
+    position: relative;
+}
+
+.inner {
+    padding: rem(8);
+}
+
+.success,
+.loading {
+    padding: rem(16) 0;
+    color: $white;
+    font-size: rem(28);
+    font-family: $display-font-family;
+}
+
+@keyframes form-loading {
+    from {
+        color:  $primary-dark;
+    }
+
+    33% {
+        color: $white;
+    }
+
+
+    66% {
+        color: $secondary;
+    }
+
+    to {
+        color: $primary-dark;
+    }
+}
+
+.loading {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: form-loading 2s infinite;
+}

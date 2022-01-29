@@ -18,4 +18,5 @@ const Footer: Props = () => {
     );
 };
 
+// используется в Layout так что лучше обернуть в memo()
 export default memo(Footer);

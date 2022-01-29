@@ -1,20 +1,21 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
-// todo: куда нибудь в redux или какой нибудь storage переместить
-let firstTimeOpened = true;
 /**
  * Срабатывает только если страница открылась на самом вверху
  * И только при (перезагрузки/первом открытии) страницы!
  * Загрузка по умолчанию длится 1500 мс
  */
 export default function useFakeLoading(delay = 1500): boolean {
-    const [isLoading, setLoading] = useState(firstTimeOpened);
+    // todo: куда нибудь в redux или какой нибудь storage переместить
+    const firstTimeOpenedRef = useRef(true);
+
+    const [isLoading, setLoading] = useState(firstTimeOpenedRef.current);
     const off = () => setLoading(false);
 
     useEffect(() => {
         const scrollTop = window.pageYOffset;
 
-        if (!firstTimeOpened || scrollTop > 0) {
+        if (!firstTimeOpenedRef.current || scrollTop > 0) {
             off();
             return;
         }
@@ -23,7 +24,7 @@ export default function useFakeLoading(delay = 1500): boolean {
         // бывает сам скроллит вниз после загрузки страницы :(
         setTimeout(() => window.addEventListener('scroll', off));
 
-        firstTimeOpened = false;
+        firstTimeOpenedRef.current = false;
         const timeoutId = setTimeout(off, delay);
 
         return () => {

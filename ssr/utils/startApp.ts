@@ -5,7 +5,7 @@ interface Options {
     server: Express;
 }
 
-const {PORT = 3000} = process.env;
+const {PORT_SSR : PORT = 3000} = process.env;
 
 export function startApp({server}: Options) {
     Loadable.preloadAll().then(() => {

@@ -1,0 +1,93 @@
+version: '3.5'
+
+services:
+  backend-app:
+    build:
+      context: ./
+      dockerfile: ./backend/Dockerfile
+    ports:
+      - "${PORT_BACKEND}:${PORT_BACKEND}"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/var/www/backend
+      - ./client:/var/www/client
+      - ./ssr:/var/www/ssr
+      - ./@types:/var/www/@types
+
+    command: npm run watch:backend
+    networks:
+      - main-networks
+    restart: always
+
+  client-app:
+    build:
+      context: ./
+      dockerfile: ./ssr/Dockerfile
+    ports:
+      - "${PORT_SSR}:${PORT_SSR}"
+    depends_on:
+      - backend-app
+      - postgres
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/var/www/backend
+      - ./client:/var/www/client
+      - ./ssr:/var/www/ssr
+      - ./@types:/var/www/@types
+    command: npm run dev
+    networks:
+      - main-networks
+    restart: always
+
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    env_file:
+      - .env
+    environment:
+      PGDATA: /data/postgres
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-volume:/data/postgres
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    networks:
+      - main-networks
+    restart: always
+
+#
+#  mongo:
+#    image: mongo
+#    ports:
+#      - "27017:27017"
+#    env_file:
+#      - .env
+#    volumes:
+#      - mongo-volume:/data/mongo
+#    networks:
+#      - main-networks
+#    restart: always
+#
+#  mongo-express:
+#    image: mongo-express
+#    ports:
+#      - 8081:8081
+#    env_file:
+#      - .env
+#    networks:
+#      - main-networks
+#    restart: always
+
+networks:
+  main-networks:
+    driver: bridge
+
+volumes:
+  postgres-volume:
+  mongo-volume:

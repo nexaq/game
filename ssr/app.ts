@@ -1,8 +1,8 @@
 import express, {Express} from 'express';
 
-import {queryParser} from 'server/controllers';
-import {render} from 'server/middlewares';
-import router from 'server/router';
+import {queryParser} from 'ssr/controllers';
+import {render} from 'ssr/middlewares';
+import router from 'ssr/router';
 
 const server: Express = express();
 

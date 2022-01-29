@@ -3,7 +3,7 @@ import path from 'path';
 import pkgDir from 'pkg-dir';
 
 const CONFIG_DIR = process.env.CFG_DIR || path.join(pkgDir.sync() || '', 'configs');
-const ENV = process.env.CONFIG_ENV || process.env.NODE_ENV;
+const ENV = process.env.NODE_ENV;
 
 let defaultConfig;
 try {

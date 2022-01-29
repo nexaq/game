@@ -4,7 +4,7 @@ import webpack from 'webpack';
 
 import {ROOT_DIR_FROM_WEBPACK} from '../assets/dir';
 import {
-    initServerConfig,
+    initSSRConfig,
     loadAssets,
     loadScripts,
     loadStyles,
@@ -12,7 +12,7 @@ import {
 
 function getConfig(): webpack.Configuration {
     return flow([
-        initServerConfig({
+        initSSRConfig({
             entry: {
                 app: join(ROOT_DIR_FROM_WEBPACK, 'client', 'bundles', 'index.ts'),
             }

@@ -6,7 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 export {DesktopBundle};
 
 // todo: Change any to explicit type
-export default (data: ServerData) => {
+export default (data: SSRData) => {
     hydrate(
         <BrowserRouter>
             <DesktopBundle data={data}/>
