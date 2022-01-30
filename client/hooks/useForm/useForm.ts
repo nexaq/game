@@ -1,26 +1,30 @@
 import {Validations} from "../useValidation";
 import useInput from "../useInput";
 import mapObjectSameKeys from "client/utils/mapObjectSameKeys";
+import {default as responseInFormHelper} from "../../helpers/validationResponseToForm";
+import {ResponseValidation} from "../../utils/api";
 
 type Config = {
     [key in string]: Validations
 }
 
-export type SuccessCallback<C, A1, A2> = (data: A1, form: A2) => void;
+export type ApplyResponse<Data extends Record<keyof FormResult, unknown>, FormResult> = (response: ResponseValidation<keyof Data>) => boolean;
 
-export type SuccessCallbackArg<C> = Record<keyof C, string>;
+export type SuccessCallback<SuccessData extends Record<keyof FormResult, unknown>, FormResult> = (data: SuccessData, form: FormResult, responseInForm: ApplyResponse<SuccessData, FormResult>) => void;
+
+export type SuccessData<C> = Record<keyof C, string>;
 
 export type InputResultItem = ReturnType<typeof useInput>;
 
-export type InputResults<C> = Record<keyof C, InputResultItem>;
+export type FormResult<C> = Record<keyof C, InputResultItem>;
 
-export default function useForm<C extends Config>(config: C, successCallback: SuccessCallback<C, SuccessCallbackArg<C>, InputResults<C>>): {
+export default function useForm<C extends Config>(config: C, successCallback: SuccessCallback<SuccessData<C>, FormResult<C>>): {
     submitCallback: () => void,
-    form: InputResults<C>
+    form: FormResult<C>
 } {
     let success = true;
 
-    const useInputResults = mapObjectSameKeys<C, InputResults<C>>(
+    const useInputResults = mapObjectSameKeys<C, FormResult<C>>(
         config,
         (key) => {
             const input = useInput('', config[key])
@@ -31,15 +35,21 @@ export default function useForm<C extends Config>(config: C, successCallback: Su
         }
     );
 
-    const data: SuccessCallbackArg<C> = mapObjectSameKeys<typeof useInputResults, Record<keyof C, string>>(
+    const data: SuccessData<C> = mapObjectSameKeys<typeof useInputResults, Record<keyof C, string>>(
         useInputResults,
         (key) => useInputResults[key].value
     );
 
-    const form: InputResults<C> = mapObjectSameKeys<typeof useInputResults, InputResults<C>>(
+    const form: FormResult<C> = mapObjectSameKeys<typeof useInputResults, FormResult<C>>(
         useInputResults,
         (key) => useInputResults[key]
     );
+
+    const applyValidationFromResponse: ApplyResponse<typeof data, typeof form> = (
+        response
+    ) => {
+        return responseInFormHelper(form, response) && response.status === 200;
+    }
 
     return {
         submitCallback: () => {
@@ -48,7 +58,7 @@ export default function useForm<C extends Config>(config: C, successCallback: Su
             Object.entries(useInputResults).forEach(([k, input]) => input.validate(true));
 
             if (success) {
-                successCallback(data, form);
+                successCallback(data, form, applyValidationFromResponse);
             }
         },
         form

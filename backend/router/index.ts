@@ -4,7 +4,9 @@ import {
     createComment,
     createTopic, createUser,
     getTopics,
-} from "../controllers";
+} from "backend/controllers";
+import {loginUser, logoutUser, refreshUser} from "backend/controllers/user";
+import auth from "backend/middlewares/auth";
 
 const router = express.Router();
 
@@ -52,7 +54,7 @@ router.get("/forum/topic", getTopics);
  *             schema:
  *               $ref: '#/components/schemas/Topic'
  */
-router.post("/forum/topic", createTopic);
+router.post("/forum/topic", auth, createTopic);
 
 /**
  * @openapi
@@ -75,25 +77,13 @@ router.post("/forum/topic", createTopic);
  */
 router.post("/forum/comment", createComment);
 
-/**
- * @openapi
- * /forum/comment:
- *   post:
- *     tags: ['Forum']
- *     description: Добавление комментария
- *     requestBody:
- *        required: true
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/Comment'
- *     responses:
- *       200:
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Comment'
- */
-router.post("/user/create", createUser);
+router.post("/user", createUser);
+
+router.post("/user/login", loginUser);
+
+router.post("/user/logout", logoutUser);
+
+router.get("/user/refresh", refreshUser);
+
 
 export default router;
