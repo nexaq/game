@@ -3,7 +3,13 @@ import cfg from 'lib/cfg';
 import React from 'react';
 import {renderToStaticMarkup, renderToString} from 'react-dom/server';
 import {StaticRouter} from "react-router-dom/server";
+import { createStore } from 'redux';
 import vendorsMeta from 'webpack/config/vendors-meta';
+import {renderObject} from "ssr/utils/renderObject";
+
+import {reducers} from 'client/reducers';
+import configureStore from 'client/store';
+import {Provider} from "react-redux";
 
 function getBundle(bundleName: string) {
     const module = `../../../ssr.bundles`;
@@ -16,13 +22,14 @@ function getBundle(bundleName: string) {
 }
 
 interface PageHtmlParams {
+    store: ReturnType<typeof createStore>;
     bundleName: string;
     bundleHtml: string;
     data: {};
 }
 
 function getPageHtml(params: PageHtmlParams) {
-    const {bundleName, bundleHtml, data} = params;
+    const {bundleName, bundleHtml, data, store} = params;
     const {baseUrl} = cfg.static;
     const bundleFilePath = `${baseUrl}${bundleName}.bundle`;
     const vendorsFilePath = `${baseUrl}_/${vendorsMeta.name}`;
@@ -36,6 +43,11 @@ function getPageHtml(params: PageHtmlParams) {
             </head>
             <body>
                 <div id="root" dangerouslySetInnerHTML={{__html: bundleHtml}}/>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.__PRELOADED_STATE__ = ${renderObject(store.getState())}`,
+                    }}
+                />
                 {vendorsMeta.hasJs && <script src={`${vendorsFilePath}.js`}/>}
                 <script src={`${bundleFilePath}.js`}/>
                 <script
@@ -63,13 +75,17 @@ export default ({bundleName, data, location}: RenderBundleArguments) => {
         throw new Error(`Bundle ${bundleName} not found`);
     }
 
+    const store = configureStore(
+        reducers,
+    );
+
     const bundleHtml = renderToString(
         (
-            // <Provider store={store}>
+            <Provider store={store}>
                 <StaticRouter location={location}>
                     <Bundle data={data}/>
                 </StaticRouter>
-            // </Provider>
+            </Provider>
         ),
     );
 
@@ -78,6 +94,7 @@ export default ({bundleName, data, location}: RenderBundleArguments) => {
             bundleName,
             bundleHtml,
             data,
+            store,
         }),
     };
 };

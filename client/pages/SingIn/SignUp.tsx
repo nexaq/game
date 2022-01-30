@@ -6,8 +6,7 @@ import Container from "client/components/Container";
 import css from './style.module.pcss';
 import SignUpForm from "./components/SignUpForm";
 
-let SignIn: Props = () => {
-
+let SignUp: Props = () => {
     return (
         <>
             <Helmet>
@@ -33,4 +32,4 @@ let SignIn: Props = () => {
     );
 };
 
-export default SignIn;
+export default SignUp;

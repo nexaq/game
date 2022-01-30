@@ -4,9 +4,7 @@ import {Props} from "./types";
 import Layout from "client/components/Layout";
 import Container from "client/components/Container";
 import css from './style.module.pcss';
-import FormGroup from "client/components/FormGroup";
-import Input from "client/components/Input";
-import {Button} from "client/components/Button";
+import SignInForm from "./components/SignInForm";
 
 let SignIn: Props = () => {
     return (
@@ -24,17 +22,8 @@ let SignIn: Props = () => {
                             <div style={{
                                 maxWidth: '400px'
                             }}>
-                                <FormGroup>
-                                    <Input value={''} />
-                                </FormGroup>
-                                <FormGroup>
-                                    <Input value={''} />
-                                </FormGroup>
-                                <div className={css.buttonWrapper}>
-                                    <Button type={'submit'} style={'inversed'}>Sign in</Button>
-                                </div>
+                                <SignInForm />
                             </div>
-
                         </div>
                     </div>
                 </Container>

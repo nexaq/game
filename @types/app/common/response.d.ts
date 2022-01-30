@@ -3,7 +3,8 @@ export {}
 declare global {
     type ResponseValidationErrorItem<AttributeType> = {
         attribute: AttributeType | null,
-        type: string | null
+        type: string | null,
+        message?: string,
     }
 
     type ResponseValidationError<AttributeType> = {
@@ -12,5 +13,9 @@ declare global {
 
     type ResponseServerError = {
         message: string
+    }
+
+    type SuccessResponse = {
+        success: true
     }
 }

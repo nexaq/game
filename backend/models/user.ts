@@ -8,7 +8,7 @@ import {
     Table,
     Unique
 } from 'sequelize-typescript';
-import salt from "../utils/salt";
+import hashPass from "../utils/hashPass";
 import Model from './model';
 
 export interface UserAttributes {
@@ -45,6 +45,6 @@ export default class User extends Model<UserAttributes, UserCreationAttributes> 
     @BeforeUpdate
     @BeforeCreate
     static makePassword(user: User) {
-        user.password = salt(user.password);
+        user.password = hashPass(user.password);
     }
 }

@@ -27,6 +27,15 @@ export class ValidationError<AttributeType> extends ApiErrorWithResponse {
     }
 }
 
+export class UnauthorizedError extends ApiErrorWithResponse {
+    responseData: string
+
+    constructor() {
+        super(401);
+        this.responseData = "unauthorized";
+    }
+}
+
 export class ServerError extends ApiErrorWithResponse {
     responseData: ResponseServerError;
 

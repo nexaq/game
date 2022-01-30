@@ -1,1 +1,0 @@
-export {useResponseValidation} from './useResponseValidation';

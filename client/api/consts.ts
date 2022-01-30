@@ -5,7 +5,9 @@ const baseUrl = `${backendHost}:${backendPort}`;
 
 export const ApiPath = {
     USER: {
-        CREATE: `${baseUrl}/user/create`,
+        CREATE: `${baseUrl}/user`,
+        LOGIN: `${baseUrl}/user/login`,
+        REFRESH_TOKEN: `${baseUrl}/user/refresh`
     }
 };
 

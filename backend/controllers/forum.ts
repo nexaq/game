@@ -1,16 +1,17 @@
-import {Request, Response} from "express";
+import {NextFunction, Request, Response} from "express";
 
 import {ForumComment, ForumTopic} from "../models";
 
 export async function createTopic(
     request: Request,
-    response: Response
+    response: Response,
+    next: NextFunction
 ): Promise<void> {
     try {
         const topic = await ForumTopic.create({...request.body});
         response.status(200).json(topic);
     } catch (e) {
-        response.status(500).json(e);
+        next(e);
     }
 }
 

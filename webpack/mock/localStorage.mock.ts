@@ -1,13 +1,15 @@
-let localStorage;
+let localStorage: Pick<Storage, 'getItem' | 'setItem'>;
 
 if (typeof window !== 'undefined' && typeof window.getComputedStyle === 'function') {
     localStorage = window.localStorage;
 } else {
     localStorage = {
         // eslint-disable-next-line
-        setItem() {},
+        setItem(key: string, value: string) {},
         // eslint-disable-next-line
-        getItem() {},
+        getItem(key: string) {
+            return '';
+        },
     };
 }
 
