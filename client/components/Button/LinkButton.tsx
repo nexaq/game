@@ -5,10 +5,10 @@ import css from './style.module.pcss';
 import Label from "./components/Label";
 import getStyleClassName from "./helpers/getStyleClassName";
 
-const LinkButton: LinkButtonFC = ({children, url, style}) => {
+const LinkButton: LinkButtonFC = ({children, url, style, className = ''}) => {
     const styleClassName = getStyleClassName(style);
 
-    return <Link to={url} className={`${css.button} ${styleClassName}`}>
+    return <Link to={url} className={`${css.button} ${styleClassName} ${className}`}>
         <Label>{children}</Label>
     </Link>;
 };

@@ -10,8 +10,11 @@ import Spacing from "client/components/Spacing";
 import utils from 'styles/utils.module.pcss';
 import css from './style.module.pcss';
 import EditableField from "client/components/EditableField";
+import useAuth from "client/hooks/useAuth/useAuth";
 
 let Profile: Props = () => {
+    useAuth();
+
     return (
         <>
             <Helmet>

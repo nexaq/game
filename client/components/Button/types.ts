@@ -1,11 +1,12 @@
 import {FC} from "react";
 
 type CommonProps = {
-    style?: 'inversed'
+    style?: 'inversed' | 'link'
 };
 
 type LinkButtonProps = {
     url: string,
+    className?: string,
 } & CommonProps;
 
 type ButtonProps = {

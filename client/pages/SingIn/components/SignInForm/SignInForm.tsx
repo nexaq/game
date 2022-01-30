@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Props} from "./types";
 import FormGroup from "client/components/FormGroup";
 import Input from "client/components/Input";
-import {Button} from "client/components/Button";
+import LinkButton, {Button} from "client/components/Button";
 import {makeInputValidationProps} from "client/hooks/useInput/useInput";
 import useForm from "client/hooks/useForm";
 import {user, UserLoginBody} from "client/api/user";
@@ -54,6 +54,7 @@ const SignInForm: Props = () => {
         </FormGroup>
         <div className={css.buttonWrapper}>
             <Button type={'submit'} style={'inversed'}>Sign in</Button>
+            <LinkButton url={'/sign-up'} style={'link'} className={css.leftButton}>Sign up</LinkButton>
         </div>
     </Form>
 };

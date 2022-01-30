@@ -1,2 +1,2 @@
 export {default} from './Menu';
-export {menuConfig} from './config';
+export {default as getMenuConfig} from './config';

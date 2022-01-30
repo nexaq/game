@@ -6,7 +6,7 @@ type OwnProps = {
     action?: string
     className?: string
     state?: FormState
-    successMessage?: string
+    successMessage?: string | JSX.Element
     onSubmit?: FormEventHandler<HTMLFormElement>
 };
 

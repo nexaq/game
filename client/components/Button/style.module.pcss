@@ -56,3 +56,24 @@ $transition: all 0.26s ease;
         }
     }
 }
+
+._link {
+    background: transparent;
+    color: $primary;
+    text-decoration: underline;
+    box-shadow: none;
+    border: none;
+
+    &:after {
+        background: $secondary;
+    }
+
+    &:hover {
+        color: $primary;
+        box-shadow: none;
+
+        &:after {
+            width: 100%;
+        }
+    }
+}

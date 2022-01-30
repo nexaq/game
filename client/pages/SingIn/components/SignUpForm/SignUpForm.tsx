@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Props} from "./types";
 import FormGroup from "client/components/FormGroup";
 import Input from "client/components/Input";
-import {Button} from "client/components/Button";
+import LinkButton, {Button} from "client/components/Button";
 import {makeInputValidationProps} from "client/hooks/useInput/useInput";
 import useForm from "client/hooks/useForm";
 import {user, UserDTO} from "client/api/user";
@@ -35,7 +35,12 @@ const SignUpForm: Props = () => {
             e.preventDefault();
             submitCallback();
         }}
-        successMessage="User successfully created!"
+        successMessage={<>
+            User successfully created!
+            <div style={{marginTop: '1rem'}}>
+                <LinkButton url={'/sign-in'}>Sign in</LinkButton>
+            </div>
+        </>}
         state={state}
     >
         <FormGroup errors={form.name.displayErrors}>
@@ -50,6 +55,7 @@ const SignUpForm: Props = () => {
         </FormGroup>
         <div className={css.buttonWrapper}>
             <Button type={'submit'} style={'inversed'}>Sign up</Button>
+            <LinkButton url={'/sign-in'} style={'link'} className={css.leftButton}>Sign in</LinkButton>
         </div>
     </Form>
 };
