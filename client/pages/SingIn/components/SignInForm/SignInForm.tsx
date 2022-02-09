@@ -5,37 +5,36 @@ import Input from "client/components/Input";
 import LinkButton, {Button} from "client/components/Button";
 import {makeInputValidationProps} from "client/hooks/useInput/useInput";
 import useForm from "client/hooks/useForm";
-import {user, UserLoginBody} from "client/api/user";
+import {user} from "client/api/user";
 import Form from "client/components/Form";
 import {FormState} from "client/components/Form/types";
 import useRequest from "client/hooks/useRequest";
-import {Validations} from "client/hooks/useValidation";
-import {FormResult, SuccessData} from "client/hooks/useForm/useForm";
 import {userLoginRules} from "client/validations/user";
 import css from './style.module.pcss';
 import {useDispatch} from "react-redux";
 import {login as userLogin} from "client/reducers/user/actions";
+import {ROUTES} from "client/routes";
 
 const SignInForm: Props = () => {
     const [state, setState] = useState<FormState>('normal');
-    const [isLoading, login] = useRequest()
+    const [showLoading, login] = useRequest();
     const dispatch = useDispatch();
 
-    useEffect(() => setState(isLoading ? 'loading' : state), [isLoading]);
+    useEffect(() => setState(showLoading ? 'loading' : state), [showLoading]);
 
-    const {form, submitCallback} = useForm<Record<keyof UserLoginBody, Validations>>(userLoginRules, (
-        data: SuccessData<UserLoginBody>,
-        form: FormResult<UserLoginBody>,
-        apply
-    ) => {
-        login(() => user.login(data).then((response) => {
-            const success = apply(response);
-            if (success && response?.data?.accessToken && response.data.user) {
-                dispatch(userLogin(response.data.accessToken, response.data.user));
-            }
-            setState(success ? 'success' : 'normal');
-        }));
-    });
+    const {form, submitCallback} = useForm
+    (
+        userLoginRules,
+        (data, form, apply) => {
+            login(() => user.login(data).then((response) => {
+                const success = apply(response);
+                if (success && response?.data?.accessToken && response.data.user) {
+                    dispatch(userLogin(response.data.accessToken, response.data.user));
+                }
+                setState(success ? 'success' : 'normal');
+            }));
+        }
+    );
 
     return <Form
         onSubmit={(e) => {
@@ -54,7 +53,7 @@ const SignInForm: Props = () => {
         </FormGroup>
         <div className={css.buttonWrapper}>
             <Button type={'submit'} style={'inversed'}>Sign in</Button>
-            <LinkButton url={'/sign-up'} style={'link'} className={css.leftButton}>Sign up</LinkButton>
+            <LinkButton url={ROUTES.SIGN_UP.INDEX} style={'link'} className={css.leftButton}>Sign up</LinkButton>
         </div>
     </Form>
 };

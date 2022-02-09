@@ -9,7 +9,8 @@ export const ROUTES = {
         INDEX: '/play',
     },
     FORUM: {
-        INDEX: '/forum',
+        VIEW: '/forum/:id',
+        INDEX: '/forum'
     },
     PROFILE: {
         INDEX: '/profile',
@@ -19,18 +20,11 @@ export const ROUTES = {
     },
     SIGN_UP: {
         INDEX: '/sign-up',
-    }
-    // Example
-    // HELLO: {
-    //     INDEX: '/hello',
-    //     USER: {
-    //         INDEX: '/hello/user',
-    //         ID: '/hello/user/:id',
-    //     },
-    // },
+    },
 };
 
-// напр: 404
-export const ALL_OTHER = {
-     INDEX: '*',
+export const forumViewUrl = (id: number) => ROUTES.FORUM.VIEW.replace(':id', id.toString());
+
+export const GLOBAL_ROUTES = {
+    NOT_FOUND: '/*'
 }

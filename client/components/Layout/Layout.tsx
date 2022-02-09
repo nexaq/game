@@ -6,8 +6,9 @@ import css from './style.module.pcss';
 import Footer from "client/components/Footer";
 import Heading from "../typography";
 import Container from "../Container";
+import useAuth from "../../hooks/useAuth";
 
-const Layout: Props = ({children, fakeLoading = false, memoizeChildrenBy, headerOverlapsContent = false, title}) => {
+const Layout: Props = ({children, fakeLoading = false, memoizeChildrenBy, headerOverlapsContent = false, title, mustBeAuthorized = false}) => {
     const isLoading = fakeLoading ? useFakeLoading() : false;
     const isLoadingClassName = isLoading ? css._isLoading : '';
     const headerOverlapsClassName = headerOverlapsContent ? '' : css.headerOverlap;
@@ -23,6 +24,8 @@ const Layout: Props = ({children, fakeLoading = false, memoizeChildrenBy, header
     if (memoizeChildrenBy !== undefined) {
         childrenMemoized = useMemo(() => children, memoizeChildrenBy);
     }
+
+    useAuth(mustBeAuthorized);
 
     const titleContainer = <div className={css.title__container}>
         <Container>

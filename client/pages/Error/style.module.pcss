@@ -1,0 +1,51 @@
+@import "../../styles/variables.module.pcss";
+
+.cover {
+    background-color: $primary-dark;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.wrapper {
+    display: flex;
+    line-height: 1;
+    font-family: $decorative-font-family;
+    font-size: rem(85);
+
+    @media (min-width: $breakpoint-md) {
+        font-size: rem(150);
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        font-size: rem(195);
+    }
+}
+
+
+
+.code {
+    font-size: 1em;
+    color: $primary;
+    margin-right: em(35, 195);
+    margin-top: em(-19, 195);
+}
+
+.text {
+    max-width: em(300, 195);
+}
+
+.title {
+    font-size: em(96, 195);
+    color: $secondary;
+
+}
+
+.message {
+    color: $white;
+    font-size: em(44, 195);
+
+}

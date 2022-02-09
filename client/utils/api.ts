@@ -36,14 +36,19 @@ const getAuthorizationHeader = () => {
     return '';
 };
 
-const getHeaders = () => ({
+const getJsonHeaders = () => ({
     'Content-Type': 'application/json',
-    'Authorization': getAuthorizationHeader(),
-});
+})
+
+const getAuthHeaders = () => {
+    return {
+        'Authorization': getAuthorizationHeader(),
+    }
+};
 
 // типа interceptors из axios :p
 // уже много где используется http() поэтому лень перепиливать тут все из-за этого
-export const refreshTokenWhenUnauthorized = async <ResponseData extends unknown>(data: NormalResponse<ResponseData>, path: string, options:  Options) => {
+export const refreshTokenWhenUnauthorized = async <ResponseData extends unknown>(data: NormalResponse<ResponseData>, path: string, options: Options) => {
     if (data.status === 401) {
         const tryingToRefresh = await checkAuth();
 
@@ -52,7 +57,8 @@ export const refreshTokenWhenUnauthorized = async <ResponseData extends unknown>
             localStorage.setItem('accessToken', tryingToRefresh.data.accessToken);
 
             options = {
-                ...options, headers: {...getHeaders(), Authorization: getAuthorizationHeader()},
+                ...options,
+                headers: {...options.headers, Authorization: getAuthorizationHeader()},
                 refreshTokenOnFail: false
             };
 
@@ -66,7 +72,7 @@ export const refreshTokenWhenUnauthorized = async <ResponseData extends unknown>
     return data;
 }
 
-async function httpBase<ResponseData>(path: string, options:  Options): Promise<NormalResponse<ResponseData>> {
+async function httpBase<ResponseData>(path: string, options: Options): Promise<NormalResponse<ResponseData>> {
     try {
         const request = new Request(path, options);
         const response = await fetch(request);
@@ -107,7 +113,12 @@ type Options = RequestInit & {
 };
 
 export const get = <ResponseData extends unknown>(path: string, options?: Options): Promise<NormalResponse<ResponseData>> => {
-    const params = {...options, credentials, headers: getHeaders(), method: HTTP_METHODS.GET};
+    const params = {
+        ...options,
+        credentials,
+        method: HTTP_METHODS.GET,
+        headers: {...getAuthHeaders(), ...getJsonHeaders()}
+    };
 
     return http<ResponseData>(path, params);
 };
@@ -119,28 +130,24 @@ export const post = <ResponseData extends unknown>(path: string, data?: Record<s
         credentials,
         body: JSON.stringify(data),
         method: HTTP_METHODS.POST,
-        headers: getHeaders()
+        headers: {...getAuthHeaders(), ...getJsonHeaders()}
     };
     return http<ResponseData>(path, params);
 };
-//
-// export const put = <Request, Response extends unknown>(path: string, data: Request, options?: RequestInit): Promise<Response> => {
-//     const params = {
-//         ...options,
-//         credentials,
-//         body: JSON.stringify(data),
-//         method: HTTP_METHODS.PUT,
-//     };
-//
-//     return http<Response>(path, params);
-// };
-//
-// export const putFormData = <Response extends unknown>(path: string, data: FormData): Promise<Response> => {
-//     const params = {
-//         credentials,
-//         body: data,
-//         method: HTTP_METHODS.PUT,
-//     };
-//
-//     return http<Response>(path, params);
-// };
+
+export const put = <ResponseData extends unknown>(path: string, data: Record<string, any> | FormData, options?: Options): Promise<NormalResponse<ResponseData>> => {
+
+    const headers = {
+        ...getAuthHeaders(),
+        ...(data instanceof FormData ? {} : {...getJsonHeaders()})
+    };
+
+    const params = {
+        ...options,
+        credentials,
+        body: data instanceof FormData ? data : JSON.stringify(data),
+        method: HTTP_METHODS.PUT,
+        headers
+    };
+    return http<ResponseData>(path, params);
+};

@@ -13,6 +13,7 @@ const Modal: Props = ({active = false, title, children, handleClose }) => {
         } else {
             document.body.classList.remove(css.noOverflow);
         }
+        return () => document.body.classList.remove(css.noOverflow);
     });
 
     const handleCoverClick: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -21,7 +22,7 @@ const Modal: Props = ({active = false, title, children, handleClose }) => {
         }
     }
 
-    return <div className={`${css.modal} ${activeClassName}`} ref={coverRef} onClick={handleCoverClick}>
+    return (<div className={`${css.modal} ${activeClassName}`} ref={coverRef} onClick={handleCoverClick}>
         <div className={css.dialog}>
             <div className={css.header}>
                 <div className={css.title}>
@@ -32,10 +33,8 @@ const Modal: Props = ({active = false, title, children, handleClose }) => {
             <div className={css.content}>
                 {children}
             </div>
-            <div className={css.footer}>
-            </div>
         </div>
-    </div>;
+    </div>);
 };
 
 export default Modal;

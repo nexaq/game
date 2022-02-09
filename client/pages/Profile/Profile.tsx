@@ -9,31 +9,27 @@ import Button from "client/components/Button/Button";
 import Spacing from "client/components/Spacing";
 import utils from 'styles/utils.module.pcss';
 import css from './style.module.pcss';
-import EditableField from "client/components/EditableField";
-import useAuth from "client/hooks/useAuth/useAuth";
+import ProfileForm from "./components/UserForm";
+import AvatarUploadButton from "./components/AvatarUploadButton/AvatarUplaodButton";
 
 let Profile: Props = () => {
-    useAuth();
 
     return (
         <>
             <Helmet>
                 <title>PROFILE</title>
             </Helmet>
-            <Layout title="Profile">
+            <Layout title="Profile" mustBeAuthorized>
                 <Container>
                     <div className={css.profile}>
-                        <div className={`${utils.dFlex} ${utils.directionColumn} ${utils.flexAlignCenter} ${css.editProfile}`}>
-                            <Avatar size={'xl'} />
-                            <Spacing size={'sm'} />
-                            <Button>upload</Button>
+                        <div
+                            className={`${utils.dFlex} ${utils.directionColumn} ${utils.flexAlignCenter} ${css.editProfile}`}>
+                            <Avatar size={'xl'}/>
+                            <Spacing size={'sm'}/>
+                            <AvatarUploadButton />
                         </div>
                         <div className={css.info}>
-                            <Grid cols={1} rowGap={12}>
-                                <EditableField />
-                                {/*<EditableField />*/}
-                                {/*<EditableField />*/}
-                            </Grid>
+                            <ProfileForm/>
                         </div>
                     </div>
                 </Container>

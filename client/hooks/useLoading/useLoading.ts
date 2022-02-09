@@ -7,10 +7,10 @@ import {useEffect, useRef, useState} from "react";
 export default function useLoading(delay = 300): [boolean, typeof setLoading] {
     const timeoutRef = useRef<NodeJS.Timeout>()
     const [active, setActive] = useState(false);
-    const [isLoading, setLoading] = useState(false);
+    const [showLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (isLoading) {
+        if (showLoading) {
             timeoutRef.current = setTimeout(() => {
                 setActive(true);
             }, delay);
@@ -20,7 +20,7 @@ export default function useLoading(delay = 300): [boolean, typeof setLoading] {
                 clearTimeout(timeoutRef.current);
             }
         }
-    }, [isLoading]);
+    }, [showLoading]);
 
-    return [active && isLoading, setLoading];
+    return [active && showLoading, setLoading];
 }

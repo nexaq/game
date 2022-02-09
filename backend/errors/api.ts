@@ -36,6 +36,16 @@ export class UnauthorizedError extends ApiErrorWithResponse {
     }
 }
 
+
+export class NotFoundError extends ApiErrorWithResponse {
+    responseData: string
+
+    constructor() {
+        super(404);
+        this.responseData = "not found";
+    }
+}
+
 export class ServerError extends ApiErrorWithResponse {
     responseData: ResponseServerError;
 

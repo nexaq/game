@@ -17,6 +17,38 @@ export async function createUser(
     }
 }
 
+export async function updateUser(
+    request: Request,
+    response: Response,
+    next: NextFunction
+): Promise<void> {
+    try {
+        const user = await userService.updateUser(request);
+        response.status(200).json({
+            success: true,
+            user
+        });
+    } catch (e) {
+        next(e);
+    }
+}
+
+export async function updateUserPassword(
+    request: Request,
+    response: Response,
+    next: NextFunction
+): Promise<void> {
+    try {
+        await userService.updateUserPassword(request);
+        response.status(200).json({
+            success: true,
+        });
+    } catch (e) {
+        next(e);
+    }
+}
+
+
 export async function loginUser(
     request: Request,
     response: Response,
@@ -25,7 +57,7 @@ export async function loginUser(
     try {
         const {refreshToken, accessToken, user} = await userService.login({...request.body});
         response.cookie('refreshToken', refreshToken, {
-            maxAge: 30*24*60*60*1000,
+            maxAge: 30 * 24 * 60 * 60 * 1000,
             httpOnly: true
         });
         response.json({
@@ -63,12 +95,27 @@ export async function refreshUser(
         const {refreshToken} = request.cookies;
         const {refreshToken: newRefreshToken, accessToken, user} = await userService.refresh(refreshToken);
         response.cookie('refreshToken', newRefreshToken, {
-            maxAge: 15*24*60*60*1000,
+            maxAge: 15 * 24 * 60 * 60 * 1000,
             httpOnly: true
         });
         return response.json({
             user,
             accessToken
+        });
+    } catch (e) {
+        next(e);
+    }
+}
+
+export async function updateAvatar(
+    request: Request,
+    response: Response,
+    next: NextFunction
+) {
+    try {
+        await userService.updateAvatar(request);
+        response.json({
+            status: true,
         });
     } catch (e) {
         next(e);

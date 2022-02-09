@@ -6,5 +6,3 @@ export async function startDb() {
     //     force: true
     // });
 }
-
-

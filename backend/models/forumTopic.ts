@@ -1,21 +1,33 @@
 import {
   AllowNull,
-  AutoIncrement,
-  Column,
-  DataType,
+  AutoIncrement, BelongsTo,
+  Column, CreatedAt,
+  DataType, ForeignKey,
   HasMany,
   Model,
   PrimaryKey,
   Table
 } from 'sequelize-typescript';
+import {Optional} from "sequelize";
+import {ForumComment} from "./index";
+import User from "./user";
 
-import ForumComment from './forumComment';
+export interface ForumTopicAttributes {
+  id: number
+  title: string
+  description: string
+  userId: number
+  comments: ForumComment[];
+}
+
+export interface ForumTopicCreationAttributes extends Optional<ForumTopicAttributes, 'id'> {}
 
 @Table({
-  timestamps: false,
-  tableName: 'forum_topics',
+  timestamps: true,
+  updatedAt: false,
+  tableName: 'forum_topic',
 })
-export default class ForumTopic extends Model<ForumTopic> {
+export default class ForumTopic extends Model<ForumTopicAttributes, ForumTopicCreationAttributes> implements ForumTopicAttributes {
   @AutoIncrement
   @PrimaryKey
   @Column(DataType.INTEGER)
@@ -25,9 +37,15 @@ export default class ForumTopic extends Model<ForumTopic> {
   @Column(DataType.STRING)
   title!: string;
 
-  @AllowNull(false)
-  @Column(DataType.STRING)
-  user!: string;
+  @BelongsTo(() => User)
+  user!: User;
+
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'user_id',
+  })
+  userId!: number;
 
   @AllowNull(false)
   @Column(DataType.STRING)

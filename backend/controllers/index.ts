@@ -1,3 +1,2 @@
-export { createComment, createTopic, getComments, getTopics } from './forum';
-export { createUserTheme, getUserTheme } from './theme';
+export { createComment, createTopic, getTopics } from './forum';
 export { createUser } from './user';

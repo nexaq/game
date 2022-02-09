@@ -3,6 +3,7 @@ import useInput from "../useInput";
 import mapObjectSameKeys from "client/utils/mapObjectSameKeys";
 import {default as responseInFormHelper} from "../../helpers/validationResponseToForm";
 import {ResponseValidation} from "../../utils/api";
+import {useEffect} from "react";
 
 type Config = {
     [key in string]: Validations
@@ -18,7 +19,23 @@ export type InputResultItem = ReturnType<typeof useInput>;
 
 export type FormResult<C> = Record<keyof C, InputResultItem>;
 
-export default function useForm<C extends Config>(config: C, successCallback: SuccessCallback<SuccessData<C>, FormResult<C>>): {
+export type InitialValues<C> = Partial<Record<keyof C, string>>;
+
+const useInitValue = <C>(attribute: keyof C, input: ReturnType<typeof useInput>, initialValues?: InitialValues<C>) => {
+    let initialValue = '';
+
+    if (initialValues) {
+        initialValue = initialValues[attribute] ?? '';
+    }
+
+    useEffect(() => {
+        if (initialValue) {
+            input.setValue(initialValue);
+        }
+    }, [initialValue]);
+}
+
+export default function useForm<C extends Config>(config: C, successCallback: SuccessCallback<SuccessData<C>, FormResult<C>>, initialValues?: InitialValues<C>): {
     submitCallback: () => void,
     form: FormResult<C>
 } {
@@ -27,7 +44,10 @@ export default function useForm<C extends Config>(config: C, successCallback: Su
     const useInputResults = mapObjectSameKeys<C, FormResult<C>>(
         config,
         (key) => {
-            const input = useInput('', config[key])
+            const input = useInput('', config[key]);
+
+            useInitValue(key, input, initialValues);
+
             if (input.hasErrors) {
                 success = false;
             }

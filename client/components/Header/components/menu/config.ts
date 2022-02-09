@@ -1,10 +1,7 @@
 import {OwnProps as MenuItem} from "./components/menu-item";
 import {ROUTES} from "client/routes";
-import isAuth from "client/helpers/isAuth";
 
-export default function getMenuConfig() {
-    const isUserAuth = isAuth();
-
+export default function getMenuConfig(isAuth: boolean) {
     const menuConfig: MenuItem[] = [
         {
             label: 'Play',
@@ -18,7 +15,7 @@ export default function getMenuConfig() {
             label: 'Leaderboard',
             url: ROUTES.LEADERBOARD.INDEX,
         },
-        (isUserAuth ?
+        (isAuth ?
             {
                 label: 'Profile',
                 url: ROUTES.PROFILE.INDEX,
