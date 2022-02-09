@@ -11,7 +11,6 @@ type UserUpdateRules = Record<keyof UserUpdateAttributes, Validations>
 type UserLoginRules = Record<keyof UserLoginBody, Validations>
 type UserUpdatePasswordRules = Record<keyof UpdatePasswordAttributes, Validations>
 
-
 export const userCreateRules: UserCreateRules = {
     name: {notEmpty: true, minLength: 3, maxLength: 32},
     username: {notEmpty: true, minLength: 4, maxLength: 32},

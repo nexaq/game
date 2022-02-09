@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useTypedSelector} from "../useTypedSelector";
-import {userSelector} from "../../reducers/user/actions";
+import {userSelector} from "../../reducers/user/selectors";
 
 export default function useIsAuth() {
     const userFromRedux = useTypedSelector(userSelector);

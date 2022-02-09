@@ -2,17 +2,17 @@ import React, {ChangeEventHandler, useRef, useState} from 'react';
 import {Button} from "client/components/Button";
 import css from './style.module.pcss';
 import {Props} from "./types";
-import {ApiPath} from "client/api/consts";
 import useRequest from "client/hooks/useRequest";
-import {user} from "client/api/user";
+import {user, UserDTO} from "client/api/user";
+import {useDispatch} from "react-redux";
+import {createCheckAuthAction} from "client/reducers/user/actions";
+import {isSuccessFormResponse, isValidationError} from "../../../../utils/api/guards";
 
 const AvatarUplaodButton: Props = () => {
 
     const inputRef = useRef<HTMLInputElement>(null);
-    const [isLoading, send] = useRequest();
-
-    const url = ApiPath.USER.UPDATE_AVATAR;
-
+    const [showLoading, send] = useRequest();
+    const dispatch = useDispatch();
     const [errors, setErrors] = useState<string[]>([]);
 
     const onClick = () => {
@@ -33,26 +33,29 @@ const AvatarUplaodButton: Props = () => {
             setErrors([]);
         }
 
-
         const formData  = new FormData();
         formData.append('avatar', file);
 
         // send to server
         send(() => user.updateAvatar(formData).then(response => {
-            if (response.status === 400) {
+            if (isValidationError(response)) {
                 const errors = response.data?.errors;
                 if (errors) {
                     setErrors(errors.map(error => error.message ?? ''));
                 }
+            } else if (isSuccessFormResponse<UserDTO>(response)) {
+                dispatch(createCheckAuthAction(response.data ?? null));
             }
-        }))
+        }));
     }
 
     return (
         <form>
             <div className={css.wrapper}>
                 <input type="file" onChange={onChange} ref={inputRef}/>
-                <Button type={'button'} onClick={onClick}>upload</Button>
+                <Button type={'button'} onClick={onClick}>
+                    { showLoading ? 'loading...' : 'upload' }
+                </Button>
             </div>
             <div className={css.errors}>
                 {errors.map(error => error)}

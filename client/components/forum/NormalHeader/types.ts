@@ -6,6 +6,7 @@ type OwnProps = {
     className?: string
     url?: string
     author: string
+    avatar?: string
 }
 
 export type Props = FC<OwnProps>;

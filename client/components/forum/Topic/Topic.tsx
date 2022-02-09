@@ -7,13 +7,13 @@ import Text from "../Text";
 import Inner from "../Inner";
 import {ButtonsContainer} from "../buttons";
 
-const Topic: Props = ({ title, author, buttons, children, url, date }) => {
+const Topic: Props = ({ title, author, buttons, children, url, date, avatar }) => {
 
     return (
         <div>
             <Card>
                 <Inner>
-                    <NormalHeader date={date} author={author} title={title} className={css.header} url={url}/>
+                    <NormalHeader avatar={avatar} date={date} author={author} title={title} className={css.header} url={url}/>
                     <Text className={css.comment}>
                         { children }
                     </Text>

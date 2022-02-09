@@ -1,21 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import {Props} from "./types";
-import {user, UserUpdateAttributes} from "client/api/user";
+import {user, UserDTO, UserUpdateAttributes} from "client/api/user";
 import EditableField from "client/components/EditableField";
 import Input from "client/components/Input";
 import Modal from "client/components/Modal";
-import useForm from "../../../../hooks/useForm";
-import {Validations} from "../../../../hooks/useValidation";
-import {userUpdateRules} from "../../../../validations/user";
-import useRequest from "../../../../hooks/useRequest";
-import {FormState} from "../../../../components/Form/types";
-import {makeInputValidationProps} from "../../../../hooks/useInput/useInput";
-import LinkButton, {Button} from "../../../../components/Button";
-import Spacing from "../../../../components/Spacing";
-import Form from "../../../../components/Form";
+import useForm from "client/hooks/useForm";
+import {Validations} from "client/hooks/useValidation";
+import {userUpdateRules} from "client/validations/user";
+import useRequest from "client/hooks/useRequest";
+import {FormState} from "client/components/Form/types";
+import {makeInputValidationProps} from "client/hooks/useInput/useInput";
+import {Button} from "client/components/Button";
+import Spacing from "client/components/Spacing";
+import Form from "client/components/Form";
 import {useDispatch} from "react-redux";
-import {createCheckAuthAction} from "../../../../reducers/user/actions";
-import FormGroup from "../../../../components/FormGroup";
+import {createCheckAuthAction} from "client/reducers/user/actions";
+import FormGroup from "client/components/FormGroup";
+import {isSuccessFormResponse} from "../../../../utils/api/guards";
 
 const EditField: Props = ({
                               field,
@@ -36,7 +37,10 @@ const EditField: Props = ({
         (data, form, apply) => {
             updateUser(() => user.update(data).then((response) => {
                     setState(apply(response) ? 'success' : 'normal');
-                    dispatch(createCheckAuthAction(data));
+
+                    if (isSuccessFormResponse<UserDTO>(response)) {
+                        dispatch(createCheckAuthAction(response.data ?? null));
+                    }
                 })
             );
         },

@@ -1,6 +1,7 @@
 import {ApiPath} from "./consts";
 import {UserDTO} from "./user";
-import {get, post, ResponseValidationData} from "client/utils/api";
+import {get, post} from "client/utils/api/api";
+import {FormResponseData, ResponseValidationData} from "../utils/api/types";
 
 export type TopicDTO = {
     id: number,
@@ -17,7 +18,7 @@ export const getTopics = () => get<TopicDTO[]>(ApiPath.FORUM.TOPIC.ALL, {
 });
 
 export type TopicCreateValidationAttributes = Pick<TopicDTO, 'title' | 'description'>;
-export type TopicCreateResponseData = ResponseValidationData<keyof TopicCreateValidationAttributes> & Partial<SuccessResponse>;
+export type TopicCreateResponseData = FormResponseData<keyof TopicCreateValidationAttributes>;
 export const create = <T = TopicDTO>(data: T) => post<TopicCreateResponseData>(ApiPath.FORUM.TOPIC.CREATE, data);
 
 export type TopicResponseData = TopicDTO & Partial<SuccessResponse>;
@@ -42,7 +43,7 @@ export type CommentDTO = {
 }
 
 export type CommentCreateValidationAttributes = Pick<CommentDTO, 'comment'>;
-export type CommentCreateResponseData = ResponseValidationData<keyof CommentCreateValidationAttributes> & Partial<SuccessResponse>;
+export type CommentCreateResponseData = FormResponseData<keyof CommentCreateValidationAttributes>;
 export const createComment = <T = TopicDTO>(data: T) => post<CommentCreateResponseData>(ApiPath.FORUM.COMMENT.CREATE, data);
 
 export const comments = {

@@ -21,6 +21,9 @@ export const ROUTES = {
     SIGN_UP: {
         INDEX: '/sign-up',
     },
+    NOT_FOUND_PAGE: {
+        INDEX: '/404',
+    }
 };
 
 export const forumViewUrl = (id: number) => ROUTES.FORUM.VIEW.replace(':id', id.toString());

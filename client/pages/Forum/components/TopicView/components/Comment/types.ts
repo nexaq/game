@@ -6,6 +6,7 @@ type OwnProps = {
     author: string,
     comment: string,
     date: string,
+    avatar?: string
 }
 
 export type Props = FC<OwnProps>;

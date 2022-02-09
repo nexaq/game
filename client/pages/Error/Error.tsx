@@ -5,7 +5,8 @@ import css from './style.module.pcss';
 const Error: Props = ({ error }) => {
 
     const messages = {
-        404: 'page not found in current galaxy'
+        404: 'page not found in current galaxy',
+        500: 'Sorry.. there was an error',
     }
     const errorMessage = messages[error];
 

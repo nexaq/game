@@ -11,8 +11,13 @@ import utils from 'styles/utils.module.pcss';
 import css from './style.module.pcss';
 import ProfileForm from "./components/UserForm";
 import AvatarUploadButton from "./components/AvatarUploadButton/AvatarUplaodButton";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import avatarFileToSrc from "../../helpers/avatarFileToSrc";
+import {userSelector} from "../../reducers/user/selectors";
 
 let Profile: Props = () => {
+    const userFromRedux = useTypedSelector(userSelector);
+    const avatarSrc = avatarFileToSrc(userFromRedux?.avatar);
 
     return (
         <>
@@ -24,7 +29,7 @@ let Profile: Props = () => {
                     <div className={css.profile}>
                         <div
                             className={`${utils.dFlex} ${utils.directionColumn} ${utils.flexAlignCenter} ${css.editProfile}`}>
-                            <Avatar size={'xl'}/>
+                            <Avatar src={avatarSrc} size={'xl'}/>
                             <Spacing size={'sm'}/>
                             <AvatarUploadButton />
                         </div>

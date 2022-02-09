@@ -10,6 +10,7 @@ export const ApiPath = {
         REFRESH_TOKEN: `${baseUrl}/user/refresh`,
         UPDATE_PASSWORD: `${baseUrl}/user/password`,
         UPDATE_AVATAR: `${baseUrl}/user/avatar`,
+        AVATAR: `${baseUrl}/uploads/avatar/:src`,
     },
 
     FORUM: {

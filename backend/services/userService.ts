@@ -1,4 +1,4 @@
-import User, {UpdateAttributes, UserCreationAttributes} from "../models/user";
+import User, {UserCreationAttributes} from "../models/user";
 import hashPass from "../utils/hashPass";
 import {UnauthorizedError, ValidationError} from "../errors/api";
 import UserDto from "../dto/userDto";
@@ -62,15 +62,13 @@ class UserService {
             throw new UnauthorizedError();
         }
 
-        const result = await User.update({...request.body}, {
-            where: {
-                id: user.id
-            }
-        });
+        const result = await user.update({...request.body});
 
         if (!result) {
             throw new ErrorEvent('no user was updated');
         }
+
+        return result;
     }
 
     async updateUserPassword(
@@ -153,12 +151,8 @@ class UserService {
             throw new UnauthorizedError();
         }
 
-        const result = await User.update({
+        const result = await user.update({
             avatar: filename
-        }, {
-            where: {
-                id: user.id
-            }
         });
 
         if (!result) {
@@ -172,8 +166,6 @@ class UserService {
     async logout(refreshToken: string) {
         return await TokenService.removeToken(refreshToken);
     }
-
-
 
     async refresh(refreshToken: string) {
         if (!refreshToken) {

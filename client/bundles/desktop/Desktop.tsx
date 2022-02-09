@@ -4,7 +4,7 @@ import React from "react";
 import {Helmet} from 'react-helmet';
 import Core from "../../components/Core";
 
-// Предупреждение!! Входной компонеет должен быть экспортировам из отдельного модуля
+// Входной компонеет должен быть экспортировам из отдельного модуля
 // Иначе не работает fast-refresh!!!
 const DesktopBundle: Props = props => {
     return (

@@ -6,6 +6,7 @@ type OwnProps = {
     date?: string,
     comment: string,
     buttons?: JSX.Element
+    avatar?: string,
 };
 
 export type Props = FC<OwnProps>;

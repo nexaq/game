@@ -1,8 +1,6 @@
-import {CommonStore, TypedThunkAction} from "../../utils/infrastructure/store";
+import {TypedThunkAction} from "../../utils/infrastructure/store";
 import {topic, TopicDTO} from "../../api/forum";
 import {FetchTopic, TopicActionType} from "./types";
-
-export const topicSelector = (store: CommonStore) => store.topic.topic;
 
 const createFetchTopicAction = (payload: TopicDTO ): FetchTopic => {
     return { type: TopicActionType.FETCH, payload }

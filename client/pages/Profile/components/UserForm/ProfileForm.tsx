@@ -3,9 +3,9 @@ import {Props} from "./types";
 import {UserUpdateAttributes, UserUpdateResponseData} from "client/api/user";
 import Grid from "client/components/Grid";
 import {useTypedSelector} from "../../../../hooks/useTypedSelector";
-import {userSelector} from "../../../../reducers/user/actions";
 import EditField from "../EditField";
 import EditPassword from "../EditPassword";
+import {userSelector} from "../../../../reducers/user/selectors";
 
 
 const ProfileForm: Props = () => {

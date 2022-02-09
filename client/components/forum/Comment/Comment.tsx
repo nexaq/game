@@ -8,12 +8,12 @@ import utils from "styles/utils.module.pcss";
 import InfoBar from "../../InfoBar";
 import {ButtonsContainer} from "../buttons";
 
-const Comment: Props = ({author, comment, buttons, date}) => {
+const Comment: Props = ({author, comment, buttons, date, avatar}) => {
     return (
         <>
             <Inner className={css.comment}>
                 <div>
-                    <Avatar/>
+                    <Avatar src={avatar} />
                 </div>
                 <div className={css.text}>
                     <InfoBar className={css.profileInfo} items={[

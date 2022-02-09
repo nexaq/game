@@ -24,10 +24,7 @@ export async function updateUser(
 ): Promise<void> {
     try {
         const user = await userService.updateUser(request);
-        response.status(200).json({
-            success: true,
-            user
-        });
+        response.status(200).json(user);
     } catch (e) {
         next(e);
     }
@@ -113,10 +110,8 @@ export async function updateAvatar(
     next: NextFunction
 ) {
     try {
-        await userService.updateAvatar(request);
-        response.json({
-            status: true,
-        });
+        const user = await userService.updateAvatar(request);
+        response.json(user);
     } catch (e) {
         next(e);
     }

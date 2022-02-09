@@ -7,7 +7,7 @@ export async function getLeaderboard(
     next: NextFunction
 ) {
     try {
-        const results = await GameService.getTop10();
+        const results = await GameService.getLeaders();
         response.status(200).json(results);
     } catch (e) {
         next(e);

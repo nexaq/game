@@ -1,15 +1,18 @@
 import React from 'react';
 import Wrapper from './components/Wrapper';
 import {Props} from "./types";
+import ErrorBoundary from "client/components/ErrorBoundary";
 
-const Core: Props = ({}) => {
+const Core: Props = () => {
     return __PROD__
         ? (
             <div>
-                <Wrapper/>
+                <ErrorBoundary>
+                    <Wrapper/>
+                </ErrorBoundary>
             </div>
         )
-        : <Wrapper/>;
+        : <Wrapper/>
 };
 
 const {__PROD__} = process.env;

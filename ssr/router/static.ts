@@ -15,7 +15,6 @@ export const staticRoutes = (router: Router) => {
         .use('/static', staticRoute(cfg.static.dir))
         .use('/fonts', staticRoute('dist/fonts'))
         .use('/favicons', staticRoute('dist/favicons'))
-        .use('/robots.txt', staticRoute('dist/robots.txt'))
-        .use(GLOBAL_ROUTES.NOT_FOUND, middlewares, renderApp)
+        .get(GLOBAL_ROUTES.NOT_FOUND, middlewares, renderApp)
     ;
 };

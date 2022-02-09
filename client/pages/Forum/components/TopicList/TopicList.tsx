@@ -9,10 +9,12 @@ import {forumViewUrl} from "client/routes";
 import {ViewAnswersButton} from "client/components/forum/buttons";
 import {Link} from "react-router-dom";
 import CreateSection from "../CreateSection";
-import {fetchTopics as fetchTopicsRedux, topicsSelector} from "client/reducers/topics/actions";
+import {fetchTopics as fetchTopicsRedux} from "client/reducers/topics/actions";
 import {useTypedSelector} from "client/hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
 import useAfterEachLoading from "../../../../hooks/useAfterEachLoading";
+import avatarFileToSrc from "../../../../helpers/avatarFileToSrc";
+import {topicsSelector} from "../../../../reducers/topics/selectors";
 
 let Forum: Props = () => {
     const topics = useTypedSelector(topicsSelector);
@@ -35,16 +37,18 @@ let Forum: Props = () => {
         <>
             <CreateSection/>
             <div className={utils.miniContainer}>
-                {topics?.map(({id, title, user, description}) => {
+                {!showLoading && topics?.map(({id, title, user, description}) => {
                     const viewUrl = forumViewUrl(id);
                     const button = <Link to={viewUrl}><ViewAnswersButton/></Link>;
+                    const {avatar, name} = user;
 
                     return <Fragment key={id}>
                         <Topic
                             url={viewUrl}
-                            author={user.name}
+                            author={name}
                             title={title}
                             buttons={button}
+                            avatar={avatarFileToSrc(avatar)}
                         >{
                             description
                         }</Topic>

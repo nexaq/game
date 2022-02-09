@@ -22,7 +22,7 @@ class GameService {
         return await GameResult.create({...request.body, userId: user.id});
     }
 
-    async getTop10() {
+    async getLeaders() {
         const userDtoAttributes = Object.getOwnPropertyNames(new UserDto(new User()));
 
         return await GameResult.findAll({

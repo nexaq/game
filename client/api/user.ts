@@ -1,15 +1,16 @@
-import {get, post, put} from "client/utils/api";
+import {get, post, put} from "client/utils/api/api";
 import {ApiPath} from "./consts";
-import {ResponseValidationData} from "../utils/api";
+import {FormResponseData, ResponseValidationData} from "../utils/api/types";
 
 export type UserDTO = {
     name: string,
     username: string,
+    avatar: string,
 }
 
 type Password = { password: string };
 
-export type UserCreateValidationAttributes = UserDTO & Password;
+export type UserCreateValidationAttributes = Omit<UserDTO, 'avatar'> & Password;
 export type UserCreateResponseData = ResponseValidationData<keyof UserCreateValidationAttributes> & Partial<SuccessResponse>;
 const create = <T = UserDTO>(data: T) => post<UserCreateResponseData>(ApiPath.USER.CREATE, data);
 
@@ -27,20 +28,18 @@ export const checkAuth = () => get<TokenSuccessData & 'unauthorized'>(ApiPath.US
     refreshTokenOnFail: false
 });
 
-
-export type UserUpdateAttributes = UserDTO;
-export type UserUpdateResponseData = ResponseValidationData<keyof UserUpdateAttributes> & Partial<SuccessResponse>;
-const update = <T = UserDTO>(data: T) => put<UserUpdateResponseData>(ApiPath.USER.CREATE, data);
-
+export type UserUpdateAttributes = Pick<UserDTO, 'username' | 'name'>;
+export type UserUpdateResponseData = FormResponseData<UserDTO, UpdatePasswordAttributes>;
+const update = (data: UserUpdateAttributes) => put<UserUpdateResponseData>(ApiPath.USER.CREATE, data);
 
 export type UpdatePasswordAttributes = Password & {
     newPassword: string
 }
-export type UpdatePasswordResponseData = ResponseValidationData<keyof UpdatePasswordAttributes> & Partial<SuccessResponse>;
+export type UpdatePasswordResponseData = FormResponseData<UpdatePasswordAttributes>;
 const updatePassword  = <T = UpdatePasswordAttributes>(data: T) => put<UpdatePasswordResponseData>(ApiPath.USER.UPDATE_PASSWORD, data);
 
-export type UserUpdateAvatarAttributes = UserDTO;
-export type UserUpdateAvatarResponseData = ResponseValidationData<keyof UserUpdateAvatarAttributes> & Partial<SuccessResponse>;
+export type UserUpdateAvatarAttributes = Pick<UserDTO, 'avatar'>;
+export type UserUpdateAvatarResponseData = FormResponseData<UserUpdateAvatarAttributes, UserDTO>;
 const updateAvatar = <T = UserDTO>(data: T) => put<UserUpdateAvatarResponseData>(ApiPath.USER.UPDATE_AVATAR, data);
 
 export const user = {

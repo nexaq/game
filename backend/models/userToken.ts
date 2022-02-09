@@ -4,7 +4,7 @@ import {
     BelongsTo,
     Column,
     DataType,
-    ForeignKey,
+    ForeignKey, Length,
     PrimaryKey, Table
 } from "sequelize-typescript";
 import Model from "./model";
@@ -30,7 +30,8 @@ export default class UserToken extends Model<UserTokenAttributes, UserTokenCreat
     id!: number;
 
     @AllowNull(false)
-    @Column(DataType.STRING)
+    @Length({max: 2000})
+    @Column(DataType.TEXT)
     token!: string;
 
     @AllowNull(false)

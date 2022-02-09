@@ -2,10 +2,8 @@ import {UserDTO} from "client/api/user";
 import {CheckAuth, LoginAction, UserActionType} from "./types";
 import history from "client/components/CustomBrowserRouter/history";
 import {ROUTES} from "client/routes";
-import {CommonStore, TypedThunkAction} from "client/utils/infrastructure/store";
+import {TypedThunkAction} from "client/utils/infrastructure/store";
 import isAuth from "client/helpers/isAuth";
-
-export const userSelector = (store: CommonStore) => store.login.user;
 
 const createLoginAction = (payload: UserDTO): LoginAction => {
     return { type: UserActionType.LOGIN, payload }

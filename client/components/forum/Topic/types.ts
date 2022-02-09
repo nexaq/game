@@ -7,6 +7,7 @@ type OwnProps = {
     url?: string,
     author: string,
     buttons?: JSX.Element,
+    avatar?: string
 };
 
 export type Props = FC<OwnProps>;

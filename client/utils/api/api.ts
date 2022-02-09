@@ -1,30 +1,10 @@
 import localStorage from "webpack/mock/localStorage.mock";
-import {checkAuth} from "../api/user";
-import history from "../components/CustomBrowserRouter/history";
-import {ROUTES} from "../routes";
-
-export enum HTTP_METHODS {
-    GET = 'GET',
-    POST = 'POST',
-    PUT = 'PUT',
-}
-
-export type NormalResponse<T> = {
-    status: number,
-    data?: T,
-}
-
-export type ResponseValidationData<AttributeType> = {
-    success?: boolean,
-    errors?: ResponseValidationErrorItem<AttributeType>[],
-}
-
-export type ResponseValidation<AttributeType> = NormalResponse<ResponseValidationData<AttributeType>>;
-
-export type HandleValidationErrors<AttributeType> = (errors?: ResponseValidationErrorItem<AttributeType>[]) => void
+import {checkAuth} from "client/api/user";
+import history from "client/components/CustomBrowserRouter/history";
+import {ROUTES} from "client/routes";
+import {HTTP_METHODS, NormalResponse} from "./types";
 
 const credentials: RequestCredentials = "include";
-
 
 let getAccessToken = () => localStorage.getItem('accessToken');
 
@@ -77,6 +57,10 @@ async function httpBase<ResponseData>(path: string, options: Options): Promise<N
         const request = new Request(path, options);
         const response = await fetch(request);
         const data = await response.json();
+
+        if (response.status === 404) {
+            history.push(ROUTES.NOT_FOUND_PAGE.INDEX);
+        }
 
         return {
             status: response.status,
