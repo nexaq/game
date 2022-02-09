@@ -1,9 +1,11 @@
 import { AllowNull, AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
 import ForumTopic from './forumTopic';
+import User from "./user";
 
 @Table({
-  timestamps: false,
+  timestamps: true,
+  updatedAt: false,
   tableName: 'forum_comment',
 })
 export default class ForumComment extends Model<ForumComment> {
@@ -18,8 +20,15 @@ export default class ForumComment extends Model<ForumComment> {
   comment!: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  user!: string;
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    field: 'user_id',
+  })
+  userId!: number;
+
+  @BelongsTo(() => User)
+  user!: User;
 
   @AllowNull(false)
   @ForeignKey(() => ForumTopic)

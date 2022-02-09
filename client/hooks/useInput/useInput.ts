@@ -24,7 +24,9 @@ export default function useInput(initialValue: string, validations: Validations)
         isDirty,
         ...valid,
         displayError,
-        displayErrors
+        displayErrors,
+        setValue,
+        setDirty
     }
 }
 
@@ -33,6 +35,6 @@ export function makeInputValidationProps(config: ReturnType<typeof useInput>) {
         value: config.value,
         onChange: config.onChange,
         onBlur: config.onBlur,
-        hasError: config.displayError
+        hasError: config.displayError,
     }
 }

@@ -1,5 +1,5 @@
 import makeResponseValidationData from "../helpers/responseValidation";
-import {ServerError, UnauthorizedError, ValidationError} from "../errors/api";
+import {NotFoundError, ServerError, UnauthorizedError, ValidationError} from "../errors/api";
 
 export default function processResponseErrors(err: Error) {
     const validationError = makeResponseValidationData(err);
@@ -8,7 +8,7 @@ export default function processResponseErrors(err: Error) {
         return validationError;
     }
 
-    if (err instanceof ValidationError || err instanceof ServerError || err instanceof UnauthorizedError) {
+    if (err instanceof ValidationError || err instanceof ServerError || err instanceof UnauthorizedError || err instanceof NotFoundError) {
         return err;
     }
 

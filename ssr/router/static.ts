@@ -1,7 +1,13 @@
-import {Router, static as staticRoute} from 'express';
+import {ErrorRequestHandler, RequestHandler, Router, static as staticRoute} from 'express';
 import cfg from 'lib/cfg';
-import {renderApp} from "../controllers";
-import {ALL_OTHER} from "../../client/routes";
+import {GLOBAL_ROUTES} from "client/routes";
+import {cookieParser, helmet} from "ssr/middlewares";
+import {renderApp} from "ssr/controllers";
+
+const middlewares: Array<RequestHandler | ErrorRequestHandler> = [
+    helmet,
+    cookieParser,
+];
 
 export const staticRoutes = (router: Router) => {
     router
@@ -9,7 +15,6 @@ export const staticRoutes = (router: Router) => {
         .use('/static', staticRoute(cfg.static.dir))
         .use('/fonts', staticRoute('dist/fonts'))
         .use('/favicons', staticRoute('dist/favicons'))
-        .use('/robots.txt', staticRoute('dist/robots.txt'))
-        .use(ALL_OTHER.INDEX, renderApp)
+        .get(GLOBAL_ROUTES.NOT_FOUND, middlewares, renderApp)
     ;
 };

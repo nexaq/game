@@ -15,8 +15,12 @@ export interface UserAttributes {
     id: number
     name: string
     username: string
+    avatar: string
     password: string
 }
+
+export type UpdateAttributes = Pick<UserAttributes, 'password'> & {newPassword: string};
+
 export interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 
 @Table({
@@ -37,6 +41,9 @@ export default class User extends Model<UserAttributes, UserCreationAttributes> 
     @Unique(true)
     @Column(DataType.STRING)
     declare username: string;
+
+    @Column(DataType.STRING)
+    declare avatar: string;
 
     @AllowNull(false)
     @Column(DataType.STRING)

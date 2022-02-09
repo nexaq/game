@@ -3,6 +3,7 @@
 .avatar {
     border-radius: 50%;
     overflow: hidden;
+    position: relative;
 }
 
 .image {
@@ -19,4 +20,18 @@
 ._xl {
     height: 228px;
     width: 228px;
+}
+
+.loading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    font-weight: bold;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: blur(5px);
 }

@@ -1,16 +1,17 @@
 import {Validations} from "../useValidation";
 import useInput from "../useInput";
 import mapObjectSameKeys from "client/utils/mapObjectSameKeys";
-import {default as responseInFormHelper} from "../../helpers/validationResponseToForm";
-import {ResponseValidation} from "../../utils/api";
+import {useEffect} from "react";
+import validationResponseToForm from "../../helpers/validationResponseToForm";
+import {FormResponse} from "../../utils/api/types";
 
 type Config = {
     [key in string]: Validations
 }
 
-export type ApplyResponse<Data extends Record<keyof FormResult, unknown>, FormResult> = (response: ResponseValidation<keyof Data>) => boolean;
+export type ApplyResponse = <ValidationFields>(response: FormResponse<unknown, ValidationFields>) => boolean;
 
-export type SuccessCallback<SuccessData extends Record<keyof FormResult, unknown>, FormResult> = (data: SuccessData, form: FormResult, responseInForm: ApplyResponse<SuccessData, FormResult>) => void;
+export type SuccessCallback<SuccessData extends Record<keyof FormResult, unknown>, FormResult> = (data: SuccessData, form: FormResult, responseInForm: ApplyResponse) => void;
 
 export type SuccessData<C> = Record<keyof C, string>;
 
@@ -18,7 +19,23 @@ export type InputResultItem = ReturnType<typeof useInput>;
 
 export type FormResult<C> = Record<keyof C, InputResultItem>;
 
-export default function useForm<C extends Config>(config: C, successCallback: SuccessCallback<SuccessData<C>, FormResult<C>>): {
+export type InitialValues<C> = Partial<Record<keyof C, string>>;
+
+const useInitValue = <C>(attribute: keyof C, input: ReturnType<typeof useInput>, initialValues?: InitialValues<C>) => {
+    let initialValue = '';
+
+    if (initialValues) {
+        initialValue = initialValues[attribute] ?? '';
+    }
+
+    useEffect(() => {
+        if (initialValue) {
+            input.setValue(initialValue);
+        }
+    }, [initialValue]);
+}
+
+export default function useForm<C extends Config>(config: C, successCallback: SuccessCallback<SuccessData<C>, FormResult<C>>, initialValues?: InitialValues<C>): {
     submitCallback: () => void,
     form: FormResult<C>
 } {
@@ -27,7 +44,10 @@ export default function useForm<C extends Config>(config: C, successCallback: Su
     const useInputResults = mapObjectSameKeys<C, FormResult<C>>(
         config,
         (key) => {
-            const input = useInput('', config[key])
+            const input = useInput('', config[key]);
+
+            useInitValue(key, input, initialValues);
+
             if (input.hasErrors) {
                 success = false;
             }
@@ -45,11 +65,11 @@ export default function useForm<C extends Config>(config: C, successCallback: Su
         (key) => useInputResults[key]
     );
 
-    const applyValidationFromResponse: ApplyResponse<typeof data, typeof form> = (
+    const applyValidationFromResponse: ApplyResponse = (
         response
     ) => {
-        return responseInFormHelper(form, response) && response.status === 200;
-    }
+        return validationResponseToForm(form, response) && response.status === 200;
+    };
 
     return {
         submitCallback: () => {

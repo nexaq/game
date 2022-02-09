@@ -2,7 +2,7 @@ import React from 'react';
 import css from './style.module.pcss';
 import {Props} from "./types";
 
-const Form: Props = ({ action, state = 'normal', successMessage = 'SUCCESS', onSubmit, children }) => {
+const Form: Props = ({ action, state = 'normal', successMessage = 'Success', onSubmit, children }) => {
     const showSuccess = state === 'success';
     const showLoading = state === 'loading';
     const showForms = state === 'normal' || showLoading;

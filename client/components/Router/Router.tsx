@@ -4,12 +4,13 @@ import {Routes} from 'react-router-dom';
 import Home from 'client/pages/Home';
 import Leaderboard from 'client/pages/Leaderboard';
 import {Route} from "react-router-dom";
-import {ROUTES} from "client/routes";
+import {GLOBAL_ROUTES, ROUTES} from "client/routes";
 import Forum from "client/pages/Forum";
 import Profile from "client/pages/Profile";
 import Play from "../../pages/Play";
 import SignIn from "../../pages/SingIn";
 import SignUp from "../../pages/SingIn/SignUp";
+import Error from "../../pages/Error";
 
 const Router = () => {
     return (
@@ -17,10 +18,12 @@ const Router = () => {
             <Route path={ROUTES.HOME.INDEX} element={<Home />} />
             <Route path={ROUTES.LEADERBOARD.INDEX} element={<Leaderboard />} />
             <Route path={ROUTES.FORUM.INDEX} element={<Forum />} />
+            <Route path={ROUTES.FORUM.VIEW} element={<Forum />} />
             <Route path={ROUTES.PROFILE.INDEX} element={<Profile />} />
             <Route path={ROUTES.PLAY.INDEX} element={<Play />} />
             <Route path={ROUTES.SIGN_IN.INDEX} element={<SignIn />} />
             <Route path={ROUTES.SIGN_UP.INDEX} element={<SignUp />} />
+            <Route path={GLOBAL_ROUTES.NOT_FOUND} element={<Error error={404} />} />
         </Routes>
     );
 };

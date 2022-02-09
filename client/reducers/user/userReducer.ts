@@ -7,9 +7,10 @@ const initialState: UserState = {
 export const userReducer = (state = initialState, action: UserAction): UserState => {
     switch (action.type) {
         case UserActionType.LOGIN:
-            return { user: {...action.payload} }
+            return { ...state, user: {...action.payload} }
         case UserActionType.CHECK_AUTH:
-            return { user: action.payload ? {...action.payload} : null }
+            return { ...state, user: action.payload ? {...action.payload} : null }
+
         default:
             return state
     }

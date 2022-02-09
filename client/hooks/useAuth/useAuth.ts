@@ -1,8 +1,11 @@
 import {useEffect} from "react";
-import {checkAuth} from "../../reducers/user/actions";
+import {checkAuth} from "client/reducers/user/actions";
+import {useDispatch} from "react-redux";
 
-export default function useAuth() {
+export default function useAuth(redirect: boolean) {
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        checkAuth();
+        dispatch(checkAuth(redirect))
     }, [])
 }

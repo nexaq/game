@@ -1,10 +1,20 @@
 import useLoading from "../useLoading";
+import {useState} from "react";
 
-export default function useRequest(): [boolean, typeof makeRequest] {
-    const [isLoading, setLoading] = useLoading();
+type Options = {
+    delay?: number,
+    done?: () => void
+}
+
+export default function useRequest(options? : Options): [boolean, typeof makeRequest, boolean] {
+    // загрузка с delay
+    const [showLoading, setShowLoading] = useLoading(options?.delay);
+    // загрузка без delay
+    const [isLoading, setIsLoading] = useState(false);
 
     const makeRequest = <T>(request: () => Promise<T>): Promise<T> => {
-        setLoading(true);
+        setShowLoading(true);
+        setIsLoading(true);
 
         const promise = request();
 
@@ -16,10 +26,14 @@ export default function useRequest(): [boolean, typeof makeRequest] {
 
             alert('Error occurred! Try later');
         })
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setShowLoading(false);
+                setIsLoading(false);
+                if (options?.done) options.done();
+            });
 
         return promise;
     }
 
-    return [isLoading, makeRequest];
+    return [showLoading, makeRequest, isLoading];
 }

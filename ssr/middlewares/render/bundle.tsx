@@ -76,7 +76,7 @@ export default ({bundleName, data, location}: RenderBundleArguments) => {
     }
 
     const store = configureStore(
-        reducers,
+        reducers
     );
 
     const bundleHtml = renderToString(

@@ -1,6 +1,6 @@
 import {ChangeEventHandler, FC, FocusEventHandler} from "react";
 
-type OwnProps = {
+export type OwnProps = {
     value: string
     onChange?: ChangeEventHandler<HTMLInputElement>
     onBlur?: FocusEventHandler<HTMLInputElement>

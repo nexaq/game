@@ -7,6 +7,10 @@ import {Router} from "react-router";
 import isServer from "../../utils/serverSide/isServer";
 import history from "./history";
 
+/**
+ * Без хука useNavigate не возможно вызвать другие страницы в React Router v6
+ * для этого вынес history и могу использовать вне компонента
+ */
 export default function CustomBrowserRouter({
                                   basename,
                                   children
