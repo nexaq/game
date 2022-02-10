@@ -21,7 +21,7 @@ export type TopicCreateValidationAttributes = Pick<TopicDTO, 'title' | 'descript
 export type TopicCreateResponseData = FormResponseData<keyof TopicCreateValidationAttributes>;
 export const create = <T = TopicDTO>(data: T) => post<TopicCreateResponseData>(ApiPath.FORUM.TOPIC.CREATE, data);
 
-export type TopicResponseData = TopicDTO & Partial<SuccessResponse>;
+export type TopicResponseData = TopicDTO;
 export const getTopic = (id: number) => get<TopicResponseData>(ApiPath.FORUM.TOPIC.VIEW.replace(':id', id.toString()), {
     refreshTokenOnFail: false
 });

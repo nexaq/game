@@ -1,6 +1,7 @@
 import React from 'react';
 import {Props} from "./types";
 import css from './style.module.pcss';
+import {Helmet} from "react-helmet";
 
 const Error: Props = ({ error }) => {
 
@@ -12,6 +13,9 @@ const Error: Props = ({ error }) => {
 
     return (
         <div className={css.cover}>
+            <Helmet>
+                <title>ERROR</title>
+            </Helmet>
             <div className={css.container}>
                 <div className={css.code}>{error}</div>
                 <div className={css.text}>

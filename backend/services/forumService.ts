@@ -6,7 +6,7 @@ import {ForumComment, ForumTopic} from "../models";
 import {Request} from "express";
 import arrayToTree from "array-to-tree";
 
-    class ForumService {
+class ForumService {
     async createTopic(request: Request) {
         const {refreshToken} = request.cookies;
         const userData = tokenService.validateRefreshToken(refreshToken);

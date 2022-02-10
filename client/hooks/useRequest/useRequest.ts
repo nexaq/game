@@ -18,14 +18,15 @@ export default function useRequest(options? : Options): [boolean, typeof makeReq
 
         const promise = request();
 
-        promise.catch((e) => {
-            // @ts-ignore
-            if (__DEV__) {
-                console.error(e);
-            }
+        promise
+            .catch((e) => {
+                // @ts-ignore
+                if (__DEV__) {
+                    console.error(e);
+                }
 
-            alert('Error occurred! Try later');
-        })
+                alert('Error occurred! Try later');
+            })
             .finally(() => {
                 setShowLoading(false);
                 setIsLoading(false);

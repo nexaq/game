@@ -1,6 +1,6 @@
 import {get, post, put} from "client/utils/api/api";
 import {ApiPath} from "./consts";
-import {FormResponseData, ResponseValidationData} from "../utils/api/types";
+import {FormResponseData} from "client/utils/api/types";
 
 export type UserDTO = {
     name: string,
@@ -11,7 +11,7 @@ export type UserDTO = {
 type Password = { password: string };
 
 export type UserCreateValidationAttributes = Omit<UserDTO, 'avatar'> & Password;
-export type UserCreateResponseData = ResponseValidationData<keyof UserCreateValidationAttributes> & Partial<SuccessResponse>;
+export type UserCreateResponseData = FormResponseData<keyof UserCreateValidationAttributes> ;
 const create = <T = UserDTO>(data: T) => post<UserCreateResponseData>(ApiPath.USER.CREATE, data);
 
 export type TokenSuccessData = {
@@ -21,7 +21,7 @@ export type TokenSuccessData = {
 
 export type UserLoginBody = Pick<UserDTO, 'username'> & Password;
 export type UserLoginValidationAttributes = UserLoginBody;
-export type UserLoginResponseData = ResponseValidationData<keyof UserLoginValidationAttributes> & TokenSuccessData;
+export type UserLoginResponseData = FormResponseData<UserLoginValidationAttributes> & TokenSuccessData;
 const login = <T = UserLoginBody>(data: UserLoginBody) => post<UserLoginResponseData>(ApiPath.USER.LOGIN, data);
 
 export const checkAuth = () => get<TokenSuccessData & 'unauthorized'>(ApiPath.USER.REFRESH_TOKEN, {

@@ -13,8 +13,8 @@ import Comment from "./components/Comment";
 import CommentForm from "./components/CommentForm";
 import Spacing from "client/components/Spacing";
 import LinkButton from "client/components/Button";
-import avatarFileToSrc from "../../../../helpers/avatarFileToSrc";
-import {topicSelector} from "../../../../reducers/topic/selectors";
+import avatarFileToSrc from "client/helpers/avatarFileToSrc";
+import {topicSelector} from "client/reducers/topic/selectors";
 
 let TopicView: Props = () => {
     const {id} = useParams();

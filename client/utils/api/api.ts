@@ -58,10 +58,6 @@ async function httpBase<ResponseData>(path: string, options: Options): Promise<N
         const response = await fetch(request);
         const data = await response.json();
 
-        if (response.status === 404) {
-            history.push(ROUTES.NOT_FOUND_PAGE.INDEX);
-        }
-
         return {
             status: response.status,
             data

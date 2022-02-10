@@ -1,5 +1,5 @@
 import {UserDTO} from "./user";
-import {get} from "../utils/api/api";
+import {get} from "client/utils/api/api";
 import {ApiPath} from "./consts";
 
 export type ResultDTO = {
