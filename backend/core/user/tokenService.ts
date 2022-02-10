@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
-import UserToken from "../models/userToken";
-import UserDto from "../dto/userDto";
-import {UnauthorizedError, ValidationError} from "../errors/api";
+import UserToken from "./userTokenModel";
+import UserDto from "./userDto";
 
 class TokenService {
     accessSecret: string;

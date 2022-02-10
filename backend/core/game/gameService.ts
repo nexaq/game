@@ -1,9 +1,9 @@
-import UserDto from "../dto/userDto";
-import {UnauthorizedError} from "../errors/api";
-import tokenService from "./tokenService";
-import User from "../models/user";
+import UserDto from "../user/userDto";
+import {UnauthorizedError} from "../../errors/api";
+import tokenService from "../user/tokenService";
+import UserModel from "../user/userModel";
 import {Request} from "express";
-import GameResult from "../models/gameResult";
+import GameResultModel from "./gameResultModel";
 
 class GameService {
     async createResult(request: Request) {
@@ -14,21 +14,21 @@ class GameService {
             throw new UnauthorizedError();
         }
 
-        const user = await User.findByPk(userData.id);
+        const user = await UserModel.findByPk(userData.id);
 
         if (!user) {
             throw new UnauthorizedError();
         }
-        return await GameResult.create({...request.body, userId: user.id});
+        return await GameResultModel.create({...request.body, userId: user.id});
     }
 
     async getLeaders() {
-        const userDtoAttributes = Object.getOwnPropertyNames(new UserDto(new User()));
+        const userDtoAttributes = Object.getOwnPropertyNames(new UserDto(new UserModel()));
 
-        return await GameResult.findAll({
+        return await GameResultModel.findAll({
             include: [
                 {
-                    model: User,
+                    model: UserModel,
                     attributes: userDtoAttributes,
                 },
             ],

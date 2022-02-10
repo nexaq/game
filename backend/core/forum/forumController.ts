@@ -1,11 +1,11 @@
 import {NextFunction, Request, Response} from "express";
 
-import {ForumComment, ForumTopic} from "backend/models";
-import User from "backend/models/user";
+import {ForumCommentModel, ForumTopicModel} from "backend/core/forum";
+import UserModel from "backend/core/user/userModel";
 import {UnauthorizedError} from "backend/errors/api";
-import tokenService from "backend/services/tokenService";
-import UserDto from "backend/dto/userDto";
-import forumService from "backend/services/forumService";
+import tokenService from "backend/core/user/tokenService";
+import UserDto from "backend/core/user/userDto";
+import forumService from "backend/core/forum/forumService";
 
 export async function createTopic(
     request: Request,
@@ -42,12 +42,12 @@ export async function getTopics(
     next: NextFunction
 ): Promise<void> {
     try {
-        const userDtoAttributes = Object.getOwnPropertyNames(new UserDto(new User()));
+        const userDtoAttributes = Object.getOwnPropertyNames(new UserDto(new UserModel()));
 
-        const topics = await ForumTopic.findAll({
+        const topics = await ForumTopicModel.findAll({
             include: [
                 {
-                    model: User,
+                    model: UserModel,
                     attributes: userDtoAttributes
                 },
             ],
@@ -74,7 +74,7 @@ export async function createComment(
             throw new UnauthorizedError();
         }
 
-        const topic = await ForumComment.create({
+        const topic = await ForumCommentModel.create({
             ...request.body,
             userId: userData.id,
         });

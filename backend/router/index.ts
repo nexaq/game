@@ -4,10 +4,10 @@ import {
     createTopic, createUser,
     getTopics,
 } from "backend/controllers";
-import {loginUser, logoutUser, refreshUser, updateUser, updateUserPassword, updateAvatar} from "backend/controllers/user";
+import {loginUser, logoutUser, refreshUser, updateUser, updateUserPassword, updateAvatar} from "backend/core/user/userController";
 import auth from "backend/middlewares/auth";
-import {getTopic} from "../controllers/forum";
-import {createResult, getLeaderboard} from "../controllers/game";
+import {getTopic} from "../core/forum/forumController";
+import {createResult, getLeaderboard} from "../core/game/gameController";
 import path from "path";
 import {UPLOAD_DIR} from "../dir";
 

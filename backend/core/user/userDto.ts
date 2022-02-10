@@ -1,4 +1,4 @@
-import User from "../models/user";
+import UserModel from "./userModel";
 
 export default class UserDto {
     username;
@@ -6,7 +6,7 @@ export default class UserDto {
     name;
     avatar;
 
-    constructor(user: User) {
+    constructor(user: UserModel) {
         const {username, id, name, avatar} = user;
         this.username = username;
         this.id = id;

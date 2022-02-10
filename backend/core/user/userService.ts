@@ -1,9 +1,8 @@
-import User, {UserCreationAttributes} from "../models/user";
-import hashPass from "../utils/hashPass";
-import {UnauthorizedError, ValidationError} from "../errors/api";
-import UserDto from "../dto/userDto";
+import UserModel, {UserCreationAttributes} from "./userModel";
+import hashPass from "backend/utils/hashPass";
+import {UnauthorizedError, ValidationError} from "backend/errors/api";
+import UserDto from "./userDto";
 import tokenService from "./tokenService";
-import TokenService from "./tokenService";
 import {Request} from "express";
 import {sha256} from "js-sha256";
 
@@ -14,7 +13,7 @@ type LoginParams = Pick<UserCreationAttributes, 'password' | 'username'> & {
 class UserService {
     async login({username, password}: LoginParams) {
         const passwordHash = hashPass(password);
-        const user = await User.findOne({ where: { username } })
+        const user = await UserModel.findOne({ where: { username } })
 
         if (!user) {
             return Promise.reject(new ValidationError([
@@ -56,7 +55,7 @@ class UserService {
             throw new UnauthorizedError();
         }
 
-        const user = await User.findByPk(userData.id);
+        const user = await UserModel.findByPk(userData.id);
 
         if (!user) {
             throw new UnauthorizedError();
@@ -81,7 +80,7 @@ class UserService {
             throw new UnauthorizedError();
         }
 
-        const user = await User.findByPk(userData.id);
+        const user = await UserModel.findByPk(userData.id);
 
         if (!user) {
             throw new UnauthorizedError();
@@ -100,7 +99,7 @@ class UserService {
         }
 
         const hashedNewPass = hashPass(newPassword);
-        const result = await User.update({
+        const result = await UserModel.update({
             password: hashedNewPass
         }, {
             where: {
@@ -145,7 +144,7 @@ class UserService {
             throw new UnauthorizedError();
         }
 
-        const user = await User.findByPk(userData.id);
+        const user = await UserModel.findByPk(userData.id);
 
         if (!user) {
             throw new UnauthorizedError();
@@ -164,7 +163,7 @@ class UserService {
 
 
     async logout(refreshToken: string) {
-        return await TokenService.removeToken(refreshToken);
+        return await tokenService.removeToken(refreshToken);
     }
 
     async refresh(refreshToken: string) {
@@ -178,7 +177,7 @@ class UserService {
             throw new UnauthorizedError();
         }
 
-        const user = await User.findByPk(userData.id);
+        const user = await UserModel.findByPk(userData.id);
 
         if (!user) {
             throw new UnauthorizedError();

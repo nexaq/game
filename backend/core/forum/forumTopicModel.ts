@@ -9,15 +9,15 @@ import {
   Table
 } from 'sequelize-typescript';
 import {Optional} from "sequelize";
-import {ForumComment} from "./index";
-import User from "./user";
+import ForumCommentModel from "./forumCommentModel";
+import UserModel from "../user/userModel";
 
 export interface ForumTopicAttributes {
   id: number
   title: string
   description: string
   userId: number
-  comments: ForumComment[];
+  comments: ForumCommentModel[];
 }
 
 export interface ForumTopicCreationAttributes extends Optional<ForumTopicAttributes, 'id'> {}
@@ -27,7 +27,7 @@ export interface ForumTopicCreationAttributes extends Optional<ForumTopicAttribu
   updatedAt: false,
   tableName: 'forum_topic',
 })
-export default class ForumTopic extends Model<ForumTopicAttributes, ForumTopicCreationAttributes> implements ForumTopicAttributes {
+export default class ForumTopicModel extends Model<ForumTopicAttributes, ForumTopicCreationAttributes> implements ForumTopicAttributes {
   @AutoIncrement
   @PrimaryKey
   @Column(DataType.INTEGER)
@@ -37,10 +37,10 @@ export default class ForumTopic extends Model<ForumTopicAttributes, ForumTopicCr
   @Column(DataType.STRING)
   title!: string;
 
-  @BelongsTo(() => User)
-  user!: User;
+  @BelongsTo(() => UserModel)
+  user!: UserModel;
 
-  @ForeignKey(() => User)
+  @ForeignKey(() => UserModel)
   @Column({
     type: DataType.INTEGER,
     field: 'user_id',
@@ -51,6 +51,6 @@ export default class ForumTopic extends Model<ForumTopicAttributes, ForumTopicCr
   @Column(DataType.STRING)
   description!: string;
 
-  @HasMany(() => ForumComment)
-  comments!: ForumComment[];
+  @HasMany(() => ForumCommentModel)
+  comments!: ForumCommentModel[];
 }

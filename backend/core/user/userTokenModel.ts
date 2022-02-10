@@ -7,10 +7,9 @@ import {
     ForeignKey, Length,
     PrimaryKey, Table
 } from "sequelize-typescript";
-import Model from "./model";
-import User from "./user";
+import Model from "../../model/model";
+import UserModel from "./userModel";
 import {Optional} from "sequelize";
-
 
 export interface UserTokenAttributes {
     id: number
@@ -23,7 +22,7 @@ export interface UserTokenCreationAttributes extends Optional<UserTokenAttribute
     timestamps: false,
     tableName: 'user_token',
 })
-export default class UserToken extends Model<UserTokenAttributes, UserTokenCreationAttributes> {
+export default class UserTokenModel extends Model<UserTokenAttributes, UserTokenCreationAttributes> {
     @AutoIncrement
     @PrimaryKey
     @Column(DataType.INTEGER)
@@ -35,13 +34,13 @@ export default class UserToken extends Model<UserTokenAttributes, UserTokenCreat
     token!: string;
 
     @AllowNull(false)
-    @ForeignKey(() => User)
+    @ForeignKey(() => UserModel)
     @Column({
         type: DataType.INTEGER,
         field: 'user_id',
     })
     userId!: number;
 
-    @BelongsTo(() => User)
-    user!: User;
+    @BelongsTo(() => UserModel)
+    user!: UserModel;
 }

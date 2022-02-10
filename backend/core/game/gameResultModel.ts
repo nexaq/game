@@ -8,7 +8,7 @@ import {
   Table
 } from 'sequelize-typescript';
 import {Optional} from "sequelize";
-import User from "./user";
+import UserModel from "../user/userModel";
 
 export interface GameResultAttributes {
   id: number
@@ -23,7 +23,7 @@ export interface GameResultCreationAttributes extends Optional<GameResultAttribu
   updatedAt: false,
   tableName: 'game_result',
 })
-export default class GameResult extends Model<GameResultAttributes, GameResultCreationAttributes> implements GameResultAttributes {
+export default class GameResultModel extends Model<GameResultAttributes, GameResultCreationAttributes> implements GameResultAttributes {
   @AutoIncrement
   @PrimaryKey
   @Column(DataType.INTEGER)
@@ -33,11 +33,11 @@ export default class GameResult extends Model<GameResultAttributes, GameResultCr
   @Column(DataType.INTEGER)
   score!: number;
 
-  @BelongsTo(() => User)
-  user!: User;
+  @BelongsTo(() => UserModel)
+  user!: UserModel;
 
   @AllowNull(false)
-  @ForeignKey(() => User)
+  @ForeignKey(() => UserModel)
   @Column({
     type: DataType.INTEGER,
     field: 'user_id',

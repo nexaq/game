@@ -1,14 +1,14 @@
 import { AllowNull, AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
-import ForumTopic from './forumTopic';
-import User from "./user";
+import ForumTopicModel from './forumTopicModel';
+import UserModel from "../user/userModel";
 
 @Table({
   timestamps: true,
   updatedAt: false,
   tableName: 'forum_comment',
 })
-export default class ForumComment extends Model<ForumComment> {
+export default class ForumCommentModel extends Model<ForumCommentModel> {
   @AutoIncrement
   @PrimaryKey
   @Column(DataType.INTEGER)
@@ -20,34 +20,34 @@ export default class ForumComment extends Model<ForumComment> {
   comment!: string;
 
   @AllowNull(false)
-  @ForeignKey(() => User)
+  @ForeignKey(() => UserModel)
   @Column({
     type: DataType.INTEGER,
     field: 'user_id',
   })
   userId!: number;
 
-  @BelongsTo(() => User)
-  user!: User;
+  @BelongsTo(() => UserModel)
+  user!: UserModel;
 
   @AllowNull(false)
-  @ForeignKey(() => ForumTopic)
+  @ForeignKey(() => ForumTopicModel)
   @Column({
     type: DataType.INTEGER,
     field: 'topic_id',
   })
   topicId!: number;
 
-  @BelongsTo(() => ForumTopic)
-  topic!: ForumTopic;
+  @BelongsTo(() => ForumTopicModel)
+  topic!: ForumTopicModel;
 
-  @ForeignKey(() => ForumComment)
+  @ForeignKey(() => ForumCommentModel)
   @Column({
     type: DataType.INTEGER,
     field: 'comment_id',
   })
   commentId!: number;
 
-  @HasMany(() => ForumComment)
-  comments!: ForumComment[];
+  @HasMany(() => ForumCommentModel)
+  comments!: ForumCommentModel[];
 }

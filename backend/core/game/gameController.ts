@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from "express";
-import GameService from "../services/gameService";
+import GameService from "./gameService";
 
 export async function getLeaderboard(
     request: Request,

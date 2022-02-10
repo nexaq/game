@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from "express";
 import {UnauthorizedError} from "../errors/api";
-import tokenService from "../services/tokenService";
+import tokenService from "backend/core/user/tokenService";
 
 export default function auth(
     request: Request,

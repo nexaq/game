@@ -1,8 +1,8 @@
-import UserDto from "../dto/userDto";
-import {NotFoundError, UnauthorizedError} from "../errors/api";
-import tokenService from "./tokenService";
-import User from "../models/user";
-import {ForumComment, ForumTopic} from "../models";
+import UserDto from "../user/userDto";
+import {NotFoundError, UnauthorizedError} from "../../errors/api";
+import tokenService from "../user/tokenService";
+import UserModel from "../user/userModel";
+import {ForumCommentModel, ForumTopicModel} from "./index";
 import {Request} from "express";
 import arrayToTree from "array-to-tree";
 
@@ -15,31 +15,31 @@ class ForumService {
             throw new UnauthorizedError();
         }
 
-        const user = await User.findByPk(userData.id);
+        const user = await UserModel.findByPk(userData.id);
 
         if (!user) {
             throw new UnauthorizedError();
         }
 
-        return await ForumTopic.create({...request.body, userId: user.id});
+        return await ForumTopicModel.create({...request.body, userId: user.id});
     }
 
     async getTopic(id: number) {
-        const userDtoAttributes = Object.getOwnPropertyNames(new UserDto(new User()));
+        const userDtoAttributes = Object.getOwnPropertyNames(new UserDto(new UserModel()));
 
-        const topic = await ForumTopic.findOne({
+        const topic = await ForumTopicModel.findOne({
             include: [
                 {
-                    model: User,
+                    model: UserModel,
                     as: "user",
                     attributes: userDtoAttributes
                 },
                 {
-                    model: ForumComment,
+                    model: ForumCommentModel,
                     as: 'comments',
                     include:  [
                         {
-                            model: User,
+                            model: UserModel,
                             attributes: userDtoAttributes
                         },
                     ]

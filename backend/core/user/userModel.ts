@@ -8,8 +8,8 @@ import {
     Table,
     Unique
 } from 'sequelize-typescript';
-import hashPass from "../utils/hashPass";
-import Model from './model';
+import hashPass from "../../utils/hashPass";
+import Model from '../../model/model';
 
 export interface UserAttributes {
     id: number
@@ -27,7 +27,7 @@ export interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {
     timestamps: false,
     tableName: 'user',
 })
-export default class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+export default class UserModel extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
     @AutoIncrement
     @PrimaryKey
     @Column(DataType.INTEGER)
@@ -51,7 +51,7 @@ export default class User extends Model<UserAttributes, UserCreationAttributes> 
 
     @BeforeUpdate
     @BeforeCreate
-    static makePassword(user: User) {
+    static makePassword(user: UserModel) {
         user.password = hashPass(user.password);
     }
 }
