@@ -1,15 +1,15 @@
 import express from "express";
 import {
     createComment,
-    createTopic, createUser,
+    createTopic,
     getTopics,
-} from "backend/controllers";
-import {loginUser, logoutUser, refreshUser, updateUser, updateUserPassword, updateAvatar} from "backend/core/user/userController";
+} from "backend/core/forum";
+import {loginUser, logoutUser, refreshUser, updateUser, updateUserPassword, updateAvatar, createUser} from "backend/core/user";
 import auth from "backend/middlewares/auth";
-import {getTopic} from "../core/forum/forumController";
-import {createResult, getLeaderboard} from "../core/game/gameController";
+import {getTopic} from "backend/core/forum";
+import {createResult, getLeaderboard} from "backend/core/game";
 import path from "path";
-import {UPLOAD_DIR} from "../dir";
+import {UPLOAD_DIR} from "backend/dir";
 
 const router = express.Router();
 
