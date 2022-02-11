@@ -10,6 +10,8 @@ class GameService {
         const {refreshToken} = request.cookies;
         const userData = tokenService.validateRefreshToken(refreshToken);
 
+        const {score} = request.body;
+
         if (!userData) {
             throw new UnauthorizedError();
         }
@@ -19,7 +21,7 @@ class GameService {
         if (!user) {
             throw new UnauthorizedError();
         }
-        return await GameResultModel.create({...request.body, userId: user.id});
+        return await GameResultModel.create({...request.body, userId: user.id, score});
     }
 
     async getLeaders() {

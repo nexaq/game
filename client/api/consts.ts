@@ -27,6 +27,9 @@ export const ApiPath = {
     GAME: {
         LEADERBOARD: {
             ALL: `${baseUrl}/game/result`,
+        },
+        RESULT: {
+            CREATE: `${baseUrl}/game/result`
         }
     }
 };

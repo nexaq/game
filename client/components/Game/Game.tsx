@@ -11,11 +11,15 @@ import Grid from "../Grid";
 import {heightRatio} from "client/game/scene/context";
 import {Events, subscribe} from "client/game/scene/events";
 import Loading from "./components/Loading";
+import useRequest from "client/hooks/useRequest";
+import {create} from "client/api/game";
 
 const Game: Props = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isLoading, setLoading] = useState(!getGameControl().isAssetsLoaded());
+    const {getScore} = getGameControl();
+    const [_, registerResult, __] = useRequest();
 
     useEffect(() => {
         if (canvasRef.current) {
@@ -23,6 +27,19 @@ const Game: Props = () => {
 
             subscribe(Events.ASSETS_LOADED, () => {
                 setLoading(false);
+            });
+
+            subscribe(Events.END_GAME, () => {
+                registerResult(() => {
+                    const score = getScore();
+                    return create({
+                        score,
+                    }).then(({status}) => {
+                        if (status !== 200) {
+                            alert('Something went wrong')
+                        }
+                    })
+                })
             });
         }
 
@@ -34,15 +51,15 @@ const Game: Props = () => {
     return (
         <>
             <div className={css.container} ref={containerRef}>
-                <Grid cols={2}  className={css.controls}>
-                    <FullScreenControl containerRef={containerRef} />
-                    <AudioControl />
+                <Grid cols={2} className={css.controls}>
+                    <FullScreenControl containerRef={containerRef}/>
+                    <AudioControl/>
                 </Grid>
-                <Score />
-                <PlayScreen />
-                <RestartScreen />
-                <Loading active={isLoading} />
-                <canvas ref={canvasRef} className={css.canvas} width={1800} height={1800 * heightRatio} />
+                <Score/>
+                <PlayScreen/>
+                <RestartScreen/>
+                <Loading active={isLoading}/>
+                <canvas ref={canvasRef} className={css.canvas} width={1800} height={1800 * heightRatio}/>
             </div>
         </>
     );
