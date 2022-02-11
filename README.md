@@ -44,3 +44,11 @@ JWT какшка
 загрузка ток через указанный delay
 
 В следующий раз буду хранить загрузку в redux
+
+
+## stack
+redux react thunk
+loadable (game.tsx)
+
+
+пару варнингов из-за transition-group

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {StrictMode} from 'react';
 import Wrapper from './components/Wrapper';
 import {Props} from "./types";
 import ErrorBoundary from "client/components/ErrorBoundary";
@@ -11,8 +11,11 @@ const Core: Props = () => {
                     <Wrapper/>
                 </ErrorBoundary>
             </div>
+        ) : (
+            <StrictMode>
+                <Wrapper/>
+            </StrictMode>
         )
-        : <Wrapper/>
 };
 
 const {__PROD__} = process.env;

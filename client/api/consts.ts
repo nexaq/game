@@ -1,7 +1,5 @@
-const backendHost = process.env.HOST_BACKEND || 'localhost';
-const backendPort = process.env.PORT_BACKEND || 4000;
-
-const baseUrl = `${backendHost}:${backendPort}`;
+const mainHost = process.env.MAIN_HOST || 'localhost';
+const baseUrl = `${mainHost}/api`;
 
 export const ApiPath = {
     USER: {

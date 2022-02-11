@@ -5,7 +5,7 @@ interface Options {
     startDb: () => Promise<void>
 }
 
-const {PORT_BACKEND: PORT = 5000} = process.env;
+const {PORT_BACKEND: PORT = 4000} = process.env;
 
 export async function startApp({server, startDb}: Options) {
     await startDb();
