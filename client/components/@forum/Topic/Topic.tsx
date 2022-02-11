@@ -2,7 +2,7 @@ import React from 'react';
 import css from './style.module.pcss';
 import {Props} from "./types";
 import Card from "client/components/Card";
-import NormalHeader from "client/components/forum/NormalHeader";
+import NormalHeader from "client/components/@forum/NormalHeader";
 import Text from "../Text";
 import Inner from "../Inner";
 import {ButtonsContainer} from "../buttons";

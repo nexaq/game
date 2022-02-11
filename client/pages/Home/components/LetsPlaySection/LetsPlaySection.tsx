@@ -2,7 +2,7 @@ import React from 'react';
 import {Props} from "./types";
 import Container from "client/components/Container";
 import Grid from "client/components/Grid";
-import Paragraph from "client/components/typography/Paragraph";
+import Paragraph from "client/components/@typography/Paragraph";
 import css from './style.module.pcss';
 import LinkButton from "client/components/Button";
 import {ROUTES} from "client/routes";

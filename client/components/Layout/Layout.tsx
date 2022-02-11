@@ -4,7 +4,7 @@ import Header from "../Header";
 import useFakeLoading from "client/hooks/useFakeLoading";
 import css from './style.module.pcss';
 import Footer from "client/components/Footer";
-import Heading from "../typography";
+import Heading from "client/components/@typography";
 import Container from "../Container";
 import useAuth from "../../hooks/useAuth";
 

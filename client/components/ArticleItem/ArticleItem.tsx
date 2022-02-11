@@ -1,8 +1,8 @@
 import React from 'react';
 import {Props} from "./types";
 import css from './style.module.pcss';
-import Heading from "client/components/typography";
-import Paragraph from "client/components/typography/Paragraph";
+import Heading from "client/components/@typography";
+import Paragraph from "client/components/@typography/Paragraph";
 import LinkButton from "client/components/Button";
 import {ROUTES} from "client/routes";
 

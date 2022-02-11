@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Props} from "./types";
-import {default as CommentFormOriginal} from 'client/components/forum/CommentForm';
+import {default as CommentFormOriginal} from 'client/components/@forum/CommentForm';
 import Form from "client/components/Form";
 import useForm from "client/hooks/useForm";
 import useRequest from "client/hooks/useRequest";

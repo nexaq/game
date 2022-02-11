@@ -1,6 +1,6 @@
 const cfg = require('../../lib/cfg').default;
 
-const filenameRegexp = /^(?!.*\.inline).*\.(jpe?g|png|gif|eot|woff2?|ttf)$/;
+const filenameRegexp = /^(?!.*\.inline).*\.(jpe?g|png|gif|eot|woff2?|ttf|wav)$/;
 
 export default {
     client: {

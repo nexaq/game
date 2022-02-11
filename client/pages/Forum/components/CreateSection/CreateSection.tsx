@@ -4,7 +4,7 @@ import CreateForm from "../CreateForm";
 import {Button} from "client/components/Button";
 import Spacing from "client/components/Spacing";
 import useIsAuth from "client/hooks/useIsAuth/useIsAuth";
-import Paragraph from "client/components/typography/Paragraph";
+import Paragraph from "client/components/@typography/Paragraph";
 import Link from "client/components/Link";
 import {ROUTES} from "client/routes";
 

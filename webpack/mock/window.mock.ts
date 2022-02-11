@@ -14,6 +14,19 @@ if (typeof window !== 'undefined' && typeof window.getComputedStyle === 'functio
         addEventListener() {},
 
         scrollTo(x: number, y: number) {},
+        performance: {
+            now() {}
+        },
+        Image: class Image {
+            addEventListener(type: string, callback: () => void) {}
+        },
+        Audio: class Audio {
+            addEventListener(type: string, callback: () => void) {}
+        },
+        document: {
+            querySelector(...args: any) {}
+        },
+        fake: true,
     };
 }
 

@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 import {fetchLeaderboard} from "client/reducers/leaderboard/actions";
 import {useTypedSelector} from "client/hooks/useTypedSelector";
 import useRequest from "client/hooks/useRequest";
-import Heading from "client/components/typography";
+import Heading from "client/components/@typography";
 import useAfterEachLoading from "client/hooks/useAfterEachLoading";
 import Avatar from "client/components/Avatar";
 import avatarFileToSrc from "client/helpers/avatarFileToSrc";

@@ -1,12 +1,12 @@
 import React, {Fragment, memo, useEffect, useState} from 'react';
 import {Props} from "./types";
-import Topic from "client/components/forum/Topic";
+import Topic from "client/components/@forum/Topic";
 import Spacing from "client/components/Spacing";
 import utils from 'styles/utils.module.pcss';
 import useRequest from "client/hooks/useRequest";
-import Heading from "client/components/typography";
+import Heading from "client/components/@typography";
 import {forumViewUrl} from "client/routes";
-import {ViewAnswersButton} from "client/components/forum/buttons";
+import {ViewAnswersButton} from "client/components/@forum/buttons";
 import {Link} from "react-router-dom";
 import CreateSection from "../CreateSection";
 import {fetchTopics as fetchTopicsRedux} from "client/reducers/topics/actions";

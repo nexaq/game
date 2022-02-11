@@ -69,7 +69,7 @@ export default ({entry}: {entry: any}) => (webpackConfig: webpack.Configuration)
                 },
             )),
             new webpack.ProvidePlugin({
-                window: resolve(join(__dirname, '../mock/window.mock')),
+                window: [resolve(join(__dirname, '../mock/window.mock')), 'default'],
                 localStorage: resolve(join(__dirname, '../mock/localStorage.mock')),
                 document: 'global/document',
             }),

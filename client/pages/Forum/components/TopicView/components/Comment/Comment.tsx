@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Props} from "./types";
-import {default as CommentOriginal} from 'client/components/forum/Comment';
-import {ReplyButton, ViewAnswersButton} from "client/components/forum/buttons";
+import {default as CommentOriginal} from 'client/components/@forum/Comment';
+import {ReplyButton, ViewAnswersButton} from "client/components/@forum/buttons";
 import CommentForm from "../CommentForm";
 
 const Comment: Props = ({author, comment, topicId, id, date, avatar}) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Props} from "./types";
 import Container from "client/components/Container";
-import Heading from "client/components/typography/Heading";
+import Heading from "client/components/@typography/Heading";
 import AvailableList from "../../../../components/ArticleList";
 
 import shipImage1 from './images/ship-1.jpg';

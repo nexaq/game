@@ -1,0 +1,39 @@
+@import "../../styles/variables.module.pcss";
+
+.container {
+    background: $black;
+    box-shadow: 0 31px 62px rgba(0, 0, 0, 0.44);
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.canvas {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    user-select: none;
+}
+
+.controls {
+    opacity: 0.5;
+    right: rem(32);
+    z-index: 400;
+    top: rem(32);
+    position: absolute;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+

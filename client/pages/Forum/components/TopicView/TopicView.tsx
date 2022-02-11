@@ -1,14 +1,14 @@
 import React, {memo, useEffect} from 'react';
 import {Props} from "./types";
-import Topic from "client/components/forum/Topic";
+import Topic from "client/components/@forum/Topic";
 import {useParams} from "react-router";
 import {useDispatch} from "react-redux";
 import {fetchTopic} from "client/reducers/topic/actions";
 import useRequest from "client/hooks/useRequest";
-import Heading from "client/components/typography";
+import Heading from "client/components/@typography";
 import {useTypedSelector} from "client/hooks/useTypedSelector";
 import {CommentDTO, TopicDTO} from "client/api/forum";
-import Comments from "client/components/forum/Comments";
+import Comments from "client/components/@forum/Comments";
 import Comment from "./components/Comment";
 import CommentForm from "./components/CommentForm";
 import Spacing from "client/components/Spacing";
