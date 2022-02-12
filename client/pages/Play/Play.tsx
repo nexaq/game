@@ -4,7 +4,7 @@ import {Props} from "./types";
 import Layout from "client/components/Layout";
 import Container from "client/components/Container";
 
-import {LoadingLoadable} from "client/components/Game";
+import LoadingLoadable from "client/components/Game/components/LoadingLoadable";
 import Loadable from "react-loadable";
 
 const LoadableGame = Loadable({
@@ -19,7 +19,7 @@ const Play: Props = () => {
                 <title>PLAY2</title>
             </Helmet>
 
-            <Layout title="Play" mustBeAuthorized>
+            <Layout title="Play">
                 <Container>
                     <LoadableGame />
                 </Container>
