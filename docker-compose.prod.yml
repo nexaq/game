@@ -13,7 +13,7 @@ services:
       - client-app
       - backend-app
     env_file:
-      - .env.example
+      - .env
     volumes:
       - ./proxy/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf
       - ./proxy/conf.d/ssl:/etc/nginx/conf.d/ssl
@@ -32,7 +32,7 @@ services:
     ports:
       - "${PORT_BACKEND}:${PORT_BACKEND}"
     env_file:
-      - .env.example
+      - .env
     depends_on:
       - postgres
     volumes:
@@ -56,7 +56,7 @@ services:
       - backend-app
       - postgres
     env_file:
-      - .env.example
+      - .env
     volumes:
       - ./backend:/var/www/backend
       - ./client:/var/www/client
@@ -71,7 +71,7 @@ services:
     container_name: postgres_container
     image: postgres
     env_file:
-      - .env.example
+      - .env
     environment:
       PGDATA: /data/postgres
       POSTGRES_DB: ${POSTGRES_DB}
