@@ -1,1 +1,1 @@
-export {default} from './scene/gameControl';
+export { default } from "./scene/gameControl";

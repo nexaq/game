@@ -1,2 +1,2 @@
-import './fonts.pcss';
-import './reset.pcss';
+import "./fonts.pcss";
+import "./reset.pcss";

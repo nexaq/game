@@ -1,1 +1,1 @@
-export {default} from './useAfterEachLoading';
+export { default } from "./useAfterEachLoading";

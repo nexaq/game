@@ -1,16 +1,20 @@
-let localStorage: Pick<Storage, 'getItem' | 'setItem'>;
+// eslint-disable-next-line import/no-mutable-exports
+let localStorage: Pick<Storage, "getItem" | "setItem">;
 
-if (typeof window !== 'undefined' && typeof window.getComputedStyle === 'function') {
-    localStorage = window.localStorage;
+if (
+  typeof window !== "undefined" &&
+  typeof window.getComputedStyle === "function"
+) {
+  localStorage = window.localStorage;
 } else {
-    localStorage = {
-        // eslint-disable-next-line
+  localStorage = {
+    // eslint-disable-next-line
         setItem(key: string, value: string) {},
-        // eslint-disable-next-line
+    // eslint-disable-next-line
         getItem(key: string) {
-            return '';
-        },
-    };
+      return "";
+    },
+  };
 }
 
 export default localStorage;

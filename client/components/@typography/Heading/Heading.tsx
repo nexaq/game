@@ -1,22 +1,31 @@
-import React from 'react';
-import {Props} from "./types";
-import css from './style.module.pcss';
+import React from "react";
 
-const Heading: Props = ({ level, children, className = '', addLine = false, uppercase = false }) => {
-    const uppercaseClassName = uppercase ? css._uppercase : '';
+import css from "./style.module.pcss";
+import { Props } from "./types";
 
-    return (
+const Heading: Props = ({
+  level,
+  children,
+  className = "",
+  addLine = false,
+  uppercase = false,
+}) => {
+  const uppercaseClassName = uppercase ? css._uppercase : "";
+
+  return (
+    <>
+      {React.createElement(
+        level,
+        {
+          className: `${css.heading} ${className} ${uppercaseClassName}`,
+        },
         <>
-            {
-                React.createElement(level, {
-                    className: `${css.heading} ${className} ${uppercaseClassName}`
-                }, <>
-                    {children}
-                    {addLine && <div className={css.line} />}
-                </>)
-            }
+          {children}
+          {addLine && <div className={css.line} />}
         </>
-    );
+      )}
+    </>
+  );
 };
 
 export default Heading;

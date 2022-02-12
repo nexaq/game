@@ -1,10 +1,10 @@
-import {FC} from "react";
+import { FC } from "react";
 
-type OwnProps =  {
-    className?: string
-    displayValue: string
-    placeholder: string
-    onClick: () => void
+type OwnProps = {
+  className?: string;
+  displayValue: string;
+  placeholder: string;
+  onClick: () => void;
 };
 
 export type Props = FC<OwnProps>;

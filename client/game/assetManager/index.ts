@@ -1,1 +1,1 @@
-export {default} from './AssetManager';
+export { default } from "./AssetManager";

@@ -1,10 +1,10 @@
-import {FC} from "react";
+import { FC } from "react";
 
 export type OwnProps = {
-    fakeLoading?: boolean,
-    headerOverlapsContent?: boolean,
-    title?: string,
-    mustBeAuthorized?: boolean
-}
+  fakeLoading?: boolean;
+  headerOverlapsContent?: boolean;
+  title?: string;
+  mustBeAuthorized?: boolean;
+};
 
 export type Props = FC<OwnProps>;

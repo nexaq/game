@@ -1,11 +1,12 @@
-import {parse} from 'qs';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { parse } from "qs";
 
 // чисто по приколу
 // можно и стандартный использовать
 export const queryParser = (query: string) => {
-    return parse(query, {
-        decoder: str => {
-            return decodeURIComponent(str);
-        },
-    });
+  return parse(query, {
+    decoder: (str) => {
+      return decodeURIComponent(str);
+    },
+  });
 };

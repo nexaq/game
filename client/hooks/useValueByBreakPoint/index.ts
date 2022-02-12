@@ -1,1 +1,1 @@
-export {default, makeConfig} from './useValueByBreakPoint';
+export { default, makeConfig } from "./useValueByBreakPoint";

@@ -1,2 +1,2 @@
-export * from './types';
-export {topicReducer} from "./topicReducer";
+export { topicReducer } from "./topicReducer";
+export * from "./types";

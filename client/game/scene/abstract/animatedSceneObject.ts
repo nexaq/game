@@ -1,23 +1,25 @@
-import {StaticSceneObject} from "./index";
 import nowInSeconds from "../../helpers/nowInSeconds";
+import { StaticSceneObject } from "./index";
 
 export default abstract class AnimatedSceneObject extends StaticSceneObject {
-    protected startedX: number;
-    protected startedY: number;
-    private readonly animationStarted: number;
+  protected startedX: number;
 
-    protected constructor(x: number, y: number) {
-        super(x, y);
-        this.animationStarted = nowInSeconds();
-        this.startedX = this.x;
-        this.startedY = this.y;
-    }
+  protected startedY: number;
 
-    getAnimationStarted() {
-        return this.animationStarted;
-    }
+  private readonly animationStarted: number;
 
-    getTimePassed() {
-        return nowInSeconds() - this.animationStarted;
-    }
+  protected constructor(x: number, y: number) {
+    super(x, y);
+    this.animationStarted = nowInSeconds();
+    this.startedX = this.x;
+    this.startedY = this.y;
+  }
+
+  getAnimationStarted() {
+    return this.animationStarted;
+  }
+
+  getTimePassed() {
+    return nowInSeconds() - this.animationStarted;
+  }
 }

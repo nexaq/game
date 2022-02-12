@@ -1,6 +1,3 @@
-import {FC} from "react";
+import { FC } from "react";
 
-export type OwnProps = {
-};
-
-export type Props = FC<OwnProps>;
+export type Props = FC;

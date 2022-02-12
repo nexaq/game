@@ -1,14 +1,14 @@
-import {NextFunction, Request, Response} from 'express';
+import { NextFunction, Request, Response } from "express";
 
-import renderBundle from './bundle';
+import renderBundle from "./bundle";
 
 export default (req: Request, res: Response, next: NextFunction) => {
-    res.renderBundle = (bundleName: string, data: SSRData) => {
-        const location = req.url;
-        const {html} = renderBundle({bundleName, data, location});
+  res.renderBundle = (bundleName: string, data: SSRData) => {
+    const location = req.url;
+    const { html } = renderBundle({ bundleName, data, location });
 
-        res.send(html);
-    };
+    res.send(html);
+  };
 
-    next();
+  next();
 };

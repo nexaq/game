@@ -1,4 +1,4 @@
-import server from './app';
-import {startApp} from './utils/startApp';
+import server from "./app";
+import { startApp } from "./utils/startApp";
 
-startApp({server});
+startApp({ server });

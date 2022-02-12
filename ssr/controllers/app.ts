@@ -1,16 +1,13 @@
-import {Request, Response} from 'express';
+import { Request, Response } from "express";
 
 export default function renderApp(req: Request, res: Response) {
-    const responseHeaders = res.getHeaders();
-    // req.tld!
-    const {
-        ip,
-        nonce,
-    } = req;
+  const responseHeaders = res.getHeaders();
+  // req.tld!
+  const { ip, nonce } = req;
 
-    res.renderBundle('desktop', {
-        ip,
-        nonce,
-        responseHeaders,
-    });
+  res.renderBundle("desktop", {
+    ip,
+    nonce,
+    responseHeaders,
+  });
 }

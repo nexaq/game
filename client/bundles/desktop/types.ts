@@ -1,7 +1,7 @@
-import {FC} from 'react';
+import { FC } from "react";
 
 type OwnProps = {
-    data: SSRData;
+  data: SSRData;
 };
 
 export type Props = FC<OwnProps>;

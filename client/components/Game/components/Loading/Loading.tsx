@@ -1,15 +1,18 @@
-import React from 'react';
-import {Props} from "./types";
-import css from './style.module.pcss';
+import React from "react";
 
-const Loading: Props = ({active}) => {
-    return <>
-        {active && <div className={css.loading}>
-            <div>
-                Loading...
-            </div>
-        </div>}
+import css from "./style.module.pcss";
+import { Props } from "./types";
+
+const Loading: Props = ({ active }) => {
+  return (
+    <>
+      {active && (
+        <div className={css.loading}>
+          <div>Loading...</div>
+        </div>
+      )}
     </>
+  );
 };
 
 export default Loading;

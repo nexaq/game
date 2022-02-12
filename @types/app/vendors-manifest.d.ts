@@ -1,24 +1,24 @@
-declare module 'webpack/vendors-manifest.json' {
-    interface Meta {
-        exportsType: string;
-        providedExports: boolean | string[];
-    }
+declare module "webpack/vendors-manifest.json" {
+  interface Meta {
+    exportsType: string;
+    providedExports: boolean | string[];
+  }
 
-    interface Vendor {
-        id: string;
-        buildMeta: Meta;
-    }
+  interface Vendor {
+    id: string;
+    buildMeta: Meta;
+  }
 
-    interface Content {
-        [vendorId: string]: Vendor;
-    }
+  interface Content {
+    [vendorId: string]: Vendor;
+  }
 
-    interface VendorsManifest {
-        content: Content;
-        name: string;
-    }
+  interface VendorsManifest {
+    content: Content;
+    name: string;
+  }
 
-    const vendorsManifest: VendorsManifest;
+  const vendorsManifest: VendorsManifest;
 
-    export default vendorsManifest;
+  export default vendorsManifest;
 }

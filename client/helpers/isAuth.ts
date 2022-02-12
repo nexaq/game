@@ -1,19 +1,19 @@
-import {checkAuth as checkIfAuth} from "client/api/user";
-import {AnyAction} from "redux";
+import { checkAuth as checkIfAuth } from "client/api/user";
 
-export default async function isAuth<T extends AnyAction>() {
-    try {
-        const response = await checkIfAuth();
+export default async function isAuth() {
+  try {
+    const response = await checkIfAuth();
 
-        if (response.status === 200 && response.data?.accessToken) {
-            // update access token
-            const {user, accessToken} = response.data;
-            localStorage.setItem('accessToken', accessToken);
-            return user ?? null;
-        }
-    } catch (e) {
-        console.error(e);
+    if (response.status === 200 && response.data?.accessToken) {
+      // update access token
+      const { user, accessToken } = response.data;
+      localStorage.setItem("accessToken", accessToken);
+      return user ?? null;
     }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+  }
 
-    return null;
+  return null;
 }

@@ -1,7 +1,7 @@
-import {FC} from "react";
+import { FC } from "react";
 
 type OwnProps = {
-    active: boolean
-}
+  active: boolean;
+};
 
 export type Props = FC<OwnProps>;

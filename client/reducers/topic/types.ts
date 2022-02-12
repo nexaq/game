@@ -1,17 +1,16 @@
-import {TopicDTO} from "client/api/forum";
+import { TopicDTO } from "client/api/forum";
 
 export interface TopicState {
-    topic: TopicDTO | null;
+  topic: TopicDTO | null;
 }
 
 export enum TopicActionType {
-    FETCH = 'FETCH'
+  FETCH = "FETCH",
 }
 
 export interface FetchTopic {
-    type: TopicActionType.FETCH,
-    payload: TopicDTO
+  type: TopicActionType.FETCH;
+  payload: TopicDTO;
 }
-
 
 export type UserAction = FetchTopic;

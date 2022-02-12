@@ -1,2 +1,2 @@
-export {default} from './MenuItem';
-export type {OwnProps} from './types';
+export { default } from "./MenuItem";
+export type { OwnProps } from "./types";

@@ -1,14 +1,14 @@
-import {AppConfig} from 'cfg';
+import { AppConfig } from "cfg";
 
 const config: AppConfig = {
-    render: {
-        isHot: true,
-    },
+  render: {
+    isHot: true,
+  },
 
-    static: {
-        baseUrl: '/static/',
-        version: '',
-    },
+  static: {
+    baseUrl: "/static/",
+    version: "",
+  },
 };
 
 module.exports = config;

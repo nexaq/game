@@ -1,1 +1,1 @@
-export {default} from './CustomBrowserRouter';
+export { default } from "./CustomBrowserRouter";

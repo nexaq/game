@@ -1,2 +1,2 @@
-export {default} from './useValidation';
-export type {Validations} from './useValidation';
+export type { Validations } from "./useValidation";
+export { default } from "./useValidation";

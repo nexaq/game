@@ -1,1 +1,1 @@
-export {default} from './LetsPlaySection';
+export { default } from "./LetsPlaySection";

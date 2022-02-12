@@ -1,14 +1,10 @@
-import React from 'react';
-import {Props} from "./types";
-import css from './style.module.pcss';
+import React from "react";
 
-const Text: Props = ({children, className = ''}) => {
+import css from "./style.module.pcss";
+import { Props } from "./types";
 
-    return (
-        <div className={`${css.commentText} ${className}`}>
-            {children}
-        </div>
-    );
+const Text: Props = ({ children, className = "" }) => {
+  return <div className={`${css.commentText} ${className}`}>{children}</div>;
 };
 
 export default Text;

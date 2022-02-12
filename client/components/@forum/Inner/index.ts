@@ -1,1 +1,1 @@
-export {default} from './Inner';
+export { default } from "./Inner";

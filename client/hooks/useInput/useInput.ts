@@ -1,40 +1,44 @@
-import {ChangeEvent, useState} from "react";
-import useValidation, {Validations} from "../useValidation";
+import { ChangeEvent, useState } from "react";
 
-export default function useInput(initialValue: string, validations: Validations) {
-    const [value, setValue] = useState(initialValue);
-    const [isDirty, setDirty] = useState(false);
-    const valid = useValidation(value, validations, setDirty);
+import useValidation, { Validations } from "../useValidation";
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-    }
+export default function useInput(
+  initialValue: string,
+  validations: Validations
+) {
+  const [value, setValue] = useState(initialValue);
+  const [isDirty, setDirty] = useState(false);
+  const valid = useValidation(value, validations, setDirty);
 
-    const onBlur = () => {
-        setDirty(true);
-    }
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
 
-    const displayError = isDirty && valid.hasErrors;
-    const displayErrors = displayError ? valid.errors : [];
+  const onBlur = () => {
+    setDirty(true);
+  };
 
-    return {
-        value,
-        onChange,
-        onBlur,
-        isDirty,
-        ...valid,
-        displayError,
-        displayErrors,
-        setValue,
-        setDirty
-    }
+  const displayError = isDirty && valid.hasErrors;
+  const displayErrors = displayError ? valid.errors : [];
+
+  return {
+    value,
+    onChange,
+    onBlur,
+    isDirty,
+    ...valid,
+    displayError,
+    displayErrors,
+    setValue,
+    setDirty,
+  };
 }
 
 export function makeInputValidationProps(config: ReturnType<typeof useInput>) {
-    return {
-        value: config.value,
-        onChange: config.onChange,
-        onBlur: config.onBlur,
-        hasError: config.displayError,
-    }
+  return {
+    value: config.value,
+    onChange: config.onChange,
+    onBlur: config.onBlur,
+    hasError: config.displayError,
+  };
 }

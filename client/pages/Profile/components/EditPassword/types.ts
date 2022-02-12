@@ -1,8 +1,3 @@
-import {FC} from "react";
-import {UserUpdateAttributes} from "client/api/user";
-import {OwnProps as InputProps} from 'client/components/Input';
+import { FC } from "react";
 
-type OwnProps = {
-};
-
-export type Props = FC<OwnProps>;
+export type Props = FC;

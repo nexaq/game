@@ -1,21 +1,21 @@
-export {}
+export {};
 
 declare global {
-    type ResponseValidationErrorItem<AttributeType> = {
-        attribute: AttributeType | null,
-        type: string | null,
-        message?: string,
-    }
+  type ResponseValidationErrorItem<AttributeType> = {
+    attribute: AttributeType | null;
+    type: string | null;
+    message?: string;
+  };
 
-    type ResponseValidationError<AttributeType> = {
-        errors: ResponseValidationErrorItem<AttributeType>[]
-    };
+  type ResponseValidationError<AttributeType> = {
+    errors: ResponseValidationErrorItem<AttributeType>[];
+  };
 
-    type ResponseServerError = {
-        message: string
-    }
+  type ResponseServerError = {
+    message: string;
+  };
 
-    type SuccessResponse = {
-        success: true
-    }
+  type SuccessResponse = {
+    success: true;
+  };
 }

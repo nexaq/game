@@ -1,6 +1,3 @@
-import {FC, MouseEventHandler} from "react";
+import { FC } from "react";
 
-type OwnProps = {
-}
-
-export type Props = FC<OwnProps>;
+export type Props = FC;

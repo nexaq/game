@@ -1,15 +1,24 @@
-import React from 'react';
-import {Props} from "./types";
-import css from './style.module.pcss';
+import React from "react";
 
-const Paragraph: Props = ({ size = 'lg', children, style = {}, className = '' }) => {
-    const sizeClassName = css[`paragraph_${size}`];
+import css from "./style.module.pcss";
+import { Props } from "./types";
 
-    return (
-        <p className={`${css.paragraph} ${sizeClassName} ${className}`} style={style}>
-            {children}
-        </p>
-    );
+const Paragraph: Props = ({
+  size = "lg",
+  children,
+  style = {},
+  className = "",
+}) => {
+  const sizeClassName = css[`paragraph_${size}`];
+
+  return (
+    <p
+      className={`${css.paragraph} ${sizeClassName} ${className}`}
+      style={style}
+    >
+      {children}
+    </p>
+  );
 };
 
 export default Paragraph;

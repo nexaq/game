@@ -1,1 +1,1 @@
-export {default} from './RestartScreen';
+export { default } from "./RestartScreen";

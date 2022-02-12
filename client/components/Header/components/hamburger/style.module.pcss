@@ -41,6 +41,7 @@ $stick-padding-from-side-hover: 4px;
             &:after {
                 top: calc($stick-padding-from-side-hover + $padding);
             }
+
             &:before {
                 bottom: calc($stick-padding-from-side-hover + $padding);
             }
@@ -51,13 +52,13 @@ $stick-padding-from-side-hover: 4px;
 ._active {
     &:after {
         transform: translate(0px, 7px) rotate(-45deg);
-        top: calc($stick-padding-from-side + $padding)!important;
+        top: calc($stick-padding-from-side + $padding) !important;
         background-color: $secondary;
     }
 
     &:before {
         transform: translate(0px, -8px) rotate(45deg);
-        bottom: calc($stick-padding-from-side + $padding)!important;
+        bottom: calc($stick-padding-from-side + $padding) !important;
         background-color: $secondary;
     }
 }

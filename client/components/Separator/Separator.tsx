@@ -1,11 +1,10 @@
-import React from 'react';
-import {Props} from "./types";
-import css from './style.module.pcss';
+import React from "react";
 
-const Separator: Props = ({  }) => {
-    return (
-        <div className={css.separator} />
-    );
+import css from "./style.module.pcss";
+import { Props } from "./types";
+
+const Separator: Props = () => {
+  return <div className={css.separator} />;
 };
 
 export default Separator;

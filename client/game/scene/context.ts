@@ -2,37 +2,37 @@ let ctx: CanvasRenderingContext2D;
 let canvas: HTMLCanvasElement;
 
 const setCanvas = (canvasElement: HTMLCanvasElement) => {
-    canvas = canvasElement;
-}
+  canvas = canvasElement;
+};
 
 const setContext = (context: CanvasRenderingContext2D) => {
-    ctx = context;
-}
+  ctx = context;
+};
 
 export const heightRatio = 0.7;
 
 const prepareCanvas = () => {
-    canvas.height = canvas.width * heightRatio;
-}
+  canvas.height = canvas.width * heightRatio;
+};
 
 export const getCanvas = () => {
-    return canvas;
-}
+  return canvas;
+};
 
 export const getCtx = () => {
-    return ctx;
-}
+  return ctx;
+};
 
 export const prepareContext = (canvas: HTMLCanvasElement) => {
-    const canvasSelected = canvas;
-    const context = canvasSelected?.getContext('2d');
+  const canvasSelected = canvas;
+  const context = canvasSelected?.getContext("2d");
 
-    if (!context || !canvasSelected) {
-        throw new Error('No canvas or canvas context!');
-    }
+  if (!context || !canvasSelected) {
+    throw new Error("No canvas or canvas context!");
+  }
 
-    setContext(context);
-    setCanvas(canvasSelected);
+  setContext(context);
+  setCanvas(canvasSelected);
 
-    prepareCanvas();
-}
+  prepareCanvas();
+};

@@ -1,7 +1,12 @@
-import {BrowserHistory, createBrowserHistory, createMemoryHistory} from 'history';
 import isServer from "client/utils/serverSide/isServer";
-let history: BrowserHistory;
+import {
+  BrowserHistory,
+  createBrowserHistory,
+  createMemoryHistory,
+} from "history";
 
-history = isServer ? createMemoryHistory() : createBrowserHistory();
+const history: BrowserHistory = isServer
+  ? createMemoryHistory()
+  : createBrowserHistory();
 
 export default history;

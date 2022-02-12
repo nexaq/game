@@ -1,9 +1,8 @@
+import { BrowserHistory } from "history";
 import React from "react";
-import {BrowserRouterProps} from "react-router-dom";
-import {
-    BrowserHistory
-} from 'history';
-import {Router} from "react-router";
+import { Router } from "react-router";
+import { BrowserRouterProps } from "react-router-dom";
+
 import isServer from "../../utils/serverSide/isServer";
 import history from "./history";
 
@@ -12,33 +11,33 @@ import history from "./history";
  * для этого вынес history и могу использовать вне компонента
  */
 export default function CustomBrowserRouter({
-                                  basename,
-                                  children
-                              }: BrowserRouterProps) {
+  basename,
+  children,
+}: BrowserRouterProps): JSX.Element {
+  if (isServer) {
+    return children as JSX.Element;
+  }
 
-    if (isServer) {
-        return <>{children}</>;
-    }
+  const historyRef = React.useRef<BrowserHistory>();
+  if (historyRef.current == null) {
+    historyRef.current = history;
+  }
 
-    let historyRef = React.useRef<BrowserHistory>();
-    if (historyRef.current == null) {
-        historyRef.current = history;
-    }
+  const [state, setState] = React.useState({
+    action: history.action,
+    location: history.location,
+  });
 
-    let [state, setState] = React.useState({
-        action: history.action,
-        location: history.location
-    });
+  React.useLayoutEffect(() => history.listen(setState), [history]);
 
-    React.useLayoutEffect(() => history.listen(setState), [history]);
-
-    return (
-        <Router
-            basename={basename}
-            children={children}
-            location={state.location}
-            navigationType={state.action}
-            navigator={history}
-        />
-    );
+  return (
+    <Router
+      basename={basename}
+      location={state.location}
+      navigationType={state.action}
+      navigator={history}
+    >
+      {children}
+    </Router>
+  );
 }

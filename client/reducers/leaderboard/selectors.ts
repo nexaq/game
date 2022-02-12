@@ -1,3 +1,4 @@
-import {CommonStore} from "../../utils/infrastructure/store";
+import { CommonStore } from "../../utils/infrastructure/store";
 
-export const leadersSelector = (store: CommonStore) => store.leaderboard.leaders;
+export const leadersSelector = (store: CommonStore) =>
+  store.leaderboard.leaders;

@@ -1,1 +1,1 @@
-export {default} from './useInput';
+export { default } from "./useInput";

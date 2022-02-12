@@ -1,5 +1,1 @@
-export const VENDORS = [
-    'react',
-    'react-dom',
-    'react-helmet',
-];
+export const VENDORS = ["react", "react-dom", "react-helmet"];

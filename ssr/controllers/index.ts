@@ -1,2 +1,2 @@
-export {queryParser} from './queryParser';
-export {default as renderApp} from './app';
+export { default as renderApp } from "./app";
+export { queryParser } from "./queryParser";

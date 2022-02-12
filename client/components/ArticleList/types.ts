@@ -1,13 +1,14 @@
-import {FC} from "react";
-import {OwnProps as ItemProps} from "../ArticleItem";
+import { FC } from "react";
+
+import { OwnProps as ItemProps } from "../ArticleItem";
 
 type ArticleItem = ItemProps & {
-    description: string | JSX.Element
-}
+  description: string | JSX.Element;
+};
 
 type OwnProps = {
-    children: ArticleItem[];
-    className?: string;
-}
+  children: ArticleItem[];
+  className?: string;
+};
 
 export type Props = FC<OwnProps>;

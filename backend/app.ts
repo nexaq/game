@@ -1,11 +1,11 @@
-import express, {Express} from 'express';
+import errorMiddleware from "backend/middlewares/error";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import express, { Express } from "express";
+import fileUpload from "express-fileupload";
 
-import router from './router';
 import cors from "./middlewares/cors";
-import errorMiddleware from "backend/middlewares/error";
-import fileUpload from 'express-fileupload';
+import router from "./router";
 
 const server: Express = express();
 

@@ -1,3 +1,4 @@
-import serialize from 'serialize-javascript';
+import serialize from "serialize-javascript";
 
-export const renderObject = <T>(data: T | any): string => serialize(data).replace(/</g, '\\\u003c');
+export const renderObject = <T>(data: T | never): string =>
+  serialize(data).replace(/</g, "\\\u003c");

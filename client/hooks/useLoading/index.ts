@@ -1,1 +1,1 @@
-export {default} from './useLoading';
+export { default } from "./useLoading";

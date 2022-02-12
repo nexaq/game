@@ -1,7 +1,7 @@
-import {FC} from "react";
+import { FC } from "react";
 
 type OwnProps = {
-    error: 404 | 500
-}
+  error: 404 | 500;
+};
 
 export type Props = FC<OwnProps>;

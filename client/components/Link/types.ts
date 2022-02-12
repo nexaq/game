@@ -1,9 +1,9 @@
-import {FC} from "react";
+import { FC } from "react";
 
 export type OwnProps = {
-    to: string,
-    className?: string,
-    external?: boolean
+  to: string;
+  className?: string;
+  external?: boolean;
 };
 
 export type Props = FC<OwnProps>;

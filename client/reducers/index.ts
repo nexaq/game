@@ -1,12 +1,11 @@
-import {userReducer} from "./user";
-import {topicsReducer} from "./topics";
-import {topicReducer} from "./topic";
-import {leaderboardReducer} from "./leaderboard";
-
+import { leaderboardReducer } from "./leaderboard";
+import { topicReducer } from "./topic";
+import { topicsReducer } from "./topics";
+import { userReducer } from "./user";
 
 export const reducers = {
-    login: userReducer,
-    topics: topicsReducer,
-    topic: topicReducer,
-    leaderboard: leaderboardReducer,
+  login: userReducer,
+  topics: topicsReducer,
+  topic: topicReducer,
+  leaderboard: leaderboardReducer,
 };

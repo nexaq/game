@@ -1,7 +1,7 @@
-import {FC} from "react";
+import { FC } from "react";
 
 type OwnProps = {
-    delay?: number
+  delay?: number;
 };
 
 export type Props = FC<OwnProps>;

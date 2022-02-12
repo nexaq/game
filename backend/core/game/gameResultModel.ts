@@ -1,29 +1,35 @@
+import { Optional } from "sequelize";
 import {
   AllowNull,
-  AutoIncrement, BelongsTo,
+  AutoIncrement,
+  BelongsTo,
   Column,
-  DataType, ForeignKey,
+  DataType,
+  ForeignKey,
   Model,
   PrimaryKey,
-  Table
-} from 'sequelize-typescript';
-import {Optional} from "sequelize";
+  Table,
+} from "sequelize-typescript";
+
 import UserModel from "../user/userModel";
 
 export interface GameResultAttributes {
-  id: number
-  score: number
-  userId: number
+  id: number;
+  score: number;
+  userId: number;
 }
 
-export interface GameResultCreationAttributes extends Optional<GameResultAttributes, 'id'> {}
+export type GameResultCreationAttributes = Optional<GameResultAttributes, "id">;
 
 @Table({
   timestamps: true,
   updatedAt: false,
-  tableName: 'game_result',
+  tableName: "game_result",
 })
-export default class GameResultModel extends Model<GameResultAttributes, GameResultCreationAttributes> implements GameResultAttributes {
+export default class GameResultModel
+  extends Model<GameResultAttributes, GameResultCreationAttributes>
+  implements GameResultAttributes
+{
   @AutoIncrement
   @PrimaryKey
   @Column(DataType.INTEGER)
@@ -40,7 +46,7 @@ export default class GameResultModel extends Model<GameResultAttributes, GameRes
   @ForeignKey(() => UserModel)
   @Column({
     type: DataType.INTEGER,
-    field: 'user_id',
+    field: "user_id",
   })
   userId!: number;
 }

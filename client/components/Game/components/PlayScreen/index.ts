@@ -1,1 +1,1 @@
-export {default} from './PlayScreen';
+export { default } from "./PlayScreen";

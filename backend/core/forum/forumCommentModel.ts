@@ -1,19 +1,29 @@
-import { AllowNull, AutoIncrement, BelongsTo, Column, DataType, ForeignKey, HasMany, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+  AllowNull,
+  AutoIncrement,
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  Model,
+  PrimaryKey,
+  Table,
+} from "sequelize-typescript";
 
-import ForumTopicModel from './forumTopicModel';
 import UserModel from "../user/userModel";
+import ForumTopicModel from "./forumTopicModel";
 
 @Table({
   timestamps: true,
   updatedAt: false,
-  tableName: 'forum_comment',
+  tableName: "forum_comment",
 })
 export default class ForumCommentModel extends Model<ForumCommentModel> {
   @AutoIncrement
   @PrimaryKey
   @Column(DataType.INTEGER)
   id!: number;
-
 
   @AllowNull(false)
   @Column(DataType.STRING)
@@ -23,7 +33,7 @@ export default class ForumCommentModel extends Model<ForumCommentModel> {
   @ForeignKey(() => UserModel)
   @Column({
     type: DataType.INTEGER,
-    field: 'user_id',
+    field: "user_id",
   })
   userId!: number;
 
@@ -34,7 +44,7 @@ export default class ForumCommentModel extends Model<ForumCommentModel> {
   @ForeignKey(() => ForumTopicModel)
   @Column({
     type: DataType.INTEGER,
-    field: 'topic_id',
+    field: "topic_id",
   })
   topicId!: number;
 
@@ -44,7 +54,7 @@ export default class ForumCommentModel extends Model<ForumCommentModel> {
   @ForeignKey(() => ForumCommentModel)
   @Column({
     type: DataType.INTEGER,
-    field: 'comment_id',
+    field: "comment_id",
   })
   commentId!: number;
 

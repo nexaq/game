@@ -1,2 +1,2 @@
-export * from './types';
-export {leaderboardReducer} from "./leaderboardReducer";
+export { leaderboardReducer } from "./leaderboardReducer";
+export * from "./types";

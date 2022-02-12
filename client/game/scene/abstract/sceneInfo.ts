@@ -1,5 +1,5 @@
 export default interface SceneInfo {
-    paused: boolean,
-    score: number,
-    sound: boolean
+  paused: boolean;
+  score: number;
+  sound: boolean;
 }

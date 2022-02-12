@@ -1,12 +1,11 @@
-import server from './app';
-import {startApp} from './utils/startApp';
-import {startDb} from './utils/startDb';
+import server from "./app";
+import { startApp } from "./utils/startApp";
+import { startDb } from "./utils/startDb";
 
 startApp({
-    server,
-    startDb
+  server,
+  startDb,
 }).catch((e) => {
-    console.error(e);
+  // eslint-disable-next-line no-console
+  console.error(e);
 });
-
-

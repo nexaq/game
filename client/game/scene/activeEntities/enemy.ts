@@ -1,41 +1,47 @@
-import {MovableSceneObject, Velocity} from "../abstract";
 import nowInSeconds from "../../helpers/nowInSeconds";
-import {getCtx} from "../context";
+import { MovableSceneObject, Velocity } from "../abstract";
+import { getCtx } from "../context";
 
 export default class Enemy extends MovableSceneObject {
-    private readonly radius: number;
-    private readonly color: string;
+  private readonly radius: number;
 
-    constructor(x: number, y: number, radius: number, color: string, velocity: Velocity) {
-        super(x, y, velocity);
-        this.radius = radius;
-        this.color = color;
-    }
+  private readonly color: string;
 
-    getTimePassed() {
-        return nowInSeconds() - this.getAnimationStarted();
-    }
+  constructor(
+    x: number,
+    y: number,
+    radius: number,
+    color: string,
+    velocity: Velocity
+  ) {
+    super(x, y, velocity);
+    this.radius = radius;
+    this.color = color;
+  }
 
-    getRadius() {
-        return this.radius;
-    }
+  getTimePassed() {
+    return nowInSeconds() - this.getAnimationStarted();
+  }
 
-    draw() {
-        getCtx().beginPath();
-        getCtx().arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        getCtx().fillStyle = this.color;
-        getCtx().fill();
-    }
+  getRadius() {
+    return this.radius;
+  }
 
-    update() {
-        this.draw();
+  draw() {
+    getCtx().beginPath();
+    getCtx().arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    getCtx().fillStyle = this.color;
+    getCtx().fill();
+  }
 
-        const timePassed = this.getTimePassed();
+  update() {
+    this.draw();
 
-        const {x: velocityX, y: velocityY} = this.getVelocity();
+    const timePassed = this.getTimePassed();
 
-        this.x = this.startedX + timePassed * velocityX;
-        this.y = this.startedY + timePassed * velocityY;
-    }
+    const { x: velocityX, y: velocityY } = this.getVelocity();
+
+    this.x = this.startedX + timePassed * velocityX;
+    this.y = this.startedY + timePassed * velocityY;
+  }
 }
-

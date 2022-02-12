@@ -1,1 +1,1 @@
-export {default} from './FullScreenControl';
+export { default } from "./FullScreenControl";

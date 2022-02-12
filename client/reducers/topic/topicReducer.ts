@@ -1,14 +1,18 @@
-import {UserAction, TopicActionType, TopicState} from "./types";
+import { TopicActionType, TopicState, UserAction } from "./types";
 
 const initialState: TopicState = {
-    topic: null
+  topic: null,
 };
 
-export const topicReducer = (state = initialState, action: UserAction): TopicState => {
-    switch (action.type) {
-        case TopicActionType.FETCH:
-            return { ...state, topic: {...action.payload } }
-        default:
-            return state
-    }
-}
+export const topicReducer = (
+  // eslint-disable-next-line default-param-last
+  state = initialState,
+  action: UserAction
+): TopicState => {
+  switch (action.type) {
+    case TopicActionType.FETCH:
+      return { ...state, topic: { ...action.payload } };
+    default:
+      return state;
+  }
+};

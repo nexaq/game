@@ -1,2 +1,2 @@
-export {default} from './Game';
-export {default as LoadingLoadable} from './components/LoadingLoadable';
+export { default as LoadingLoadable } from "./components/LoadingLoadable";
+export { default } from "./Game";

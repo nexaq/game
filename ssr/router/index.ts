@@ -1,7 +1,7 @@
-import {Router} from 'express';
+import { Router } from "express";
 
-import {appRoutes} from './app';
-import {staticRoutes} from './static';
+import { appRoutes } from "./app";
+import { staticRoutes } from "./static";
 
 const router: Router = Router();
 

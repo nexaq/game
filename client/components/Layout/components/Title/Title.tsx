@@ -1,15 +1,20 @@
-import css from "../../style.module.pcss";
-import Container from "client/components/Container";
 import Heading from "client/components/@typography";
+import Container from "client/components/Container";
 import React from "react";
-import { Props} from "./types";
 
-const Title: Props = (props) => {
-    return <div className={css.container}>
-        <Container>
-            <Heading level={"h1"} className={css.title}>{props.title}</Heading>
-        </Container>
-    </div>;
-}
+import css from "../../style.module.pcss";
+import { Props } from "./types";
+
+const Title: Props = ({ title }) => {
+  return (
+    <div className={css.container}>
+      <Container>
+        <Heading level="h1" className={css.title}>
+          {title}
+        </Heading>
+      </Container>
+    </div>
+  );
+};
 
 export default Title;
