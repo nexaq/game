@@ -36,7 +36,7 @@ export default new class AssetManager {
         const audio = new window.Audio();
         audio.src = src;
         audio.volume = volume;
-        audio.addEventListener('canplay', () => {
+        audio.addEventListener('loadeddata', () => {
             this.countLoaded++;
             this.applyCallback();
         })
