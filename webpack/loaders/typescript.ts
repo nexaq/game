@@ -12,10 +12,10 @@ export default {
                 loader: 'babel-loader',
                 options: {
                     presets: [
-                        __DEV__ && '@babel/preset-env',
-                        __DEV__ && "@babel/preset-typescript",
+                        '@babel/preset-env',
+                        "@babel/preset-typescript",
                         // Enable development transform of React with new automatic runtime
-                        __DEV__ && ['@babel/preset-react', { development: true, runtime: 'automatic' }],
+                        ['@babel/preset-react', __DEV__  ? { development: true, runtime: 'automatic' } : {}],
                     ].filter(Boolean),
                     plugins: [
                         __DEV__ && 'react-refresh/babel',

@@ -38,9 +38,7 @@ export default () => (webpackConfig: webpack.Configuration) => {
             library: 'Client',
             libraryTarget: 'var',
             path: join(DIST_DIR, 'client'),
-            publicPath: __DEV__
-                ? '/static/'
-                : `https://storage.yandexcloud.net/path/to/S3/client/`,
+            publicPath: '/static/',
         },
         resolve: {
             extensions: ['.js', '.ts', '.tsx', '.json', '.pcss'], // порядок важен + расширение теперь можно не указывать

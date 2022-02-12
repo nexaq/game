@@ -2,32 +2,42 @@
   "name": "game",
   "version": "1.0.0",
   "scripts": {
-    "init": "npm install && npm run build:dev:vendors",
-    "build": "npm run build:production",
-    "dev": "better-npm-run dev",
-    "build:production:vendors": "better-npm-run build:production:vendors",
-    "build:production:client": "better-npm-run build:production:client",
-    "build:production": "better-npm-run build:production",
-    "build:client": "better-npm-run build:client",
-    "watch:ssr": "better-npm-run watch:ssr",
-    "start:dev": "NODE_PATH=./dist NODE_OPTIONS=--enable-source-maps CFG_DIR=$(pwd)/dist/configs node dist/ssr/index.js",
-    "start:prod": "cd /var/www/html && APP_VERSION=$(cat $(pwd)/.version) CFG_DIR=$(pwd)/dist/configs/ NODE_PATH=$(pwd)/dist node dist/ssr/index.js",
-    "build:configs": "tsc --project configs",
-    "build:ssr-server": "tsc --project ssr",
-    "watch:backend": "better-npm-run watch:backend",
-    "start:backend": "NODE_PATH=./dist NODE_OPTIONS=--enable-source-maps CFG_DIR=$(pwd)/dist/configs nodemon dist/backend/index.js",
+    "build:prod:vendors": "NODE_ENV=production webpack --mode=development --config webpack/config/vendors.config.ts",
     "build:dev:vendors": "NODE_ENV=development webpack --mode=development --config webpack/config/vendors.config.ts",
-    "build:ssr": "webpack --mode=production --config webpack/config/ssr.config.ts",
+
+    "build:configs": "tsc --project configs",
+    "build:ssr:server": "tsc --project ssr",
     "build:extras": "webpack --config webpack/config/extras.config.ts",
+
+    "ssr:dev": "better-npm-run ssr:dev",
+    "watch:ssr:dev": "better-npm-run watch:ssr:dev",
+    "start:ssr:dev": "NODE_PATH=./dist NODE_OPTIONS=--enable-source-maps CFG_DIR=$(pwd)/dist/configs node dist/ssr/index.js",
+
+    "ssr:prod": "better-npm-run ssr:prod",
+    "build:ssr:prod": "better-npm-run build:ssr:prod",
+    "start:ssr:prod": "NODE_ENV=production NODE_PATH=./dist NODE_OPTIONS=--enable-source-maps CFG_DIR=$(pwd)/dist/configs node dist/ssr/index.js",
+
+    "build:client:prod": "NODE_ENV=production webpack --mode=production --config webpack/config/client.config.ts",
+
+    "backend:dev": "better-npm-run backend:dev",
+    "start:backend:dev": "NODE_PATH=./dist NODE_OPTIONS=--enable-source-maps CFG_DIR=$(pwd)/dist/configs nodemon dist/backend/index.js",
+
+    "backend:prod": "better-npm-run backend:prod",
+    "start:backend:prod": "NODE_ENV=production NODE_PATH=./dist NODE_OPTIONS=--enable-source-maps CFG_DIR=$(pwd)/dist/configs node dist/backend/index.js",
+
     "clean": "rm -rf dist && mkdir dist",
+
     "precommit": "npm-run-all lint tsc",
+
     "tsc": "node ./node_modules/.bin/tsc --noEmit",
+
     "lint": "npm-run-all lint:*",
     "lint:style": "npx stylelint './**/*.{css,scss}'",
     "lint:src": "npx eslint --ext=.ts,.tsx ./",
     "fix": "npm-run-all fix:lint:*",
     "fix:lint:src": "npx eslint --fix --ext=.ts,.tsx ./",
     "fix:lint:style": "npx stylelint './**/*.{css,scss}' --fix",
+
     "test": "npm-run-all lint:* test:*",
     "test:mocha": "echo \"Error: no test specified\""
   },
@@ -145,36 +155,49 @@
     "serialize-javascript": "^6.0.0",
     "uuid": "^8.3.2"
   },
+
+
   "betterScripts": {
-    "dev": {
-      "command": "npm-run-all build:configs build:ssr-server build:extras && npm-run-all --parallel --print-name watch:ssr start:dev",
+    "ssr:dev": {
+      "command": "npm-run-all build:configs build:ssr:server build:extras && npm-run-all --parallel --print-name watch:ssr:dev start:ssr:dev",
       "env": {
         "NODE_ENV": "development"
       }
     },
-    "watch:backend": {
-      "command": "concurrently \"tsc --project backend --watch\" \"npm run start:backend\"",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    "build:client": {
-      "command": "webpack --mode=development --config webpack/config/client.config.ts",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build:production:client": {
-      "command": "webpack --mode=production --config webpack/config/client.config.ts",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "watch:ssr": {
+    "watch:ssr:dev": {
       "command": "webpack --watch --config webpack/config/ssr.config.ts",
       "env": {
         "NODE_ENV": "development"
       }
+    },
+
+
+    "ssr:prod": {
+      "command": "npm-run-all build:configs build:ssr:server build:extras && npm-run-all --parallel --print-name build:client:prod build:ssr:prod start:ssr:prod",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "build:ssr:prod": {
+      "command": "webpack --mode=production --config webpack/config/ssr.config.ts",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+
+    "backend:dev": {
+      "command": "concurrently \"tsc --project backend --watch\" \"npm run start:backend:dev\"",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+
+    "backend:prod": {
+      "command": "tsc --project backend && npm run start:backend:prod",
+      "env": {
+        "NODE_ENV": "production"
+      }
     }
+
   }
 }

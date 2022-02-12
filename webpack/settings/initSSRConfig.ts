@@ -37,9 +37,7 @@ export default ({entry}: {entry: any}) => (webpackConfig: webpack.Configuration)
             filename: `ssr.bundles.js`,
             libraryTarget: 'commonjs2',
             path: join(ROOT_DIR_FROM_WEBPACK, 'dist'),
-            publicPath: ENVS.__DEV__
-                ? '/static/'
-                : `https://storage.yandexcloud.net/path/to/S3/${process.env.APP_VERSION}/client/`,
+            publicPath: '/static/'
         },
 
         module: {rules: []},

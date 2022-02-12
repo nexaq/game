@@ -30,7 +30,7 @@ declare module 'cfg' {
 
         /** Static content (built css and js, images, etc) options */
         static: {
-            /** Base url for static content (e.g. https://yastatic.net/s3/project-stub/) */
+            /** Base url for static content (e.g. https://test.net/s3/project-stub/) */
             baseUrl: string;
 
             /** Directory for the built static content */

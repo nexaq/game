@@ -14,7 +14,7 @@ export default () => (webpackConfig: webpack.Configuration) => {
     const config = {
         name: 'Client',
         target: 'node',
-        mode: 'development',
+        mode: __DEV__ ? 'development' : 'production',
         devtool: 'source-map',
         entry: {
             'postcss-functions': join(CLIENT_DIR, 'styles', 'functions').replace('dist/', '')

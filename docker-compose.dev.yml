@@ -41,7 +41,7 @@ services:
       - ./ssr:/var/www/ssr
       - ./@types:/var/www/@types
 
-    command: npm run watch:backend
+    command: npm run backend:dev
     networks:
       - main-networks
     restart: always
@@ -62,7 +62,7 @@ services:
       - ./client:/var/www/client
       - ./ssr:/var/www/ssr
       - ./@types:/var/www/@types
-    command: npm run dev
+    command: bash -c "npm run build:dev:vendors && npm run ssr:dev"
     networks:
       - main-networks
     restart: always
