@@ -19,7 +19,7 @@ const Play: Props = () => {
                 <title>PLAY2</title>
             </Helmet>
 
-            <Layout title="Play">
+            <Layout title="Play" mustBeAuthorized>
                 <Container>
                     <LoadableGame />
                 </Container>
