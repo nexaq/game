@@ -1,5 +1,5 @@
 server {
     listen 80 default_server;
-    server_name ${MAIN_HOST};
+    server_name ${MAIN_HOSTNAME};
     return 301 https://$host$request_uri;
 }

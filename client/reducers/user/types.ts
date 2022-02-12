@@ -1,6 +1,7 @@
 import {UserDTO} from "../../api/user";
 
 export interface UserState {
+    isAuth: boolean | null;
     user: UserDTO | null;
 }
 
@@ -11,7 +12,7 @@ export enum UserActionType {
 
 export interface CheckAuth {
     type: UserActionType.CHECK_AUTH,
-    payload: UserDTO | null
+    payload: UserState
 }
 
 export interface LoginAction {

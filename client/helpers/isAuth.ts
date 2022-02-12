@@ -12,7 +12,6 @@ export default async function isAuth<T extends AnyAction>() {
             return user ?? null;
         }
     } catch (e) {
-        alert('Error occurred try later!');
         console.error(e);
     }
 

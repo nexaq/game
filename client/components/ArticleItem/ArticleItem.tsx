@@ -11,7 +11,8 @@ let ArticleItem: Props = ({
                               title,
                               children,
                               className = '',
-                              imageSource
+                              imageSource,
+                              comingSoon = false
                           }) => {
 
     const textContent = (<>
@@ -21,7 +22,6 @@ let ArticleItem: Props = ({
         <LinkButton url={ROUTES.PLAY.INDEX}>play now</LinkButton>
     </>);
 
-    const image = <img src={imageSource} className={css.image} alt=""/>;
 
     return (
         <div className={`${css.item} ${className}`}>
@@ -30,7 +30,15 @@ let ArticleItem: Props = ({
                     {textContent}
                 </div>
             </div>
-            {image}
+            <div className={`${css.imageContainer}`}>
+                {comingSoon && <div className={css.imageContainer__comingSoon}>Coming soon</div>}
+                <img
+                    src={imageSource}
+                    className={`${css.image} 
+                    ${comingSoon ? css.image_comingSoon : ''}`}
+                    alt={name}
+                />
+            </div>
         </div>
     );
 };

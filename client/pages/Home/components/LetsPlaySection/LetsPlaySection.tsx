@@ -14,7 +14,7 @@ let LetsPlaySection: Props = () => {
                 <Grid cols={1} colsLg={2} colGap={140} rowGap={40}>
                     <div className={css.title}>Let’s <div className={css.title__newLine}>play</div></div>
                     <div>
-                        <Paragraph className={css.description}>We are always on the lookout for great clients who are passionate about their products and customers.</Paragraph>
+                        <Paragraph className={css.description}>Looking for the best free browser game? Whether you’re broke or just frugal, free is a price point that appeals to everybody’s purse. </Paragraph>
                         <LinkButton style={'inversed'} url={ROUTES.PLAY.INDEX}>play now</LinkButton>
                     </div>
                 </Grid>

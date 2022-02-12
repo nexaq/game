@@ -12,9 +12,10 @@ import CreateSection from "../CreateSection";
 import {fetchTopics as fetchTopicsRedux} from "client/reducers/topics/actions";
 import {useTypedSelector} from "client/hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
-import useAfterEachLoading from "../../../../hooks/useAfterEachLoading";
-import avatarFileToSrc from "../../../../helpers/avatarFileToSrc";
-import {topicsSelector} from "../../../../reducers/topics/selectors";
+import useAfterEachLoading from "client/hooks/useAfterEachLoading";
+import avatarFileToSrc from "client/helpers/avatarFileToSrc";
+import {topicsSelector} from "client/reducers/topics/selectors";
+import Loading from "client/components/Loading";
 
 let Forum: Props = () => {
     const topics = useTypedSelector(topicsSelector);
@@ -56,7 +57,7 @@ let Forum: Props = () => {
                     </Fragment>
                 })}
                 {isEmpty && <Heading level={'h3'}>No topics at the moment.</Heading>}
-                {showLoading && <Heading level={'h3'}>Loading...</Heading>}
+                {showLoading && <Loading />}
             </div>
         </>
     );

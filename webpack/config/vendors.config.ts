@@ -4,6 +4,7 @@ import CompressionWebpackPlugin from 'compression-webpack-plugin';
 import {join} from "path";
 import {ENVS} from '../assets/env';
 
+
 const {__DEV__} = ENVS;
 
 import {VENDORS} from '../assets/config';

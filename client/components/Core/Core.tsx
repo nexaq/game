@@ -12,9 +12,9 @@ const Core: Props = () => {
                 </ErrorBoundary>
             </div>
         ) : (
-            <StrictMode>
+            // <StrictMode>
                 <Wrapper/>
-            </StrictMode>
+            // </StrictMode>
         )
 };
 

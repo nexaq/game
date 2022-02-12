@@ -1,5 +1,7 @@
-const mainHost = process.env.MAIN_HOST || 'localhost';
-const baseUrl = `${mainHost}/api`;
+const hostName = process.env.MAIN_HOSTNAME || 'localhost';
+const protocol = process.env.MAIN_PROTOCOL || 'http';
+
+const baseUrl = `${protocol}://${hostName}/api`;
 
 export const ApiPath = {
     USER: {

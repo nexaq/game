@@ -1,44 +1,50 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {Props} from "./types";
-import Header from "../Header";
+import Header from "client/components/Header";
 import useFakeLoading from "client/hooks/useFakeLoading";
 import css from './style.module.pcss';
 import Footer from "client/components/Footer";
-import Heading from "client/components/@typography";
+import useAuth from "client/hooks/useAuth";
+import Title from "./components/Title";
+import useIsAuth from "../../hooks/useIsAuth";
+import Loading from "../Loading";
 import Container from "../Container";
-import useAuth from "../../hooks/useAuth";
+import Spacing from "../Spacing";
 
-const Layout: Props = ({children, fakeLoading = false, memoizeChildrenBy, headerOverlapsContent = false, title, mustBeAuthorized = false}) => {
-    const isLoading = fakeLoading ? useFakeLoading() : false;
-    const isLoadingClassName = isLoading ? css._isLoading : '';
+const Layout: Props = ({children, fakeLoading = false, headerOverlapsContent = false, title, mustBeAuthorized = false}) => {
+    const isFakeLoading = fakeLoading ? useFakeLoading() : false;
+    const isLoadingClassName = isFakeLoading ? css._isLoading : '';
     const headerOverlapsClassName = headerOverlapsContent ? '' : css.headerOverlap;
 
-    // ОПТИМИЗАЦИЯ
-    // Повторный ререндер всей страницы тяжелая операция
-    // Для это опция memoizeChildren
-    // Прост удобнее чем писать useMemo в родительском компоненте :p
-    // <Header/> и <Footer/> обернуты в HOC memo
-    // не фанат теории что все нужно оборачивать в HOC memo :p
-    // поэтому тут чисто для прикола
-    let childrenMemoized;
-    if (memoizeChildrenBy !== undefined) {
-        childrenMemoized = useMemo(() => children, memoizeChildrenBy);
+    // Memoize children
+    // let childrenMemoized;
+    // if (memoizeChildrenBy !== undefined) {
+    //     childrenMemoized = useMemo(() => children, memoizeChildrenBy);
+    // }
+
+    let isAuth: boolean | null = null;
+    if (mustBeAuthorized) {
+        useAuth(true);
+        isAuth = useIsAuth();
     }
 
-    useAuth(mustBeAuthorized);
-
-    const titleContainer = <div className={css.title__container}>
-        <Container>
-            <Heading level={'h1'} className={css.title}>{title}</Heading>
-        </Container>
-    </div>;
+    const showAuthLoading = mustBeAuthorized && isAuth === null;
+    const showContent = !mustBeAuthorized || (mustBeAuthorized && isAuth === true);
 
     return (
         <div className={`${css.layout} ${isLoadingClassName} ${headerOverlapsClassName}`}>
             <div className={css.minHeight}>
-                {!isLoading && <Header/>}
-                {title && titleContainer}
-                {childrenMemoized ?? children}
+                {!isFakeLoading && <Header/>}
+
+                {showAuthLoading && <Container>
+                    <Spacing size={'lg'} />
+                    <Loading delay={300} />
+                </Container>}
+
+                {showContent && (<>
+                    {title && <Title title={title}/>}
+                    {children}
+                </>)}
             </div>
             <Footer/>
         </div>

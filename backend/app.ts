@@ -21,5 +21,4 @@ server
     .use(router)
     .use(errorMiddleware);
 
-
 export default server;

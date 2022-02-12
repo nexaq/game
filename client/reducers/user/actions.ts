@@ -10,7 +10,13 @@ const createLoginAction = (payload: UserDTO): LoginAction => {
 }
 
 export const createCheckAuthAction = (payload: UserDTO | null): CheckAuth => {
-    return { type: UserActionType.CHECK_AUTH, payload }
+    return {
+            type: UserActionType.CHECK_AUTH,
+            payload: {
+                user: payload,
+                isAuth: !!payload, // boolean значит запрос уже был
+            }
+        };
 }
 
 export const login = (accessToken: string, user: UserDTO): LoginAction => {

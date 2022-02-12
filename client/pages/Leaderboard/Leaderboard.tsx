@@ -12,7 +12,8 @@ import Heading from "client/components/@typography";
 import useAfterEachLoading from "client/hooks/useAfterEachLoading";
 import Avatar from "client/components/Avatar";
 import avatarFileToSrc from "client/helpers/avatarFileToSrc";
-import {leadersSelector} from "../../reducers/leaderboard/selectors";
+import {leadersSelector} from "client/reducers/leaderboard/selectors";
+import Loading from "client/components/Loading";
 
 let Leaderboard: Props = () => {
     const leaders = useTypedSelector(leadersSelector);
@@ -37,7 +38,7 @@ let Leaderboard: Props = () => {
             <Layout title="Leaderboard">
                 <Container>
                     {isEmpty && <Heading level={'h3'}>No leaders at the moment.</Heading>}
-                    {showLoading && <Heading level={'h3'}>Loading...</Heading>}
+                    {showLoading && <Loading />}
                     {!showLoading && leaders && <Users items={leaders?.map((leader) => {
                             return {
                                 key: leader.id,

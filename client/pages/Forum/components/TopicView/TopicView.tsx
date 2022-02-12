@@ -5,7 +5,6 @@ import {useParams} from "react-router";
 import {useDispatch} from "react-redux";
 import {fetchTopic} from "client/reducers/topic/actions";
 import useRequest from "client/hooks/useRequest";
-import Heading from "client/components/@typography";
 import {useTypedSelector} from "client/hooks/useTypedSelector";
 import {CommentDTO, TopicDTO} from "client/api/forum";
 import Comments from "client/components/@forum/Comments";
@@ -15,6 +14,7 @@ import Spacing from "client/components/Spacing";
 import LinkButton from "client/components/Button";
 import avatarFileToSrc from "client/helpers/avatarFileToSrc";
 import {topicSelector} from "client/reducers/topic/selectors";
+import Loading from "client/components/Loading";
 
 let TopicView: Props = () => {
     const {id} = useParams();
@@ -86,7 +86,7 @@ let TopicView: Props = () => {
     return (
         <>
             {!showLoading && topic && renderTopic(topic)}
-            {showLoading && <Heading level={'h3'}>Loading...</Heading>}
+            {showLoading && <Loading />}
         </>
     );
 };

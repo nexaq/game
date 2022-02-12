@@ -23,7 +23,7 @@ export default () => (webpackConfig: webpack.Configuration) => {
     const config = {
         name: 'Client',
         target: 'web',
-        devtool: __DEV__ ? 'source-map' : 'source-map',
+        devtool: __DEV__ ? 'source-map' : false,
         mode: __DEV__ ? 'development' : 'production',
         entry: {
             desktop:
@@ -41,7 +41,7 @@ export default () => (webpackConfig: webpack.Configuration) => {
             publicPath: '/static/',
         },
         resolve: {
-            extensions: ['.js', '.ts', '.tsx', '.json', '.pcss'], // порядок важен + расширение теперь можно не указывать
+            extensions: ['.js', '.ts', '.tsx', '.json', '.pcss'], // порядок важен
             plugins: [
                 new TsconfigPathsPlugin(),
             ],
