@@ -2,3 +2,4 @@
 /dist/
 /.idea/
 /backend/uploads/**/*
+.env
