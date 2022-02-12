@@ -30,16 +30,10 @@ const Game: Props = () => {
             });
 
             subscribe(Events.END_GAME, () => {
-                registerResult(() => {
-                    const score = getScore();
-                    return create({
-                        score,
-                    }).then(({status}) => {
-                        if (status !== 200) {
-                            alert('Something went wrong')
-                        }
-                    })
-                })
+                const score = getScore();
+                registerResult(() => create({
+                    score,
+                }))
             });
         }
 
