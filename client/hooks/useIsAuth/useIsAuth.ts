@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
+import { authSelector } from "client/reducers/user/selectors";
 
-import { userSelector } from "../../reducers/user/selectors";
 import { useTypedSelector } from "../useTypedSelector";
 
 export default function useIsAuth() {
-  const userFromRedux = useTypedSelector(userSelector);
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const userFromRedux = useTypedSelector(authSelector);
 
-  useEffect(() => {
-    setIsAuthorized(!!userFromRedux);
-  }, [userFromRedux]);
-
-  return isAuthorized;
+  return !!userFromRedux;
 }

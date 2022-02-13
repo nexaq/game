@@ -5,11 +5,12 @@ import { useDispatch } from "react-redux";
 
 import history from "../../components/CustomBrowserRouter/history";
 import { ROUTES } from "../../routes";
+import { authSelector } from "../../reducers/user/selectors";
 
 export default function useAuth(redirect: boolean) {
   const dispatch = useDispatch();
 
-  const isAuth = useTypedSelector((store) => store.login.isAuth);
+  const isAuth = useTypedSelector(authSelector);
 
   useEffect(() => {
     // не посылать больше запросов если
@@ -21,4 +22,6 @@ export default function useAuth(redirect: boolean) {
       setTimeout(() => history.push(ROUTES.SIGN_IN.INDEX));
     }
   }, []);
+
+  return isAuth;
 }

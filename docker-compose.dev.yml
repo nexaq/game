@@ -29,7 +29,7 @@ services:
       context: ./
       dockerfile: ./backend/Dockerfile
     ports:
-      - "${PORT_BACKEND}:${PORT_BACKEND}"
+      - "${PORT_BACKEND}:4000"
     env_file:
       - .env
     depends_on:
@@ -50,7 +50,7 @@ services:
       context: ./
       dockerfile: ./ssr/Dockerfile
     ports:
-      - "${PORT_SSR}:${PORT_SSR}"
+      - "${PORT_SSR}:3000"
     depends_on:
       - backend-app
       - postgres

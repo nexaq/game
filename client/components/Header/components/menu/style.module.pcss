@@ -6,8 +6,8 @@ $space-between: 12;
     display: block;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 0 0;
-    margin: rem(-$space-between);
+    padding: 0;
+    margin: 0 rem(-$space-between);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
@@ -18,9 +18,10 @@ $space-between: 12;
 }
 
 ._opened {
+    padding: rem($space-between) 0 0;
+
     /* костылёк для css анимации */
     max-height: 470px;
-    padding: rem($space-between) 0;
     @media (min-width: $breakpoint-sm) {
         /* костылёк для css анимации */
         max-height: 350px;
@@ -29,5 +30,4 @@ $space-between: 12;
 
 .item {
     padding: rem(12);
-
 }

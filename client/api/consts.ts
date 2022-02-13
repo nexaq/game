@@ -1,7 +1,8 @@
 const hostName = process.env.MAIN_HOSTNAME || "localhost";
 const protocol = process.env.__DEV__ ? "http" : "https";
+const port = process.env.MAIN_PORT ? process.env.MAIN_PORT : "443";
 
-const baseUrl = `${protocol}://${hostName}/api`;
+const baseUrl = `${protocol}://${hostName}:${port}/api`;
 
 export const ApiPath = {
   USER: {

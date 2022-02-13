@@ -1,3 +1,13 @@
+## ИГРА
+
+Обзор:
+
+https://drive.google.com/file/d/1nYvNKVU2BMHRSgaVnVdbki5a9Jq716Gu/view?usp=sharing
+
+Можно посмотерь проект в работе тут:
+
+https://star-ship.ru/
+
 ## INIT
 
 Как развернуть локально:

@@ -31,11 +31,7 @@ const Layout: Props = ({
   //     childrenMemoized = useMemo(() => children, memoizeChildrenBy);
   // }
 
-  let isAuth: boolean | null = null;
-  if (mustBeAuthorized) {
-    useAuth(true);
-    isAuth = useIsAuth();
-  }
+  const isAuth: boolean | null = useAuth(mustBeAuthorized);
 
   const showAuthLoading = mustBeAuthorized && isAuth === null;
   const showContent =
