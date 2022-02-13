@@ -1,5 +1,10 @@
+.env
+
+/.idea/
+
 /node_modules/
 /dist/
-/.idea/
+
 /backend/uploads/**/*
-.env
+
+docker-compose.yml

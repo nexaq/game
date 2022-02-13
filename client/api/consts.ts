@@ -1,5 +1,5 @@
 const hostName = process.env.MAIN_HOSTNAME || "localhost";
-const protocol = process.env.MAIN_PROTOCOL || "http";
+const protocol = process.env.__DEV__ ? "http" : "https";
 
 const baseUrl = `${protocol}://${hostName}/api`;
 

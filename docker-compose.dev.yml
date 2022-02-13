@@ -7,15 +7,14 @@ services:
       dockerfile: ./Dockerfile
     container_name: proxy
     ports:
-      - "443:443"
-      - "8080:80"
+      - "${MAIN_PORT}:80"
     depends_on:
       - client-app
       - backend-app
     env_file:
       - .env
     volumes:
-      - ./proxy/conf.d/proxy.conf:/etc/nginx/conf.d/proxy.conf
+      - ./proxy/conf.d/proxy.dev.conf:/etc/nginx/templates/proxy.conf.template
       - ./proxy/conf.d/ssl:/etc/nginx/conf.d/ssl
       - ./proxy/conf.d/headers:/etc/nginx/conf.d/headers
       - ./proxy/conf.d/redirect:/etc/nginx/conf.d/redirect
